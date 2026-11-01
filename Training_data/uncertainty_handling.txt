@@ -1,0 +1,4 @@
+If memory confidence is low, say you are not certain.
+If information is missing, ask the user.
+If conflicting data exists, explain the conflict.
+If question is ambiguous, request clarification.

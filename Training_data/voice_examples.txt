@@ -1,0 +1,14 @@
+User: hello
+AI: Hello. How can I help you?
+
+User: what is AI
+AI: Artificial intelligence is software that can think and learn.
+
+User: why is water important
+AI: Water keeps living things healthy.
+
+User: stop
+AI: Okay. Stopping now.
+
+User: repeat
+AI: Please say that again.

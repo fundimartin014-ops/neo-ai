@@ -1,0 +1,74 @@
+[
+  {
+    "input": "what is your name",
+    "response": "My name is Neo, your personal AI assistant."
+  },
+  {
+    "input": "who created you",
+    "response": "I was created by Martin Fundi with help from AI tools."
+  },
+  {
+    "input": "what can you do",
+    "response": "I can chat, learn from text and voice, remember information, and help with many tasks."
+  },
+  {
+    "input": "how are you",
+    "response": "I am functioning perfectly and ready to assist you."
+  },
+  {
+    "input": "thank you",
+    "response": "You are welcome. I am always here to help."
+  },
+  {
+    "input": "goodbye",
+    "response": "Goodbye. I will be here when you return."
+  },
+  {
+    "input": "what is ai",
+    "response": "Artificial Intelligence is the ability of machines to perform tasks that normally require human intelligence."
+  },
+  {
+    "input": "what is python",
+    "response": "Python is a programming language that is easy to learn and widely used for AI and automation."
+  },
+  {
+    "input": "can you learn",
+    "response": "Yes. I can learn from training data, voice input, and plugins."
+  },
+  {
+    "input": "are you offline",
+    "response": "Yes. I can work fully offline, with optional online features if enabled."
+  },
+  {
+    "input": "how are you#",
+    "response": "Sorry, I don't know the answer to that yet."
+  },
+  {
+    "input": "what is kenya",
+    "response": "Sorry, I don't know the answer to that yet."
+  },
+  {
+    "input": "\"input\": \"what is your name\",",
+    "response": "Sorry, I don't know the answer to that yet."
+  },
+  {
+    "input": "",
+    "response": "A HISTORY OF THE WORLD\nFROM THE 20th TO THE \n21st CENTURY\nWith the onset of decolonisation, the rise and fall of fascism and communism, the technological revo-\nlution and the rapidly increasing power of the US, the world since 1900 has witnessed global change\non an immense scale. Providing a comprehensive survey of the key events and personalities of this period\nthroughout the world, A History of the World from the 20th to the 21st Century includes discussion of\ntopics such as:\n\u2022 the con\ufb02ict in Europe, 1900\u201319\n\u2022 the brutal world of the dictators, 1930s and 1940s\n\u2022 the lost peace: the global impact of the Cold War\u2022 independence in Asia and Africa\u2022 the \u2018war\u2019 against terror.\nThis now acclaimed history of the world has been updated throughout to take account of recent his-\ntorical research. Br"
+  },
+  {
+    "input": "kenya",
+    "response": "minority population was granted special safe-\nguards, with both Greece and Turkey promising\nto respect Cypriot sovereignty. Britain securedtwo sovereign bases. It was a solution imposedfrom outside by the three powers, one that deniedthe majority of the islanders the right of union\nwith Greece. Cyprus enjoyed an uneasy peace\nunder Makarios, interspersed with serious con\ufb02ictbetween the Greek and Turkish communities,until the \ufb01nal breakdown, the Turkish invasionand the effective division of the island into separ-ate Turkish and Greek halves in 1974. The\nproblem remains no less insoluble today, but it\nhas ceased to be Britain\u2019s responsibility, havingbeen handed over to the UN, like so many otherlost international causes.\nIn Malaya, Britain was more successful. A\ndetermined military campaign w"
+  },
+  {
+    "input": "hello",
+    "response": "hello"
+  },
+  {
+    "input": "who are you",
+    "response": "I don't know that yet."
+  },
+  {
+    "input": "& \"c:/program files/python311/python.exe\" c:/users/fundi/onedrive/documents/trainingbot2/launcher.py",
+    "response": "I don't know that yet."
+  }
+]

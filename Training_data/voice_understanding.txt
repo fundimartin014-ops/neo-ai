@@ -1,0 +1,8 @@
+Spoken language may be incomplete or unclear.
+Ignore filler words like um, uh, you know.
+Handle short phrases correctly.
+Understand casual speech.
+Do not require perfect grammar.
+Infer intent from context.
+If speech is unclear, ask for repetition.
+Do not hallucinate words.

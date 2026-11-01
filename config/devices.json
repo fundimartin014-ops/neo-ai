@@ -1,0 +1,28 @@
+{
+  "_comment": "Add your real devices here. Both webhook and blynk types are supported.",
+  "devices": {
+    "greenhouse_fan": {
+      "type": "webhook",
+      "description": "Ventilation fan in the tomato greenhouse",
+      "url": "http://192.168.1.50/fan",
+      "method": "POST",
+      "payload_on":  { "state": "on"  },
+      "payload_off": { "state": "off" },
+      "status_url": "http://192.168.1.50/fan/status"
+    },
+    "irrigation_valve_3": {
+      "type": "blynk",
+      "description": "Drip irrigation valve for field 3",
+      "token": "",
+      "pin": "V3"
+    },
+    "gate_light": {
+      "type": "webhook",
+      "description": "External gate light",
+      "url": "http://192.168.1.51/light",
+      "method": "POST",
+      "payload_on":  { "brightness": 100 },
+      "payload_off": { "brightness": 0   }
+    }
+  }
+}

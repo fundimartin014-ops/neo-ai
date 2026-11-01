@@ -1,0 +1,8 @@
+{
+  "unknown_question": "Respond that the information is not available.",
+  "yes_no_question": "Evaluate facts before answering.",
+  "how_question": "Explain steps in order.",
+  "why_question": "Explain cause and effect.",
+  "comparison_question": "List similarities and differences.",
+  "problem_question": "Break into steps and solve logically."
+}

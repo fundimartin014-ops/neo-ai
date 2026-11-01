@@ -1,0 +1,5 @@
+{
+  "groq::openai/gpt-oss-120b": 1790881131.5184402,
+  "openrouter::nvidia/nemotron-3-super-120b-a12b:free": 1790881131.5014386,
+  "openrouter::nvidia/nemotron-3-ultra-550b-a55b:free": 1790881131.4824603
+}

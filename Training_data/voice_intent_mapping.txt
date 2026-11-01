@@ -1,0 +1,12 @@
+hello → greeting
+hi → greeting
+hey → greeting
+good morning → greeting
+how are you → status_check
+what is this → explanation_request
+tell me about → information_request
+why → reasoning_request
+how → procedural_request
+stop → command
+exit → command
+repeat → clarification_request

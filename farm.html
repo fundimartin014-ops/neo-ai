@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Farm Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+    --bg:#0f172a; --panel:#1e293b; --border:#334155; --fg:#e2e8f0;
+    --dim:#94a3b8; --accent:#38bdf8; --ok:#22c55e; --warn:#f59e0b; --err:#ef4444;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:-apple-system,system-ui,"Segoe UI",sans-serif; }
+  .wrap { max-width:1000px; margin:24px auto; padding:0 20px; }
+  header { display:flex; align-items:center; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+  h1 { margin:0; font-size:22px; }
+  .badge { font-size:11px; padding:3px 10px; border-radius:10px; background:rgba(56,189,248,0.15); color:var(--accent); letter-spacing:.5px; }
+  .badge.profile { background:rgba(34,197,94,0.15); color:var(--ok); }
+  .quick { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0 24px; }
+  .quick button { padding:10px 14px; border-radius:8px; border:1px solid var(--border); background:var(--panel); color:var(--fg); cursor:pointer; font-size:13px; }
+  .quick button:hover { border-color:var(--accent); color:var(--accent); }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:16px; }
+  .card h2 { margin:0 0 12px; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--dim); font-weight:600; }
+  .empty { color:var(--dim); font-style:italic; font-size:13px; }
+  pre { white-space:pre-wrap; word-break:break-word; font-family:ui-monospace,monospace; font-size:12.5px; line-height:1.5; margin:0; color:var(--fg); max-height:640px; overflow:auto; }
+  .err { color:var(--err); }
+  .row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+  .row input { padding:9px 12px; border-radius:6px; border:1px solid var(--border); background:var(--bg); color:var(--fg); font-size:13px; }
+  .row input#loc { flex:1; min-width:180px; }
+  .row button { padding:9px 16px; border-radius:6px; border:0; background:var(--accent); color:#0b1220; font-weight:600; cursor:pointer; font-size:13px; }
+  .row button:disabled { opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Farm Dashboard</h1>
+    <span id="profile-badge" class="badge profile">profile: …</span>
+    <span id="server-badge" class="badge">server: …</span>
+  </header>
+
+  <div class="quick">
+    <button data-prompt="farm: {loc}">Full Brief</button>
+    <button data-prompt="market: maize milk beans">Market Prices</button>
+    <button data-prompt="search: {loc} Kenya farming news this week">Local News</button>
+    <button data-prompt="disease: crop:maize symptoms:yellow leaves with dark spots">Diagnose (demo)</button>
+    <button id="refresh-brief">Refresh Brief</button>
+  </div>
+
+  <div class="card">
+    <h2>Location</h2>
+    <div class="row">
+      <input id="loc" type="text" value="Nakuru" placeholder="Nakuru, Eldoret, Kisumu, ...">
+      <button id="run-farm">Run Farm Brief</button>
+    </div>
+    <div class="empty">Tip: any Kenyan town in the table works (Nakuru, Nairobi, Eldoret, Kisumu, Mombasa, Nyeri, Meru, ...).</div>
+  </div>
+
+  <div class="card">
+    <h2>Today's Brief</h2>
+    <pre id="brief"><span class="empty">Click "Run Farm Brief" to generate (30-60s first time, ~10s after).</span></pre>
+  </div>
+
+  <div class="card">
+    <h2>Last Tool Call</h2>
+    <pre id="last"><span class="empty">(none yet)</span></pre>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const locInput = $('loc');
+const briefPre = $('brief');
+const lastPre  = $('last');
+
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+async function loadProfile(){
+  try {
+    const r = await fetch('/api/profile');
+    const j = await r.json();
+    $('profile-badge').textContent = 'profile: ' + (j.active || '?');
+    $('server-badge').textContent  = 'server: ok';
+  } catch (e) {
+    $('profile-badge').textContent = 'profile: unknown';
+    $('server-badge').textContent  = 'server: offline';
+  }
+}
+
+async function runPrompt(prompt){
+  briefPre.innerHTML = 'Running: ' + escapeHtml(prompt) + '\n\n(thinking…)';
+  const t0 = performance.now();
+  try {
+    const r = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body: JSON.stringify({message: prompt, history: []}),
+    });
+    const j = await r.json();
+    const elapsed = ((performance.now()-t0)/1000).toFixed(1);
+    const text = j.response || j.error || JSON.stringify(j);
+    briefPre.innerHTML = `<div style="color:var(--dim);margin-bottom:8px">[${elapsed}s · ${j.model||'?'}]</div>` + escapeHtml(text);
+    lastPre.textContent = prompt;
+  } catch (e) {
+    briefPre.innerHTML = '<span class="err">' + escapeHtml(String(e)) + '</span>';
+  }
+}
+
+function runFarm(){
+  const loc = (locInput.value || 'Nakuru').trim();
+  runPrompt(`farm: ${loc}`);
+}
+
+document.querySelectorAll('.quick button[data-prompt]').forEach(b => {
+  b.addEventListener('click', () => {
+    const loc = (locInput.value || 'Nakuru').trim();
+    const p = b.dataset.prompt.replace('{loc}', loc);
+    runPrompt(p);
+  });
+});
+$('refresh-brief').addEventListener('click', runFarm);
+$('run-farm').addEventListener('click', runFarm);
+locInput.addEventListener('keydown', e => { if (e.key === 'Enter') runFarm(); });
+
+loadProfile();
+</script>
+</body>
+</html>

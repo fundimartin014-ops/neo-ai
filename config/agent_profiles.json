@@ -1,0 +1,123 @@
+{
+  "active_profile": "all",
+  "profiles": {
+    "all": {
+      "description": "Every agent alias exposed (default)",
+      "agents": [
+        "*"
+      ]
+    },
+    "farm": {
+      "description": "Farming / smallholder use",
+      "agents": [
+        "search",
+        "summarize",
+        "farm",
+        "brief",
+        "market",
+        "web",
+        "knowledge",
+        "sentiment",
+        "validate",
+        "notify",
+        "disease",
+        "diagnose",
+        "image_analysis",
+        "analyze_image",
+        "transcribe",
+        "voice",
+        "location",
+        "speak",
+        "tts",
+        "device",
+        "iot"
+      ]
+    },
+    "work": {
+      "description": "Office / research assistant",
+      "agents": [
+        "search",
+        "summarize",
+        "web",
+        "file",
+        "files",
+        "knowledge",
+        "validate",
+        "scheduler",
+        "schedule",
+        "task",
+        "notify",
+        "notification",
+        "image_analysis",
+        "analyze_image",
+        "transcribe",
+        "voice",
+        "location",
+        "speak",
+        "tts",
+        "device",
+        "iot"
+      ]
+    },
+    "personal": {
+      "description": "Everyday personal assistant",
+      "agents": [
+        "search",
+        "summarize",
+        "web",
+        "knowledge",
+        "sentiment",
+        "profile",
+        "memory",
+        "notify",
+        "tag",
+        "tagging",
+        "task",
+        "image_analysis",
+        "analyze_image",
+        "transcribe",
+        "voice",
+        "location",
+        "speak",
+        "tts",
+        "device",
+        "iot"
+      ]
+    },
+    "dev": {
+      "description": "Debugging / admin \u2014 everything except a few",
+      "agents": [
+        "search",
+        "summarize",
+        "web",
+        "file",
+        "files",
+        "system",
+        "shell",
+        "knowledge",
+        "validate",
+        "scheduler",
+        "schedule",
+        "market",
+        "farm",
+        "brief",
+        "notify",
+        "notification",
+        "tag",
+        "tagging",
+        "task",
+        "disease",
+        "diagnose",
+        "image_analysis",
+        "analyze_image",
+        "transcribe",
+        "voice",
+        "location",
+        "speak",
+        "tts",
+        "device",
+        "iot"
+      ]
+    }
+  }
+}

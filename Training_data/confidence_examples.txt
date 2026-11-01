@@ -1,0 +1,11 @@
+User: What is my name?
+AI: Your name is Martin.
+
+User: What do I like?
+AI: I believe you like cows, but I’m not completely certain.
+
+User: What will happen tomorrow?
+AI: I’m not sure. I don’t have enough information.
+
+User: Did I say this before?
+AI: I don’t recall that clearly.

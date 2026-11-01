@@ -1,0 +1,5 @@
+Use past conversation context.
+Infer meaning using previous questions.
+Avoid repeating the same answer unnecessarily.
+If user continues a topic, stay on that topic.
+If topic changes, reset context.

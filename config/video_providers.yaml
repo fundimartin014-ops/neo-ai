@@ -1,0 +1,118 @@
+providers:
+- name: free-multimodal-proxy
+  tier: 0
+  endpoint: http://localhost:8080/v1/videos/generations
+  auth: none
+  adapter: tier0_proxy
+  models:
+  - wan-2.2
+  - kling-3.0
+  - seedance-2.0
+  - pixverse-v6
+  - hailuo
+  daily_quota: null
+  per_user_daily_cap: 5
+  reliability: 0.7
+  enabled_flag: TIER0_ENABLED
+- name: jimeng-free-api
+  tier: 0
+  endpoint: http://localhost:8081/v1/videos/generations
+  auth: session_id
+  adapter: tier0_jimeng
+  models:
+  - seedance-2.0
+  daily_quota: 60
+  per_user_daily_cap: 5
+  reliability: 0.6
+  enabled_flag: TIER0_ENABLED
+- name: prezzy-prexzyapis
+  tier: 0
+  endpoint: https://prexzyapis.com/v1/videos/generations
+  auth: none
+  adapter: tier0_prezzy
+  models:
+  - wan-2.2
+  - ltx-2
+  daily_quota: null
+  per_user_daily_cap: 5
+  reliability: 0.55
+  enabled_flag: TIER0_ENABLED
+- name: doubao2api
+  tier: 0
+  endpoint: http://localhost:8082/v1/videos/generations
+  auth: client_session
+  adapter: tier0_doubao
+  models:
+  - doubao-video
+  daily_quota: null
+  per_user_daily_cap: 5
+  reliability: 0.55
+  enabled_flag: TIER0_ENABLED
+- name: whisk-api
+  tier: 0
+  endpoint: http://localhost:8083/v1/animate
+  auth: cookie
+  adapter: tier0_whisk
+  models:
+  - veo-3.1
+  daily_quota: 25
+  per_user_daily_cap: 3
+  reliability: 0.5
+  enabled_flag: TIER0_ENABLED
+- name: wan22-hf
+  tier: 0
+  endpoint: https://zerogpu-aoti-wan2-2-fp8da-aoti-faster.hf.space
+  auth: none
+  adapter: tier0_wan22
+  models:
+  - wan-2.2-fp8
+  daily_quota: null
+  per_user_daily_cap: 5
+  reliability: 0.65
+  enabled_flag: TIER0_ENABLED
+- name: magic-hour
+  tier: 1
+  endpoint: https://api.magichour.ai/v1
+  auth: bearer:MAGIC_HOUR_API_KEY
+  adapter: tier1_magichour
+  models:
+  - ltx-2.5
+  - wan-2.2
+  - minimax-h3
+  daily_quota: 90
+  per_user_daily_cap: 3
+  reliability: 0.99
+  enabled_flag: TIER1_ENABLED
+- name: vercel-gateway
+  tier: 1
+  endpoint: https://ai-gateway.vercel.sh/v1
+  auth: bearer:VERCEL_AI_KEY
+  adapter: tier1_vercel
+  models:
+  - wan-v3.0
+  - seedance-2.0
+  monthly_budget_usd: 4.5
+  per_user_daily_cap: 2
+  reliability: 0.99
+  enabled_flag: TIER1_ENABLED
+- name: rewind-ai
+  tier: 1
+  endpoint: https://api.rewind.ai/v1
+  auth: bearer:REWIND_KEY
+  adapter: tier1_rewind
+  models:
+  - bytedance/seedance-1-5-pro
+  daily_quota: 4500
+  per_user_daily_cap: 2
+  reliability: 0.75
+  enabled_flag: TIER1_ENABLED
+- name: higgsfield
+  tier: 2
+  endpoint: https://platform.higgsfield.ai/v1
+  auth: bearer:HF_KEY
+  adapter: tier2_higgsfield
+  models:
+  - seedance-2.5
+  - kling-3.0
+  reliability: 0.99
+  enabled_flag: PAID_ENABLED

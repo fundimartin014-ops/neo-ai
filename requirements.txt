@@ -1,0 +1,36 @@
+# ═══════════════════════════════════════════════════════════════
+# NEO AI — Production Requirements for TRAININGBOT2
+# ═══════════════════════════════════════════════════════════════
+
+# ─── Web Framework ───
+flask>=2.3.0
+flask-cors>=4.0.0
+gunicorn>=21.2.0
+
+# ─── Async & HTTP ───
+aiohttp>=3.9.0
+aiofiles>=23.2.0
+requests>=2.31.0
+httpx>=0.25.0
+
+# ─── Environment ───
+python-dotenv>=1.0.0
+
+# ─── AI / ML ───
+numpy>=1.24.0
+sentence-transformers>=2.2.0
+faiss-cpu>=1.7.4
+
+# ─── Database ───
+supabase>=2.0.0
+psycopg2-binary>=2.9.0
+
+# ─── Utilities ───
+python-dateutil>=2.8.0
+pydantic>=2.0.0
+
+# ─── Optional: Telegram Bot ───
+# python-telegram-bot>=20.0
+
+# ─── Optional: Firebase Admin ───
+# firebase-admin>=6.0.0

@@ -1,0 +1,717 @@
+   1: """
+   2: NEO HYBRID OUTPUT ENGINE v1.0
+   3: Runs multiple cloud models in parallel and merges their outputs into one unified response.
+   4: 
+   5: Merge Strategies:
+   6:   - synthesis    : Combine all unique insights into one coherent response
+   7:   - consensus    : Extract only points all models agree on
+   8:   - debate       : Show conflicting viewpoints and reconcile them
+   9:   - ensemble     : Weighted voting on facts (confidence scoring)
+  10:   - cascade      : Chain outputs from one model to refine another
+  11:   - best_of_all  : Extract the best paragraph/section from each output
+  12:   - parallel     : Return all outputs with a meta-summary
+  13: 
+  14: Usage:
+  15:     from hybrid_merger import HybridMerger
+  16:     merger = HybridMerger()
+  17:     result = await merger.hybrid_generate(
+  18:         prompt="Explain quantum computing",
+  19:         model_pool=["llama-3.3-70b", "deepseek-r1", "gemini-2.5-flash"],
+  20:         strategy="synthesis"
+  21:     )
+  22: """
+  23: 
+  24: import asyncio
+  25: import os
+  26: import json
+  27: import time
+  28: import hashlib
+  29: from typing import List, Dict, Any, Optional, Callable
+  30: from dataclasses import dataclass, field
+  31: from concurrent.futures import ThreadPoolExecutor
+  32: import logging
+  33: import neo_model_health as nmh  # neo_patch_v9
+  34: 
+  35: logger = logging.getLogger("hybrid_merger")
+  36: 
+  37: 
+  38: @dataclass
+  39: class ModelOutput:
+  40:     """Result from a single model call."""
+  41:     model_id: str
+  42:     provider: str
+  43:     output: str
+  44:     latency: float
+  45:     tokens_used: int = 0
+  46:     error: Optional[str] = None
+  47:     raw_response: Any = None
+  48: 
+  49: 
+  50: @dataclass
+  51: class HybridResult:
+  52:     """Final merged result from the Hybrid Engine."""
+  53:     strategy: str
+  54:     prompt: str
+  55:     outputs: List[ModelOutput]
+  56:     merged_output: str
+  57:     merge_latency: float
+  58:     metadata: Dict[str, Any] = field(default_factory=dict)
+  59: 
+  60: 
+  61: class HybridMerger:
+  62:     """
+  63:     Hybrid Output Engine for NEO.
+  64: 
+  65:     Runs N models in parallel, then synthesizes their outputs into one.
+  66:     No local/Ollama models — pure cloud orchestration.
+  67:     """
+  68: 
+  69:     # Fast/cheap models to use as the "merger" (synthesizer)
+  70:     MERGER_MODELS = [
+  71:         {"provider": "groq", "model": "openai/gpt-oss-120b", "base_url": "https://api.groq.com/openai/v1", "env": "GROQ_API_KEY"},
+  72:         {"provider": "groq", "model": "openai/gpt-oss-120b", "base_url": "https://api.groq.com/openai/v1", "env": "GROQ_API_KEY"},
+  73:         {"provider": "openrouter", "model": "nvidia/nemotron-3-super-120b-a12b:free", "base_url": "https://openrouter.ai/api/v1", "env": "OPENROUTER_API_KEY"},
+  74:         {"provider": "openrouter", "model": "google/gemma-4-31b-it:free", "base_url": "https://openrouter.ai/api/v1", "env": "OPENROUTER_API_KEY"},
+  75:     ]
+  76: 
+  77: 
+  78:     # Groq has decommissioned most of its older lineup. Only these IDs are
+  79:     # currently live on the free tier as of Oct 2026. Anything else returns
+  80:     # HTTP 400 "has been decommissioned".
+  81:     _LIVE_GROQ_MODELS = {
+  82:         "openai/gpt-oss-120b",
+  83:         "openai/gpt-oss-20b",
+  84:         "llama-3.1-8b-instant",
+  85:         "llama-3.3-70b-versatile",
+  86:         "qwen/qwen3.6-27b",
+  87:         "qwen-2.5-coder-32b",
+  88:         "qwen-qwq-32b",
+  89:         "deepseek-r1-distill-llama-70b",
+  90:         "deepseek-r1-distill-qwen-32b",
+  91:         "gemma-7b-it",
+  92:     }
+  93: 
+  94: 
+  95:     # Current live OpenRouter free-tier models. IDs rotate monthly — verify
+  96:     # against https://openrouter.ai/api/v1/models if any of these 404.
+  97:     _LIVE_OPENROUTER_MODELS = {
+  98:         "nvidia/nemotron-3-super-120b-a12b:free",
+  99:         "google/gemma-4-31b-it:free",
+ 100:         "google/gemma-4-26b-a4b-it:free",
+ 101:         "qwen/qwen3.8-27b:free",
+ 102:         "cohere/north-mini-code:free",
+ 103:         "liquid/lfm-2.5-2.6b:free",
+ 104:     }
+ 105: 
+ 106:     # Curated fallback pool. Used whenever catalog resolution yields fewer
+ 107:     # than 2 distinct (provider, id) pairs — which happens when the catalog
+ 108:     # is stale and all entries collapse to the same Groq fallback. Guarantees
+ 109:     # hybrid runs across several live models from multiple providers.
+ 110:     _CURATED_POOL = nmh.get_pool(POOL_SIZE if 'POOL_SIZE' in globals() else 5)
+ 111: 
+ 112: 
+ 113:     # Default Groq model to substitute when a dead one is filtered out.
+ 114:     _GROQ_FALLBACK = "openai/gpt-oss-120b"
+ 115: 
+ 116:     def __init__(self, max_workers: int = 10, timeout: float = 60.0):
+ 117:         self.max_workers = max_workers
+ 118:         self.timeout = timeout
+ 119:         self._session = None
+ 120:         self._executor = ThreadPoolExecutor(max_workers=max_workers)
+ 121:         self._cache: Dict[str, HybridResult] = {}
+ 122: 
+ 123:         # Try to import the catalog
+ 124:         try:
+ 125:             from neo_models_catalog import get_all_models, get_models_by_type, get_model_by_id
+ 126:             self.catalog = {
+ 127:                 "get_all": get_all_models,
+ 128:                 "by_type": get_models_by_type,
+ 129:                 "by_id": get_model_by_id,
+ 130:             }
+ 131:         except ImportError:
+ 132:             self.catalog = None
+ 133:             logger.warning("neo_models_catalog not found. HybridMerger running in manual mode.")
+ 134: 
+ 135:     def _get_api_key(self, env_var: str) -> Optional[str]:
+ 136:         return os.getenv(env_var)
+ 137: 
+ 138:     def _resolve_model(self, model_hint: str) -> Optional[Dict]:
+ 139:         """Resolve a model hint (id, name, or family) to a full model config."""
+ 140:         if self.catalog:
+ 141:             # Try exact ID match
+ 142:             m = self.catalog["by_id"](model_hint)
+ 143:             if m:
+ 144:                 return m
+ 145:             # Try partial match
+ 146:             all_models = self.catalog["get_all"]()
+ 147:             for m in all_models:
+ 148:                 if model_hint.lower() in m["id"].lower() or model_hint.lower() in m.get("name", "").lower():
+ 149:                     return m
+ 150:         return None
+ 151: 
+ 152:     def _build_openai_payload(self, prompt: str, model_id: str, system: Optional[str] = None) -> Dict:
+ 153:         messages = []
+ 154:         if system:
+ 155:             messages.append({"role": "system", "content": system})
+ 156:         messages.append({"role": "user", "content": prompt})
+ 157:         return {
+ 158:             "model": model_id,
+ 159:             "messages": messages,
+ 160:             "temperature": 0.7,
+ 161:             "max_tokens": 2048,
+ 162:             "stream": False,
+ 163:         }
+ 164: 
+ 165:     async def _call_model(self, model_config: Dict, prompt: str, system: Optional[str] = None) -> ModelOutput:
+ 166:         """Call a single cloud model via OpenAI-compatible API."""
+ 167:         import aiohttp
+ 168: 
+ 169:         provider = model_config.get("provider", "unknown")
+ 170:         model_id = model_config["id"]
+ 171:         base_url = model_config.get("base_url", "")
+ 172:         env_key = model_config.get("env_key") or model_config.get("env")
+ 173: 
+ 174:         api_key = self._get_api_key(env_key) if env_key else None
+ 175:         if env_key and not api_key:
+ 176:             return ModelOutput(
+ 177:                 model_id=model_id, provider=provider,
+ 178:                 output="", latency=0, error=f"Missing API key: {env_key}"
+ 179:             )
+ 180: 
+ 181:         # Handle Cloudflare special URL
+ 182:         if "{account_id}" in base_url:
+ 183:             account_id = os.getenv("CF_ACCOUNT_ID", "")
+ 184:             base_url = base_url.replace("{account_id}", account_id)
+ 185: 
+ 186:         # Fallback: infer base_url from provider if missing
+ 187:         if not base_url:
+ 188:             _provider_urls = {
+ 189:                 "groq": "https://api.groq.com/openai/v1",
+ 190:                 "openrouter": "https://openrouter.ai/api/v1",
+ 191:                 "deepinfra": "https://api.deepinfra.com/v1/openai",
+ 192:                 "mistral": "https://api.mistral.ai/v1",
+ 193:                 "fireworks": "https://api.fireworks.ai/inference/v1",
+ 194:                 "novita": "https://api.novita.ai/v3/openai",
+ 195:                 "hyperbolic": "https://api.hyperbolic.xyz/v1",
+ 196:                 "siliconflow": "https://api.siliconflow.cn/v1",
+ 197:                 "friendli": "https://api.friendli.ai/serverless/v1",
+ 198:             }
+ 199:             base_url = _provider_urls.get(provider, "")
+ 200:         url = f"{base_url}/chat/completions"
+ 201:         payload = self._build_openai_payload(prompt, model_id, system)
+ 202:         headers = {"Content-Type": "application/json"}
+ 203:         if api_key:
+ 204:             headers["Authorization"] = f"Bearer {api_key}"
+ 205: 
+ 206:         start = time.time()
+ 207:         try:
+ 208:             timeout = aiohttp.ClientTimeout(total=self.timeout)
+ 209:             async with aiohttp.ClientSession(timeout=timeout) as session:
+ 210:                 async with session.post(url, json=payload, headers=headers) as resp:
+ 211:                     if resp.status != 200:
+ 212:                         text = await resp.text()
+ 213:                         return ModelOutput(
+ 214:                             model_id=model_id, provider=provider,
+ 215:                             output="", latency=time.time()-start,
+ 216:                             error=f"HTTP {resp.status}: {text[:200]}"
+ 217:                         )
+ 218:                     data = await resp.json()
+ 219:                     content = data["choices"][0]["message"]["content"] if "choices" in data else str(data)
+ 220:                     tokens = data.get("usage", {}).get("total_tokens", 0)
+ 221:                     return ModelOutput(
+ 222:                         model_id=model_id, provider=provider,
+ 223:                         output=content.strip(), latency=time.time()-start,
+ 224:                         tokens_used=tokens, raw_response=data
+ 225:                     )
+ 226:         except asyncio.TimeoutError:
+ 227:             return ModelOutput(
+ 228:                 model_id=model_id, provider=provider,
+ 229:                 output="", latency=time.time()-start, error="Timeout"
+ 230:             )
+ 231:         except Exception as e:
+ 232:             return ModelOutput(
+ 233:                 model_id=model_id, provider=provider,
+ 234:                 output="", latency=time.time()-start, error=str(e)[:200]
+ 235:             )
+ 236: 
+ 237:     async def _call_merger(self, prompt: str, system: str) -> str:
+ 238:         """Call the merger/synthesizer model. Tries multiple fallbacks."""
+ 239:         import aiohttp
+ 240: 
+ 241:         for merger in self.MERGER_MODELS:
+ 242:             api_key = self._get_api_key(merger["env"])
+ 243:             if not api_key:
+ 244:                 continue
+ 245: 
+ 246:             url = f"{merger['base_url']}/chat/completions"
+ 247:             payload = {
+ 248:                 "model": merger["model"],
+ 249:                 "messages": [
+ 250:                     {"role": "system", "content": system},
+ 251:                     {"role": "user", "content": prompt}
+ 252:                 ],
+ 253:                 "temperature": 0.3,
+ 254:                 "max_tokens": 4096,
+ 255:                 "stream": False,
+ 256:             }
+ 257:             headers = {
+ 258:                 "Content-Type": "application/json",
+ 259:                 "Authorization": f"Bearer {api_key}"
+ 260:             }
+ 261: 
+ 262:             try:
+ 263:                 timeout = aiohttp.ClientTimeout(total=30)
+ 264:                 async with aiohttp.ClientSession(timeout=timeout) as session:
+ 265:                     async with session.post(url, json=payload, headers=headers) as resp:
+ 266:                         if resp.status == 200:
+ 267:                             data = await resp.json()
+ 268:                             return data["choices"][0]["message"]["content"].strip()
+ 269:             except Exception:
+ 270:                 continue
+ 271: 
+ 272:         # Fallback: simple text merge if no merger available
+ 273:         return None
+ 274: 
+ 275:     def _build_synthesis_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 276:         """Build the meta-prompt for synthesis strategy."""
+ 277:         sections = []
+ 278:         for i, out in enumerate(outputs, 1):
+ 279:             sections.append(f"--- MODEL {i}: {out.provider}/{out.model_id} ---\n{out.output}\n")
+ 280: 
+ 281:         body = "\n".join(sections)
+ 282: 
+ 283:         return f"""You are a Hybrid Synthesis Engine. Your job is to read outputs from multiple AI models and produce ONE unified, coherent response that captures the best of all worlds.
+ 284: 
+ 285: ORIGINAL USER QUERY:
+ 286: {original_prompt}
+ 287: 
+ 288: MODEL OUTPUTS:
+ 289: {body}
+ 290: 
+ 291: INSTRUCTIONS:
+ 292: 1. Read all model outputs carefully.
+ 293: 2. Identify unique insights, facts, or perspectives from each.
+ 294: 3. Resolve any contradictions by noting the consensus view or presenting both sides fairly.
+ 295: 4. Combine everything into ONE well-structured, comprehensive response.
+ 296: 5. Do NOT mention that this is a merged output. Write as if you are the sole author.
+ 297: 6. Use markdown formatting where appropriate.
+ 298: 
+ 299: SYNTHESIZED RESPONSE:"""
+ 300: 
+ 301:     def _build_consensus_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 302:         sections = []
+ 303:         for i, out in enumerate(outputs, 1):
+ 304:             sections.append(f"--- MODEL {i} ---\n{out.output}\n")
+ 305:         body = "\n".join(sections)
+ 306: 
+ 307:         return f"""You are a Consensus Extractor. Read the following model outputs and extract ONLY the points that appear to be agreed upon by most models.
+ 308: 
+ 309: QUERY: {original_prompt}
+ 310: 
+ 311: {body}
+ 312: 
+ 313: INSTRUCTIONS:
+ 314: 1. List only facts/claims that 2+ models agree on.
+ 315: 2. Note any significant disagreements separately.
+ 316: 3. Provide a concise consensus answer.
+ 317: 
+ 318: CONSENSUS:"""
+ 319: 
+ 320:     def _build_debate_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 321:         sections = []
+ 322:         for i, out in enumerate(outputs, 1):
+ 323:             sections.append(f"--- MODEL {i}: {out.provider}/{out.model_id} ---\n{out.output}\n")
+ 324:         body = "\n".join(sections)
+ 325: 
+ 326:         return f"""You are a Debate Moderator. Multiple AI models have answered the same query. Your job is to identify disagreements, reconcile them, and present a balanced final view.
+ 327: 
+ 328: QUERY: {original_prompt}
+ 329: 
+ 330: {body}
+ 331: 
+ 332: INSTRUCTIONS:
+ 333: 1. Identify areas of AGREEMENT across models.
+ 334: 2. Identify areas of DISAGREEMENT.
+ 335: 3. For disagreements, present each side fairly.
+ 336: 4. Provide your own reconciled conclusion based on the evidence.
+ 337: 5. Use markdown with clear sections.
+ 338: 
+ 339: RECONCILED RESPONSE:"""
+ 340: 
+ 341:     def _build_ensemble_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 342:         sections = []
+ 343:         for i, out in enumerate(outputs, 1):
+ 344:             sections.append(f"--- MODEL {i}: {out.provider}/{out.model_id} ---\n{out.output}\n")
+ 345:         body = "\n".join(sections)
+ 346: 
+ 347:         return f"""You are an Ensemble Fact-Checker. Multiple models answered the same query. Assign confidence scores and produce a weighted consensus.
+ 348: 
+ 349: QUERY: {original_prompt}
+ 350: 
+ 351: {body}
+ 352: 
+ 353: INSTRUCTIONS:
+ 354: 1. Extract all factual claims from each output.
+ 355: 2. For each claim, note how many models support it (confidence score).
+ 356: 3. Flag any claims that only one model made as "Low Confidence".
+ 357: 4. Produce a final answer with confidence annotations like [High], [Medium], [Low].
+ 358: 
+ 359: ENSEMBLE RESPONSE:"""
+ 360: 
+ 361:     def _build_best_of_all_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 362:         sections = []
+ 363:         for i, out in enumerate(outputs, 1):
+ 364:             sections.append(f"--- MODEL {i}: {out.provider}/{out.model_id} ---\n{out.output}\n")
+ 365:         body = "\n".join(sections)
+ 366: 
+ 367:         return f"""You are a Curator. Multiple models answered the same query. Extract the single best paragraph or section from EACH model, then weave them into one flowing narrative.
+ 368: 
+ 369: QUERY: {original_prompt}
+ 370: 
+ 371: {body}
+ 372: 
+ 373: INSTRUCTIONS:
+ 374: 1. From each model output, pick the BEST paragraph/section (most insightful, clearest, most detailed).
+ 375: 2. Combine these best parts into ONE coherent response.
+ 376: 3. Smooth transitions between sections.
+ 377: 4. Do NOT mention the source models in the final text.
+ 378: 
+ 379: CURATED RESPONSE:"""
+ 380: 
+ 381:     def _build_parallel_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 382:         sections = []
+ 383:         for i, out in enumerate(outputs, 1):
+ 384:             sections.append(f"--- MODEL {i}: {out.provider}/{out.model_id} ---\n{out.output}\n")
+ 385:         body = "\n".join(sections)
+ 386: 
+ 387:         return f"""You are a Meta-Summarizer. Multiple models answered the same query. Provide a brief meta-summary, then list all outputs.
+ 388: 
+ 389: QUERY: {original_prompt}
+ 390: 
+ 391: {body}
+ 392: 
+ 393: INSTRUCTIONS:
+ 394: 1. Write a 2-3 sentence meta-summary of common themes.
+ 395: 2. Then list each model's key contribution as a bullet point.
+ 396: 
+ 397: META-SUMMARY:"""
+ 398: 
+ 399:     def _build_cascade_prompt(self, outputs: List[ModelOutput], original_prompt: str) -> str:
+ 400:         """For cascade, we chain outputs: model N refines model N-1's output."""
+ 401:         # Cascade is handled differently — we just return the last good output
+ 402:         # after passing it through refinement prompts
+ 403:         return ""
+ 404: 
+ 405:     async def _apply_strategy(self, outputs: List[ModelOutput], strategy: str, original_prompt: str) -> str:
+ 406:         """Apply the chosen merge strategy."""
+ 407: 
+ 408:         # Filter out errors
+ 409:         valid = [o for o in outputs if not o.error and o.output]
+ 410:         if not valid:
+ 411:             return "[HybridMerger] All models failed."
+ 412: 
+ 413:         if strategy == "cascade":
+ 414:             # Chain: pass output of model i to model i+1 as a refinement prompt
+ 415:             current = valid[0].output
+ 416:             for i, out in enumerate(valid[1:], 1):
+ 417:                 refine_prompt = f"Improve and refine the following response to the query: {original_prompt}\n\nCURRENT RESPONSE:\n{current}\n\nREFINED RESPONSE:"
+ 418:                 # We'd need to re-call the model here; for now, use merger
+ 419:                 merged = await self._call_merger(
+ 420:                     refine_prompt,
+ 421:                     "You are a refinement engine. Improve clarity, accuracy, and depth."
+ 422:                 )
+ 423:                 if merged:
+ 424:                     current = merged
+ 425:             return current
+ 426: 
+ 427:         # Build strategy-specific prompt
+ 428:         builders = {
+ 429:             "synthesis": self._build_synthesis_prompt,
+ 430:             "consensus": self._build_consensus_prompt,
+ 431:             "debate": self._build_debate_prompt,
+ 432:             "ensemble": self._build_ensemble_prompt,
+ 433:             "best_of_all": self._build_best_of_all_prompt,
+ 434:             "parallel": self._build_parallel_prompt,
+ 435:         }
+ 436: 
+ 437:         builder = builders.get(strategy, self._build_synthesis_prompt)
+ 438:         meta_prompt = builder(valid, original_prompt)
+ 439: 
+ 440:         system = "You are the NEO Hybrid Synthesis Engine. You merge multiple AI outputs into one superior response."
+ 441:         merged = await self._call_merger(meta_prompt, system)
+ 442: 
+ 443:         if merged:
+ 444:             return merged
+ 445: 
+ 446:         # Fallback: simple concatenation with headers
+ 447:         fallback = f"# Hybrid Output ({strategy})\n\n"
+ 448:         for o in valid:
+ 449:             fallback += f"## {o.provider}/{o.model_id}\n{o.output}\n\n"
+ 450:         return fallback
+ 451: 
+ 452:     async def hybrid_generate(
+ 453:         self,
+ 454:         prompt: str,
+ 455:         model_pool: Optional[List[str]] = None,
+ 456:         strategy: str = "synthesis",
+ 457:         auto_pool: Optional[str] = None,
+ 458:         pool_size: int = 5,
+ 459:         system: Optional[str] = None,
+ 460:         use_cache: bool = True,
+ 461:     ) -> HybridResult:
+ 462:         """
+ 463:         Generate a hybrid response by running multiple models and merging outputs.
+ 464: 
+ 465:         Args:
+ 466:             prompt: The user query/prompt.
+ 467:             model_pool: List of model IDs to use. If None, auto-selects based on auto_pool.
+ 468:             strategy: Merge strategy — synthesis, consensus, debate, ensemble, best_of_all, parallel, cascade.
+ 469:             auto_pool: Auto-select pool by type: "chat", "coding", "reasoning", "vision", "image_gen", etc.
+ 470:             pool_size: Number of models to run in parallel (default 5).
+ 471:             system: Optional system prompt for all models.
+ 472:             use_cache: Whether to cache results.
+ 473: 
+ 474:         Returns:
+ 475:             HybridResult with merged_output and individual outputs.
+ 476:         """
+ 477: 
+ 478:         # Cache key
+ 479:         cache_key = hashlib.sha256(f"{prompt}:{strategy}:{','.join(model_pool or [])}:{auto_pool}:{pool_size}".encode()).hexdigest()
+ 480:         if use_cache and cache_key in self._cache:
+ 481:             logger.info("[HybridMerger] Cache hit")
+ 482:             return self._cache[cache_key]
+ 483: 
+ 484:         # Resolve model pool
+ 485:         resolved_models: List[Dict] = []
+ 486: 
+ 487:         if model_pool:
+ 488:             for hint in model_pool:
+ 489:                 m = self._resolve_model(hint)
+ 490:                 if m:
+ 491:                     resolved_models.append(m)
+ 492:         elif auto_pool and self.catalog:
+ 493:             pool_map = {
+ 494:                 "chat": "chat", "coding": "coding", "reasoning": "reasoning",
+ 495:                 "vision": "vision", "image_gen": "image-gen", "video_gen": "video-gen",
+ 496:                 "embedding": "embedding", "image_edit": "image-edit", "image_describe": "image-describe",
+ 497:             }
+ 498:             mtype = pool_map.get(auto_pool, auto_pool)
+ 499:             candidates = self.catalog["by_type"](mtype)
+ 500:             # Prioritize free tiers, then pick diverse families
+ 501:             free_models = [m for m in candidates if m.get("tier") in ("free", "free_fast", "free_no_key")]
+ 502:             credit_models = [m for m in candidates if m.get("tier") == "free_credit"]
+ 503:             tier_models = [m for m in candidates if m.get("tier") == "free_tier"]
+ 504: 
+ 505:             selected = []
+ 506:             seen_families = set()
+ 507:             for source in (free_models, tier_models, credit_models):
+ 508:                 for m in source:
+ 509:                     fam = m.get("family", "unknown")
+ 510:                     if fam not in seen_families and len(selected) < pool_size:
+ 511:                         selected.append(m)
+ 512:                         seen_families.add(fam)
+ 513:                 if len(selected) >= pool_size:
+ 514:                     break
+ 515:             resolved_models = selected[:pool_size]
+ 516: 
+ 517:         # ── Filter out decommissioned Groq models ──
+ 518:         # If the catalog still lists retired Groq IDs, swap them for the
+ 519:         # live default. Any non-Groq models pass through untouched.
+ 520:         _filtered = []
+ 521:         for _m in resolved_models:
+ 522:             if _m.get("provider") == "groq":
+ 523:                 _mid = _m.get("id", "")
+ 524:                 if nmh.is_dead("groq", _mid):
+ 525:                     logger.info(
+ 526:                         f"[HybridMerger] Dropping dead Groq model '{_mid}'"
+ 527:                     )
+ 528:                     try:
+ 529:                         nmh.record_dead("groq", _mid)
+ 530:                     except Exception:
+ 531:                         pass
+ 532:                     continue
+ 533:             _filtered.append(_m)
+ 534:         resolved_models = _filtered
+ 535: 
+ 536:         # ── Diversity check ──
+ 537:         # If the catalog collapsed to fewer than 2 unique (provider, id)
+ 538:         # pairs (which happens when it's stale and every Groq entry hits
+ 539:         # the _GROQ_FALLBACK swap), replace with the curated pool so the
+ 540:         # hybrid actually runs across multiple live models from multiple
+ 541:         # providers. Only applies when caller used auto_pool — explicit
+ 542:         # model_pool choices are respected untouched.
+ 543:         if not model_pool:
+ 544:             _unique = {(mm.get("provider"), mm.get("id")) for mm in resolved_models}
+ 545:             if len(_unique) < 2:
+ 546:                 logger.warning(
+ 547:                     f"[HybridMerger] Catalog gave {len(_unique)} unique model(s), "
+ 548:                     f"swapping to curated pool for real diversity"
+ 549:                 )
+ 550:                 resolved_models = list(self._CURATED_POOL)[:max(pool_size, 2)]
+ 551:                 _unique = {(mm.get("provider"), mm.get("id")) for mm in resolved_models}
+ 552:                 logger.info(
+ 553:                     f"[HybridMerger] Curated pool selected: {sorted(_unique)}"
+ 554:                 )
+ 555:         # ── end diversity check ──
+ 556:         # ── neo_patch_v9_1: pad to pool_size from known-good pool ──
+ 557:         if not model_pool and len(resolved_models) < pool_size:
+ 558:             _have = {(m.get("provider"), m.get("id")) for m in resolved_models}
+ 559:             try:
+ 560:                 _pad = nmh.get_pool(pool_size)
+ 561:             except Exception:
+ 562:                 _pad = []
+ 563:             for _cand in _pad:
+ 564:                 _ck = (_cand.get("provider"), _cand.get("id"))
+ 565:                 if _ck in _have:
+ 566:                     continue
+ 567:                 resolved_models.append(_cand)
+ 568:                 _have.add(_ck)
+ 569:                 if len(resolved_models) >= pool_size:
+ 570:                     break
+ 571:         # ── end padding ──
+ 572: 
+ 573:         # ── end filter ──
+ 574: 
+ 575:         if not resolved_models:
+ 576:             return HybridResult(
+ 577:                 strategy=strategy, prompt=prompt,
+ 578:                 outputs=[], merged_output="[HybridMerger] No models resolved.",
+ 579:                 merge_latency=0, metadata={"error": "No models available"}
+ 580:             )
+ 581: 
+ 582:         logger.info(f"[HybridMerger] Running {len(resolved_models)} models with strategy={strategy}")
+ 583: 
+ 584:         # Run all models in parallel
+ 585:         start = time.time()
+ 586:         tasks = [self._call_model(m, prompt, system) for m in resolved_models]
+ 587:         outputs = await asyncio.gather(*tasks, return_exceptions=True)
+ 588: 
+ 589:         # ── neo_patch_v9_1: record outcomes for pool self-heal ──
+ 590:         for _m, _out in zip(resolved_models, outputs):
+ 591:             _prov = _m.get("provider", "?")
+ 592:             _mid  = _m.get("id", "?")
+ 593:             try:
+ 594:                 if isinstance(_out, Exception):
+ 595:                     _err = str(_out)
+ 596:                     if "429" in _err or "rate" in _err.lower():
+ 597:                         nmh.record_throttled(_prov, _mid)
+ 598:                     elif ("404" in _err or "not_found" in _err
+ 599:                           or "does not exist" in _err.lower()):
+ 600:                         nmh.record_dead(_prov, _mid)
+ 601:                 else:
+ 602:                     nmh.record_success(_prov, _mid)
+ 603:             except Exception:
+ 604:                 pass
+ 605:         # ── end outcome recording ──
+ 606: 
+ 607:         # Normalize outputs
+ 608:         normalized = []
+ 609:         for i, result in enumerate(outputs):
+ 610:             if isinstance(result, Exception):
+ 611:                 normalized.append(ModelOutput(
+ 612:                     model_id=resolved_models[i]["id"],
+ 613:                     provider=resolved_models[i].get("provider", "unknown"),
+ 614:                     output="", latency=0, error=str(result)
+ 615:                 ))
+ 616:             else:
+ 617:                 normalized.append(result)
+ 618: 
+ 619:         # Apply merge strategy
+ 620:         merge_start = time.time()
+ 621:         merged = await self._apply_strategy(normalized, strategy, prompt)
+ 622:         merge_latency = time.time() - merge_start
+ 623: 
+ 624:         result = HybridResult(
+ 625:             strategy=strategy,
+ 626:             prompt=prompt,
+ 627:             outputs=normalized,
+ 628:             merged_output=merged,
+ 629:             merge_latency=merge_latency,
+ 630:             metadata={
+ 631:                 "total_models": len(resolved_models),
+ 632:                 "successful": len([o for o in normalized if not o.error]),
+ 633:                 "failed": len([o for o in normalized if o.error]),
+ 634:                 "total_latency": time.time() - start,
+ 635:                 "cache_key": cache_key,
+ 636:                 "errors": {
+ 637:                     f"{o.provider}/{o.model_id}": o.error
+ 638:                     for o in normalized if o.error
+ 639:                 },
+ 640:                 "successes": {
+ 641:                     f"{o.provider}/{o.model_id}": f"{len(o.output)} chars, {o.latency:.2f}s"
+ 642:                     for o in normalized if not o.error
+ 643:                 },
+ 644:             }
+ 645:         )
+ 646: 
+ 647:         if use_cache:
+ 648:             self._cache[cache_key] = result
+ 649: 
+ 650:         return result
+ 651: 
+ 652:     async def hybrid_chat(
+ 653:         self,
+ 654:         messages: List[Dict[str, str]],
+ 655:         model_pool: Optional[List[str]] = None,
+ 656:         strategy: str = "synthesis",
+ 657:         auto_pool: str = "chat",
+ 658:         pool_size: int = 5,
+ 659:     ) -> HybridResult:
+ 660:         """Hybrid chat with message history support."""
+ 661:         # Flatten messages to a single prompt for the merger
+ 662:         prompt_parts = []
+ 663:         for msg in messages:
+ 664:             role = msg.get("role", "user")
+ 665:             content = msg.get("content", "")
+ 666:             prompt_parts.append(f"[{role.upper()}]: {content}")
+ 667:         flat_prompt = "\n".join(prompt_parts)
+ 668:         return await self.hybrid_generate(
+ 669:             prompt=flat_prompt,
+ 670:             model_pool=model_pool,
+ 671:             strategy=strategy,
+ 672:             auto_pool=auto_pool,
+ 673:             pool_size=pool_size,
+ 674:         )
+ 675: 
+ 676:     def get_available_strategies(self) -> List[str]:
+ 677:         return ["synthesis", "consensus", "debate", "ensemble", "best_of_all", "parallel", "cascade"]
+ 678: 
+ 679:     def clear_cache(self):
+ 680:         self._cache.clear()
+ 681: 
+ 682:     def get_cache_stats(self) -> Dict:
+ 683:         return {"entries": len(self._cache), "keys": list(self._cache.keys())}
+ 684: 
+ 685: 
+ 686: # ── CLI / Standalone test ──
+ 687: async def main():
+ 688:     merger = HybridMerger()
+ 689: 
+ 690:     print("=" * 60)
+ 691:     print("  NEO HYBRID OUTPUT ENGINE v1.0")
+ 692:     print("=" * 60)
+ 693:     print(f"  Strategies: {merger.get_available_strategies()}")
+ 694:     print()
+ 695: 
+ 696:     # Quick test with auto-pool
+ 697:     result = await merger.hybrid_generate(
+ 698:         prompt="Explain the concept of emergence in complex systems in 3 paragraphs.",
+ 699:         auto_pool="chat",
+ 700:         pool_size=3,
+ 701:         strategy="synthesis",
+ 702:     )
+ 703: 
+ 704:     print(f"Strategy: {result.strategy}")
+ 705:     print(f"Models run: {result.metadata['total_models']}")
+ 706:     print(f"Successful: {result.metadata['successful']}")
+ 707:     print(f"Failed: {result.metadata['failed']}")
+ 708:     print(f"Total latency: {result.metadata['total_latency']:.2f}s")
+ 709:     print(f"Merge latency: {result.merge_latency:.2f}s")
+ 710:     print()
+ 711:     print("--- MERGED OUTPUT ---")
+ 712:     print(result.merged_output[:2000])
+ 713:     print("...")
+ 714: 
+ 715: 
+ 716: if __name__ == "__main__":
+ 717:     asyncio.run(main())

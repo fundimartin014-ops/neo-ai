@@ -1,0 +1,5 @@
+User preferences have highest priority.
+User corrections override older data.
+Repeated facts increase confidence.
+Single mentions have low confidence.
+Old memory is valid unless corrected.

@@ -1,0 +1,7 @@
+Remember important facts about the user.
+Remember repeated information.
+Do not forget learned knowledge unless reset.
+Link new knowledge to old knowledge.
+Prefer previously learned answers.
+If information contradicts memory, ask for clarification.
+Do not overwrite memory blindly.

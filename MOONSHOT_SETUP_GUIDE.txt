@@ -1,0 +1,102 @@
+
+============================================================
+  MOONSHOT (KIMI) API KEY — STEP BY STEP GUIDE
+============================================================
+
+The Moonshot platform is in Chinese but you can use Google Translate
+or follow these exact steps:
+
+STEP 1: OPEN THE SITE
+  URL: https://platform.moonshot.ai/
+
+  If it redirects to Chinese, add ?lang=en to the URL:
+  https://platform.moonshot.ai/?lang=en
+
+  Or use Chrome → Right-click → "Translate to English"
+
+STEP 2: SIGN UP
+  Click the blue button (usually top-right)
+  Sign in with Google (recommended)
+
+STEP 3: VERIFY ACCOUNT
+  Moonshot requires phone verification for API access
+  You may need to:
+  - Enter your phone number
+  - Receive SMS code
+  - Complete verification
+
+  NOTE: Some international numbers may not work.
+  If your number fails, try:
+  - A different phone number
+  - Or skip Moonshot and use OpenRouter instead
+    (OpenRouter has Kimi models too!)
+
+STEP 4: RECHARGE (Minimum $1)
+  Moonshot requires at least $1 recharge to activate API
+
+  Click your profile (top-right) → "Billing" or "充值"
+  Add payment method (credit card or Alipay)
+  Recharge $1 (about 7 CNY)
+
+  NOTE: They give you a $5 voucher when you reach $5 total recharge
+
+STEP 5: CREATE API KEY
+  Go to: https://platform.moonshot.ai/console/api-keys
+
+  Or navigate: Profile → API Keys → Create New Key
+
+  Click "创建 API Key" (Create API Key)
+  Enter a name like "NeoBrain"
+  Click confirm
+
+  IMPORTANT: Copy the key IMMEDIATELY. They only show it once!
+  The key starts with "sk-" and is about 40 characters
+
+STEP 6: ADD TO YOUR .ENV
+  Open core/.env in your project
+  Add:
+    MOONSHOT_API_KEY=sk-your_actual_key_here
+
+  Save the file
+
+STEP 7: TEST
+  Run: python test.py
+  Or: python validate_keys.py
+
+============================================================
+  ALTERNATIVE: USE OPENROUTER INSTEAD
+============================================================
+
+If Moonshot verification is too difficult, you can access Kimi
+models THROUGH OpenRouter without a Moonshot account:
+
+  1. Get OpenRouter key: https://openrouter.ai/keys
+  2. Use model: moonshotai/kimi-k2.5
+  3. No separate Moonshot account needed!
+
+In your code, just change the model ID:
+  "moonshotai/kimi-k2.5" instead of "moonshot-v1-8k"
+
+This is actually EASIER and you still get Kimi models.
+
+============================================================
+  TROUBLESHOOTING
+============================================================
+
+Problem: "Phone verification failed"
+Solution: Use OpenRouter instead (see above)
+
+Problem: "Cannot read Chinese"
+Solution: Use Chrome translate, or follow the button positions:
+  - Top-right blue button = Login/Sign up
+  - Left sidebar 2nd item = API Keys
+  - Red/orange buttons = Create/Save
+  - Gray buttons = Cancel
+
+Problem: "Payment failed"
+Solution: Try Alipay if credit card fails, or use OpenRouter
+
+Problem: "Key says invalid"
+Solution: Make sure you copied the FULL key (40+ chars)
+  Check for extra spaces at start/end
+  Key should start with "sk-"

@@ -1,0 +1,10 @@
+[
+    {
+        "question": "What is AI?",
+        "answer": "AI stands for Artificial Intelligence. It allows machines to simulate human thinking."
+    },
+    {
+        "question": "Who created Python?",
+        "answer": "Python was created by Guido van Rossum."
+    }
+]

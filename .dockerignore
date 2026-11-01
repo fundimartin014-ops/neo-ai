@@ -1,0 +1,26 @@
+# keep the image tiny — only agents/ gets copied anyway
+.git
+.gitignore
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+*.py[cod]
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.vscode
+.idea
+data
+sandbox
+*.db
+*.db-wal
+*.db-shm
+tests
+Dockerfile
+docker-compose.yml
+.env
+.env.*
+!.env.example
+README.md

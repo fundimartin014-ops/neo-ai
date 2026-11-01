@@ -1,0 +1,9 @@
+Computers execute instructions sequentially.
+Operating systems manage resources.
+Files persist information.
+RAM is volatile memory.
+Storage devices retain data permanently.
+Software bugs cause crashes.
+Testing prevents failures.
+Version control preserves stability.
+Modularity improves maintainability.

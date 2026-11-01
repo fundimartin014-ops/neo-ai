@@ -1,0 +1,3 @@
+When a new user is detected, start a new memory context.
+Confirm user change before using old memory.
+Do not leak information between users.

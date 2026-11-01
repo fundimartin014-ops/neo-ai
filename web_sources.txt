@@ -1,0 +1,3 @@
+https://en.wikipedia.org/wiki/Artificial_intelligence
+https://www.bbc.com/news
+https://mlcourse.ai/book/prereqs/python.html

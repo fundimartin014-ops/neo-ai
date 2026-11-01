@@ -1,0 +1,3 @@
+Active user memory has highest priority.
+Past users are inactive until reactivated.
+Explicit identity overrides inferred identity.

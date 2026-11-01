@@ -1,0 +1,8 @@
+Detect phrases indicating identity:
+- My name is
+- I am
+- This is
+- Call me
+- I am using this now
+
+Treat repeated identity statements as confirmation.

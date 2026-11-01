@@ -1,0 +1,75 @@
+"""Gradio Space adapter -- free HF Spaces via gradio_client.
+
+CogVideoX-2B: pure text-to-video, no auth, runs on ZeroGPU.
+Queue times vary (10s to 5min). Free forever as long as Space exists.
+"""
+import shutil, time
+from pathlib import Path
+from ._base import BaseVideoAdapter
+from ..video_request import VideoRequest, VideoResult
+
+try:
+    from gradio_client import Client
+except ImportError:
+    Client = None
+
+
+class CogVideoXAdapter(BaseVideoAdapter):
+    name = "cogvideox-hf"
+    SPACE = "zai-org/CogVideoX-2B-Space"
+    OUT_DIR = Path(__file__).parent.parent.parent / "generated_videos"
+
+    def generate(self, req: VideoRequest) -> VideoResult:
+        if Client is None:
+            raise RuntimeError("gradio_client not installed: pip install gradio_client")
+
+        start = time.time()
+        try:
+            client = Client(self.SPACE)
+        except Exception as e:
+            raise RuntimeError(f"Space unavailable ({self.SPACE}): {e}")
+
+        try:
+            result = client.predict(
+                prompt=req.prompt,
+                num_inference_steps=50,
+                guidance_scale=6.0,
+                api_name="/generate",
+            )
+        except Exception as e:
+            raise RuntimeError(f"Space predict failed: {e}")
+
+        # Result shape per schema: (video_dict, download_video_path, download_gif_path)
+        download_path = None
+        if isinstance(result, (tuple, list)) and len(result) >= 2:
+            download_path = result[1]
+        elif isinstance(result, dict):
+            download_path = result.get("video") or result.get("path")
+
+        if not download_path:
+            raise RuntimeError(f"no file path in result: {result}")
+
+        src = Path(str(download_path))
+        if not src.exists():
+            raise RuntimeError(f"reported path does not exist: {src}")
+
+        # Persist to project generated_videos/ so URL does not expire
+        self.OUT_DIR.mkdir(parents=True, exist_ok=True)
+        dest = self.OUT_DIR / f"cogvideox_{int(time.time())}_{req.user_id or 'anon'}.mp4"
+        shutil.copy2(src, dest)
+
+        return VideoResult(
+            url=str(dest),
+            provider=self.name,
+            model="cogvideox-2b",
+            latency_ms=int((time.time() - start) * 1000),
+        )
+
+    def health_check(self) -> bool:
+        if Client is None:
+            return False
+        try:
+            Client(self.SPACE)
+            return True
+        except Exception:
+            return False

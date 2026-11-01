@@ -1,0 +1,15 @@
+{
+    "groq::deepseek-r1-distill-llama-70b":  1790879569.8642578,
+    "groq::gemma2-9b-it":  1790881076.959974,
+    "groq::llama-3.3-70b-specdec":  1790881076.9309826,
+    "groq::mixtral-8x7b-32768":  1790881076.9429798,
+    "groq::openai/gpt-oss-1b":  1790879569.8432596,
+    "groq::qwen-2.5-32b":  1790881076.9839742,
+    "groq::qwen-qwq-32b":  1790879569.854259,
+    "openrouter::deepseek/deepseek-chat:free":  1790879778.985162,
+    "openrouter::google/gemini-2.0-flash-exp:free":  1790881131.5274308,
+    "openrouter::meta-llama/llama-3.3-70b-instruct:free":  1790879778.9961574,
+    "openrouter::openai/gpt-oss-120b:free":  1790880704.9144232,
+    "openrouter::qwen/qwen3-next-80b-a3b-instruct:free":  1790880704.938389,
+    "openrouter::google/gemini-2.5-flash-preview:free":  1790892214.56243
+}

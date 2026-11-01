@@ -1,0 +1,452 @@
+==============================================================================
+AI PROJECT SCAN
+Root:   C:\Users\fundi\OneDrive\Documents\TRAININGBOT21.worktrees\fix-ai-launcher-loading-issues
+Ran at: 2026-10-28T18:38:10
+Files:  795 total (569 .py)
+==============================================================================
+
+## Files by category
+
+core                     186 files
+    __init__.py                             __init__.py                             __init__.py                             __init__.py                             __init__.py                           
+    __init__.py                             __init__.py                             __init__.py                             __init__.py                             _base.py                              
+    agent_engine.py                         agent_executor.py                       agent_loop.py                           agent_planner.py                        auto_learner.py                       
+    auto_trainer.py                         automation.py                           autonomous_agent.py                     autonomous_controller.py                autonomous_engine.py                  
+    autonomous_loop.py                      autonomous_updater.py                   background_loop.py                      backup_worker.py                        belief_system.py                      
+    browser_agent.py                        browser_tool.py                         cameras.py                              cloud.py                                cloud_detect.py                       
+    code_validator.py                       codebase_trainer_plugin.py              consensus_trace.py                      context_memory.py                       core_server.py                        
+    critic.py                               csv_trainer_plugin.py                   dashboard_server.py                     database.py                             debate_engine.py                      
+    deep_thinker.py                         device_controller.py                    device_intents.py                       dictionary_trainer_plugin.py            discord_bot.py                        
+    discord_webhook.py                      embedding_engine.py                     embedding_memory.py                     embeddings.py                           entities.py                           
+    entity_graph.py                         evaluator.py                            event_reactor.py                        evolution.py                            execution_graph.py                    
+    executor.py                             fallback.py                             feedback_trainer_plugin.py              frigate.py                              github_client.py                      
+    goal_manager.py                         goals.py                                governed_memory.py                      governor.py                             home_assistant.py                     
+    hot_reloader.py                         hybrid_brain.py                         image_input.py                          image_plugin.py                         image_trainer_plugin.py               
+    intent.py                               jarvis_listener.py                      knowledge_builder.py                    knowledge_engine.py                     knowledge_extractor.py                
+    knowledge_graph.py                      license.py                              linguistic.py                           llm_engine.py                           llm_router.py                         
+    local_llm.py                            logger.py                               main.py                                 memory.py                               memory_bridge.py                      
+    memory_manager.py                       memory_utils.py                         messaging.py                            meta_cognition.py                       neo_brain.py                          
+    neo_daemon.py                           normalize.py                            notifier.py                             ollama_service.py                       orchestrator.py                       
+    parallel_tools.py                       patch_manager.py                        persistent_index.py                     personality.py                          phone.py                              
+    phone_android.py                        phone_ios.py                            planner.py                              proactive_agent.py                      probe_openrouter.py                   
+    quality_monitor.py                      react_loop.py                           reasoning.py                            reasoning_planner.py                    reflection_engine.py                  
+    reflection_worker.py                    research_agent.py                       rl_feedback.py                          router.py                               rules_trainer_plugin.py               
+    run_backup.py                           run_dashboard.py                        run_neo_core.py                         run_reflection_worker.py                runtime_evolver.py                    
+    satellite.py                            self_evaluator.py                       self_improvement.py                     self_reflection.py                      semantic_extractor.py                 
+    semantic_memory.py                      session.py                              sim_bridge.py                           skill_selector.py                       slack_bot.py                          
+    source_ranker.py                        store.py                                swarm_coordinator.py                    system_agent.py                         system_control.py                     
+    system_scanner.py                       tasks.py                                tavily_search.py                        telemetry.py                            text_trainer_plugin.py                
+    tier0_cvron.py                          tier0_doubao.py                         tier0_gradio.py                         tier0_jimeng.py                         tier0_prezzy.py                       
+    tier0_proxy.py                          tier0_whisk.py                          tier1_agnes.py                          tier1_magichour.py                      tier1_rewind.py                       
+    tier1_vercel.py                         tier2_higgsfield.py                     tiles.py                                tool_learning.py                        tool_loader.py                        
+    tool_registry.py                        tool_selector.py                        tools.py                                topic.py                                trainer.py                            
+    truth_engine.py                         tts.py                                  unified_search.py                       upgrade_proposer.py                     url_learner.py                        
+    utils.py                                validate_keys.py                        validator.py                            verification.py                         verifier.py                           
+    version_manager.py                      video_adapter_registry.py               video_audit.py                          video_providers.py                      video_request.py                      
+    video_router.py                         video_safety.py                         vision_ollama.py                        voice.py                                voice_handler.py                      
+    voice_input.py                          wake_word.py                            web_fallback.py                         web_search.py                           windows_app.py                        
+    working_memory.py                     
+root                     126 files
+    add_cloud_backends.py                   add_colab_method.py                     add_features.py                         add_layers_234.py                       add_map_layer.py                      
+    add_ntfy_discovery.py                   add_reasoning.py                        add_shell_hint.py                       apply_extensions.py                     apply_extensions_v2.py                
+    apply_patches.py                        audit_skills.py                         autonomous_test_harness.py              cleanup_diag.py                         diag_phone.py                         
+    find_live_video_space.py                fix_adb_fallback.py                     fix_colab_header.py                     fix_confidence.py                       fix_fake_backends.py                  
+    fix_hedge.py                            fix_image_agent.py                      fix_image_fallback.py                   fix_indent.py                           fix_ka_v2.py                          
+    fix_knowledge_agent.py                  fix_media_backends.py                   fix_missing_re.py                       fix_order.py                            fix_phone_dispatch.py                 
+    fix_phone_files.py                      fix_plugin_whitelist.py                 fix_shell_block.py                      fix_speak_js.py                         fix_speak_local.py                    
+    fix_speech_powershell.py                fix_test_gradio_cogvideox.py            fix_two_bugs.py                         fix_video_v2.py                         fix_vision_rewrite.py                 
+    fix_vision_v2.py                        fix_wan22_duration.py                   fix_wan22_import.py                     fundibrain.py                           harness_extensions.py                 
+    hybrid_fix.py                           hybrid_merger.py                        hybrid_ui.py                            insert_resolver.py                      inspect_project.py                    
+    launcher.py                             make_colab_nb.py                        make_device_agent.py                    make_harness.py                         make_image_agent.py                   
+    make_irrigation_plugin.py               make_location_agent.py                  make_locations.py                       make_probe.py                           make_speech_agent.py                  
+    make_test.py                            make_transcription.py                   make_vision_probe.py                    map_ui.py                               neo_model_health.py                   
+    neo_model_manager.py                    neo_models_catalog.py                   neo_nosignups.py                        neo_patch_v3.py                         neo_patch_v4.py                       
+    neo_patch_v5.py                         neo_patch_v6.py                         neo_patch_v7.py                         neo_patch_v8.py                         neo_patch_v9_1.py                     
+    patch_chat_inject.py                    patch_device_reg.py                     patch_diag.py                           patch_diag2.py                          patch_disease_image.py                
+    patch_farm_route.py                     patch_farmer_locations.py               patch_gesture_inject.py                 patch_gradio_cogvideox.py               patch_image_debug.py                  
+    patch_image_debug2.py                   patch_image_reg.py                      patch_launcher_aliases_v2.py            patch_launcher_quotes.py                patch_launcher_start.py               
+    patch_location_reg.py                   patch_magic_hour_fix.py                 patch_magic_hour_v2.py                  patch_path_resolution.py                patch_plugin_preflight.py             
+    patch_profile_image.py                  patch_register_wan22.py                 patch_register_wan22_v2.py              patch_speak_inject.py                   patch_speech_reg.py                   
+    patch_transcribe_path.py                patch_transcription_reg.py              patch_veto.py                           patch_video_adapters_v2a.py             patch_video_download.py               
+    patch_video_router_v1.py                patch_video_router_v2b.py               patch_wan22_adapter.py                  polish_image_agent.py                   probe_backends.py                     
+    probe_vision.py                         repair_video.py                         rewrite_speak.py                        scan_ai.py                              scan_syntax.py                        
+    scheduler_ui.py                         silence_batches.py                      silence_ml.py                           test_gradio_cogvideox.py                test_magic_hour.py                    
+    test_new_features.py                    test_nosignup_tools.py                  trace_usage.py                          trim_dead_providers.py                  wire_colab.py                         
+    wsgi.py                               
+agents                    85 files
+    __init__.py                             __init__.py                             __init__.py                             __main__.py                             api_agent.py                          
+    api_server.py                           audit_agent.py                          base_agent.py                           browser.py                              bus_factory.py                        
+    client.py                               command_routing_agent.py                config.py                               conftest.py                             control_agent.py                      
+    conversation_agent.py                   critic_agent.py                         data_collection_agent.py                db.py                                   debater_agent.py                      
+    device_control_agent.py                 disease_alert_agent.py                  embedder.py                             env_loader.py                           event_dispatch_agent.py               
+    executor_agent.py                       farmer_digest_agent.py                  feedback_agent.py                       file_management_agent.py                image_analysis_agent.py               
+    input_validation_agent.py               instrumented_agent.py                   integration_agent.py                    knowledge_agent.py                      location_agent.py                     
+    locations.py                            log_view_agent.py                       logging_agent.py                        logging_setup.py                        main.py                               
+    market_agent.py                         memory_agent.py                         message_bus.py                          message_bus_redis.py                    metrics_agent.py                      
+    migrations.py                           notification_agent.py                   notifiers.py                            onboarding_agent.py                     planner_agent.py                      
+    priority_queue_agent.py                 profiles.py                             prompts.py                              rate_limit.py                           registry.py                           
+    repositories.py                         role_assignment_agent.py                sample_agent.py                         scheduler_agent.py                      scheduler_worker.py                   
+    schemas.py                              search_agent.py                         security_agent.py                       sentiment_agent.py                      session_agent.py                      
+    session_timeout_agent.py                speech_agent.py                         status_agent.py                         summarizer_agent.py                     system_agent.py                       
+    tagging_agent.py                        task_agent.py                           task_queue.py                           telemetry.py                            template_completion_agent.py          
+    test_api.py                             test_bus.py                             test_persistence.py                     test_pipeline.py                        thinker_agent.py                      
+    tracing.py                              transcription_agent.py                  user_profile_agent.py                   video_generation_agent.py               web_agent.py                          
+skills                    50 files
+    __init__.py                             agents_farm.py                          agents_market.py                        agents_run.py                           agents_scheduler.py                   
+    agents_search.py                        agents_skill.py                         agents_summarize.py                     agents_web.py                           counter_skill.py                      
+    currency_convert_skill.py               date_skill.py                           datetime_parse_skill.py                 device_skill.py                         email_address_extract_skill.py        
+    entity_extraction_skill.py              farm_skill.py                           fibonacci_skill.py                      file_read_skill.py                      flatten_dict_skill.py                 
+    html_strip_skill.py                     iot_skill.py                            json_parse_skill.py                     knowledge_skill.py                      language_detect_skill.py              
+    levenshtein_skill.py                    list_ops_skill.py                       math_skill.py                           min_max_skill.py                        qa_skill.py                           
+    random_skill.py                         regex_extraction_skill.py               remove_stopwords_skill.py               replacer_skill.py                       sample_skill.py                       
+    spell_correction.py                     strip_html_skill.py                     strip_punctuation_skill.py              summary_skill.py                        task_skill.py                         
+    text_transform_skill.py                 timer_skill.py                          timezone_skill.py                       token_count_skill.py                    translate_skill.py                    
+    url_parse_skill.py                      uuid_skill.py                           video_generate_skill.py                 web_skill.py                            xml_parse_skill.py                    
+core/plugins              37 files
+    __init__.py                             alert_plugin.py                         analytics_plugin.py                     cache_plugin.py                         calendar_plugin.py                    
+    codebase_trainer_plugin.py              csv_trainer_plugin.py                   database_plugin.py                      dictionary_trainer_plugin.py            email_plugin.py                       
+    farm_scheduler_plugin.py                feedback_trainer_plugin.py              github_plugin.py                        http_plugin.py                          image_trainer_plugin.py               
+    irrigation_alert_plugin.py              log_plugin.py                           monitor_plugin.py                       notification_plugin.py                  pdf_answer_plugin.py                  
+    progress_plugin.py                      report_plugin.py                        rules_trainer_plugin.py                 sample_plugin.py                        scheduler_plugin.py                   
+    slack_plugin.py                         sms_plugin.py                           spreadsheet_plugin.py                   text_trainer_plugin.py                  trainer_plugin.py                     
+    video_plugin.py                         video_router_plugin.py                  vision_plugin.py                        voice_plugin.py                         voice_trainer_plugin.py               
+    web_answer_plugin.py                    web_trainer_plugin.py                 
+free-llm-gateway          37 files
+    __init__.py                             auto_update.py                          benchmark.py                            cache.py                                config.py                             
+    custom_combos.py                        format_translator.py                    gateway_auth.py                         health.py                               key_encryptor.py                      
+    key_manager.py                          main.py                                 oauth_manager.py                        provider_guides.py                      providers.py                          
+    quota_tracker.py                        rate_limiter.py                         rate_tracker.py                         request_db.py                           request_queue.py                      
+    router.py                               smart_default.py                        smart_router.py                         sticky_sessions.py                      sync_providers.py                     
+    test_gateway_auth.py                    test_health.py                          test_key_encryptor.py                   test_new_features.py                    test_rate_tracker.py                  
+    test_round2.py                          test_sticky_sessions.py                 test_tool_call_translator.py            token_compressor.py                     token_estimator.py                    
+    tool_call_translator.py                 tracking.py                           
+neofarm                   29 files
+    __init__.py                             advanced_automation.py                  alerts.py                               analytics.py                            animals.py                            
+    automation.py                           autonomous.py                           biogas.py                               cloud_sync.py                           dashboard.py                          
+    demo_farmer.py                          disease.py                              disease_predict.py                      environment.py                          farm_sensor_skill.py                  
+    feeding.py                              health.py                               health_scan.py                          iot_automation.py                       languages.py                          
+    main.py                                 milk.py                                 milk_forecast.py                        multi_farm.py                           records.py                            
+    self_learning.py                        sensors.py                              voice_commands.py                       voice_input.py                        
+tests                      7 files
+    __init__.py                             conftest.py                             test_agents_basic.py                    test_bus.py                             test_evaluator.py                     
+    test_persistence.py                     test_pipeline.py                      
+knowledge                  5 files
+    __init__.py                             memory_engine.py                        pdf_engine.py                           router.py                               web_engine.py                         
+reasoning                  4 files
+    __init__.py                             engine.py                               scoring.py                              synthesis.py                          
+other/tools                2 files
+    __init__.py                             web.py                                
+voice                      1 files
+    whisper_engine.py                     
+
+## Patch / stale candidates
+
+  [*.bak         ]  config/video_providers.yaml.bak
+  [patch_*       ]  core/patch_manager.py
+  [*.bak         ]  core/video_adapter_registry.py.bak
+  [*.bak         ]  core/video_adapters/tier0_gradio.py.bak
+  [*.bak         ]  core/video_adapters/tier1_magichour.py.bak
+  [*.bak         ]  core/video_router.py.bak
+  [fix_*         ]  fix_adb_fallback.py
+  [fix_*         ]  fix_colab_header.py
+  [fix_*         ]  fix_confidence.py
+  [fix_*         ]  fix_fake_backends.py
+  [fix_*         ]  fix_hedge.py
+  [fix_*         ]  fix_image_agent.py
+  [fix_*         ]  fix_image_fallback.py
+  [fix_*         ]  fix_indent.py
+  [fix_*         ]  fix_ka_v2.py
+  [fix_*         ]  fix_knowledge_agent.py
+  [fix_*         ]  fix_media_backends.py
+  [fix_*         ]  fix_missing_re.py
+  [fix_*         ]  fix_order.py
+  [fix_*         ]  fix_phone_dispatch.py
+  [fix_*         ]  fix_phone_files.py
+  [fix_*         ]  fix_plugin_whitelist.py
+  [fix_*         ]  fix_shell_block.py
+  [fix_*         ]  fix_speak_js.py
+  [fix_*         ]  fix_speak_local.py
+  [fix_*         ]  fix_speech_powershell.py
+  [fix_*         ]  fix_test_gradio_cogvideox.py
+  [fix_*         ]  fix_two_bugs.py
+  [fix_*         ]  fix_video_v2.py
+  [fix_*         ]  fix_vision_rewrite.py
+  [fix_*         ]  fix_vision_v2.py
+  [fix_*         ]  fix_wan22_duration.py
+  [fix_*         ]  fix_wan22_import.py
+  [make_*        ]  make_colab_nb.py
+  [make_*        ]  make_device_agent.py
+  [make_*        ]  make_harness.py
+  [make_*        ]  make_image_agent.py
+  [make_*        ]  make_irrigation_plugin.py
+  [make_*        ]  make_location_agent.py
+  [make_*        ]  make_locations.py
+  [make_*        ]  make_probe.py
+  [make_*        ]  make_speech_agent.py
+  [make_*        ]  make_test.py
+  [make_*        ]  make_transcription.py
+  [make_*        ]  make_vision_probe.py
+  [patch_*       ]  patch_chat_inject.py
+  [patch_*       ]  patch_device_reg.py
+  [patch_*       ]  patch_diag.py
+  [patch_*       ]  patch_diag2.py
+  [patch_*       ]  patch_disease_image.py
+  [patch_*       ]  patch_farm_route.py
+  [patch_*       ]  patch_farmer_locations.py
+  [patch_*       ]  patch_gesture_inject.py
+  [patch_*       ]  patch_gradio_cogvideox.py
+  [patch_*       ]  patch_image_debug.py
+  [patch_*       ]  patch_image_debug2.py
+  [patch_*       ]  patch_image_reg.py
+  [patch_*       ]  patch_launcher_aliases_v2.py
+  [patch_*       ]  patch_launcher_quotes.py
+  [patch_*       ]  patch_launcher_start.py
+  [patch_*       ]  patch_location_reg.py
+  [patch_*       ]  patch_magic_hour_fix.py
+  [patch_*       ]  patch_magic_hour_v2.py
+  [patch_*       ]  patch_path_resolution.py
+  [patch_*       ]  patch_plugin_preflight.py
+  [patch_*       ]  patch_profile_image.py
+  [patch_*       ]  patch_register_wan22.py
+  [patch_*       ]  patch_register_wan22_v2.py
+  [patch_*       ]  patch_speak_inject.py
+  [patch_*       ]  patch_speech_reg.py
+  [patch_*       ]  patch_transcribe_path.py
+  [patch_*       ]  patch_transcription_reg.py
+  [patch_*       ]  patch_veto.py
+  [patch_*       ]  patch_video_adapters_v2a.py
+  [patch_*       ]  patch_video_download.py
+  [patch_*       ]  patch_video_router_v1.py
+  [patch_*       ]  patch_video_router_v2b.py
+  [patch_*       ]  patch_wan22_adapter.py
+  [repair_*      ]  repair_video.py
+
+## Duplicate by exact content (sha256)
+
+
+  #1  (4 copies, 0 bytes, sha=e3b0c44298)
+       newest: tests/__init__.py
+        core/__init__.py
+        core/services/__init__.py
+        free-llm-gateway/tests/__init__.py
+        tests/__init__.py  <-- newest
+
+## Same filename in multiple directories
+
+
+  __init__.py   (20 copies)
+       newest: core/video_adapters/__init__.py
+        agents/__init__.py
+        agents/llm/__init__.py
+        agents/persistence/__init__.py
+        core/__init__.py
+        core/cameras/__init__.py
+        core/devices/__init__.py
+        core/driving/__init__.py
+        core/geo/__init__.py
+        core/plugins/__init__.py
+        core/reasoning/__init__.py
+        core/services/__init__.py
+        core/video_adapters/__init__.py  <-- newest
+        core/vision/__init__.py
+        free-llm-gateway/tests/__init__.py
+        knowledge/__init__.py
+        neofarm/__init__.py
+        reasoning/__init__.py
+        skills/__init__.py
+        tests/__init__.py
+        tools/__init__.py
+
+  main.py   (4 copies)
+       newest: agents/main.py
+        agents/main.py  <-- newest
+        core/services/main.py
+        free-llm-gateway/main.py
+        neofarm/mobile_app/main.py
+
+  router.py   (3 copies)
+       newest: free-llm-gateway/router.py
+        core/router.py
+        free-llm-gateway/router.py  <-- newest
+        knowledge/router.py
+
+  automation.py   (2 copies)
+       newest: core/automation.py
+        core/automation.py  <-- newest
+        neofarm/automation.py
+
+  codebase_trainer_plugin.py   (2 copies)
+       newest: core/codebase_trainer_plugin.py
+        core/codebase_trainer_plugin.py  <-- newest
+        core/plugins/codebase_trainer_plugin.py
+
+  config.py   (2 copies)
+       newest: free-llm-gateway/config.py
+        agents/config.py
+        free-llm-gateway/config.py  <-- newest
+
+  conftest.py   (2 copies)
+       newest: tests/conftest.py
+        agents/tests/conftest.py
+        tests/conftest.py  <-- newest
+
+  csv_trainer_plugin.py   (2 copies)
+       newest: core/csv_trainer_plugin.py
+        core/csv_trainer_plugin.py  <-- newest
+        core/plugins/csv_trainer_plugin.py
+
+  dictionary_trainer_plugin.py   (2 copies)
+       newest: core/dictionary_trainer_plugin.py
+        core/dictionary_trainer_plugin.py  <-- newest
+        core/plugins/dictionary_trainer_plugin.py
+
+  feedback_trainer_plugin.py   (2 copies)
+       newest: core/feedback_trainer_plugin.py
+        core/feedback_trainer_plugin.py  <-- newest
+        core/plugins/feedback_trainer_plugin.py
+
+  health.py   (2 copies)
+       newest: free-llm-gateway/health.py
+        free-llm-gateway/health.py  <-- newest
+        neofarm/health.py
+
+  image_trainer_plugin.py   (2 copies)
+       newest: core/image_trainer_plugin.py
+        core/image_trainer_plugin.py  <-- newest
+        core/plugins/image_trainer_plugin.py
+
+  rules_trainer_plugin.py   (2 copies)
+       newest: core/rules_trainer_plugin.py
+        core/plugins/rules_trainer_plugin.py
+        core/rules_trainer_plugin.py  <-- newest
+
+  system_agent.py   (2 copies)
+       newest: agents/system_agent.py
+        agents/system_agent.py  <-- newest
+        core/system_agent.py
+
+  telemetry.py   (2 copies)
+       newest: agents/telemetry.py
+        agents/telemetry.py  <-- newest
+        core/telemetry.py
+
+  test_bus.py   (2 copies)
+       newest: tests/test_bus.py
+        agents/tests/test_bus.py
+        tests/test_bus.py  <-- newest
+
+  test_new_features.py   (2 copies)
+       newest: test_new_features.py
+        free-llm-gateway/tests/test_new_features.py
+        test_new_features.py  <-- newest
+
+  test_persistence.py   (2 copies)
+       newest: tests/test_persistence.py
+        agents/tests/test_persistence.py
+        tests/test_persistence.py  <-- newest
+
+  test_pipeline.py   (2 copies)
+       newest: tests/test_pipeline.py
+        agents/tests/test_pipeline.py
+        tests/test_pipeline.py  <-- newest
+
+  text_trainer_plugin.py   (2 copies)
+       newest: core/text_trainer_plugin.py
+        core/plugins/text_trainer_plugin.py
+        core/text_trainer_plugin.py  <-- newest
+
+  voice_input.py   (2 copies)
+       newest: core/voice_input.py
+        core/voice_input.py  <-- newest
+        neofarm/voice_input.py
+
+## Same class name in multiple files (likely overlap)
+
+
+  class Critic
+        core/critic.py
+        core/csv_trainer_plugin.py
+        core/plugins/csv_trainer_plugin.py
+
+  class DashboardHandler
+        core/run_dashboard.py
+        core/services/dashboard_server.py
+
+  class MessageBus
+        agents/message_bus.py
+        core/messaging.py
+
+  class ModelConfig
+        core/llm_router.py
+        free-llm-gateway/config.py
+
+  class RateLimiter
+        agents/rate_limit.py
+        free-llm-gateway/rate_limiter.py
+
+  class SystemAgent
+        agents/system_agent.py
+        core/system_agent.py
+
+  class ToolRegistry
+        core/tool_registry.py
+        core/tools.py
+        neo_nosignups.py
+
+## Empty or near-empty .py files (<50 bytes)
+
+    38  agents/__main__.py
+     0  core/__init__.py
+    49  core/cameras/__init__.py
+    19  core/plugins/__init__.py
+     0  core/services/__init__.py
+     0  free-llm-gateway/tests/__init__.py
+    27  knowledge/__init__.py
+    28  reasoning/__init__.py
+    30  skills/__init__.py
+     0  tests/__init__.py
+    36  tools/__init__.py
+
+## Non-.py files
+
+  .txt            60
+  .json           23
+  .pdf            19
+  (no ext)        17
+  .jpg            11
+  .html           10
+  .md             10
+  .js             9
+  .png            9
+  .yml            6
+  .conf           6
+  .bak            5
+  .sh             4
+  .mp4            4
+  .example        3
+  .log            3
+  .db             2
+  .toml           2
+  .yaml           2
+  .css            2
+  .int            2
+  .fst            2
+  .ipynb          1
+  .docx           1
+  .ps1            1
+  .ogg            1
+  .ini            1
+  .code-workspace  1
+  .bak2           1
+  .bak3           1
+  .jsx            1
+  .csv            1
+  .mdl            1
+  .dubm           1
+  .ie             1
+  .mat            1
+  .stats          1
+
+## Files confirmed imported (have __pycache__)
+
+  (none)

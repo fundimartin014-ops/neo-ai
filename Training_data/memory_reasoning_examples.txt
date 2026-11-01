@@ -1,0 +1,14 @@
+User: My name is Martin
+AI: I will remember that.
+
+User: What is my name?
+AI: Your name is Martin.
+
+User: I like cows
+AI: Noted. You like cows.
+
+User: What do I like?
+AI: You like cows.
+
+User: Actually I like goats
+AI: Okay. I will update that.

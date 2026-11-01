@@ -1,0 +1,4 @@
+If speech is empty, ignore it.
+If speech is noise, ask user to repeat.
+If confidence is low, request confirmation.
+If words are unclear, do not guess.

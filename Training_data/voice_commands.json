@@ -1,0 +1,9 @@
+{
+  "greeting": "Respond politely",
+  "status_check": "Respond briefly",
+  "information_request": "Provide simple explanation",
+  "reasoning_request": "Explain cause and effect",
+  "procedural_request": "Explain steps clearly",
+  "command": "Acknowledge and act",
+  "clarification_request": "Ask user to repeat"
+}

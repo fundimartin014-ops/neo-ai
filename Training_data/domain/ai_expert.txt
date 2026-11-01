@@ -1,0 +1,10 @@
+Artificial Intelligence includes reasoning, learning, and perception.
+Machine learning enables pattern recognition.
+Deep learning uses layered neural networks.
+AI assistants rely on language models.
+Offline AI prioritizes efficiency.
+Hybrid AI combines offline and online systems.
+Ethics guide AI safety.
+Explainability improves trust.
+Bias arises from skewed data.
+Balanced datasets improve fairness.

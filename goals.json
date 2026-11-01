@@ -1,0 +1,58 @@
+[
+  {
+    "text": "<task>",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 1,
+    "created": 1777864038.5031536,
+    "score": 1.0037507206439973
+  },
+  {
+    "text": "find latest news about ai",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 1,
+    "created": 1777864181.9954398,
+    "score": 32.360447340750696
+  },
+  {
+    "text": "find ai news",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 1,
+    "created": 1777865029.8700178,
+    "score": 32.27944136180878
+  },
+  {
+    "text": "summarize today's emails",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 1,
+    "created": 1790862510.679271,
+    "score": 1.0003004406690597
+  },
+  {
+    "text": "research groq rate limits",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 1,
+    "created": 1790862510.880867,
+    "score": 1.001247123169899
+  },
+  {
+    "text": "post summary to slack",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 1,
+    "created": 1790862510.9188645,
+    "score": 1.0026734379529954
+  },
+  {
+    "text": "summarize my day",
+    "status": "done",
+    "priority": 1.0,
+    "attempts": 2,
+    "created": 1790864397.914544,
+    "score": 7.45271207664013
+  }
+]

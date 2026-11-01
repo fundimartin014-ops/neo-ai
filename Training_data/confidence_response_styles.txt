@@ -1,0 +1,4 @@
+High confidence → assertive response.
+Medium confidence → cautious tone.
+Low confidence → explain uncertainty.
+No confidence → admit unknown.

@@ -1,0 +1,100 @@
+"""Tier-aware video router. Never touches existing code."""
+import time, logging
+from typing import List, Dict, Any
+
+from .video_request import VideoRequest, VideoResult, QueuedJob
+from .video_providers import Provider, load_providers
+from .video_audit import log_audit, AuditRecord
+
+log = logging.getLogger(__name__)
+
+
+class CircuitBreaker:
+    def __init__(self, threshold=10, open_duration=900):
+        self.threshold = threshold
+        self.open_duration = open_duration
+        self._state: Dict[str, Dict[str, Any]] = {}
+
+    def is_open(self, name: str) -> bool:
+        s = self._state.get(name)
+        if not s: return False
+        if s["state"] == "OPEN":
+            if time.time() - s["opened_at"] > self.open_duration:
+                s["state"] = "HALF_OPEN"; return False
+            return True
+        return False
+
+    def record_success(self, name: str) -> None:
+        self._state[name] = {"state": "CLOSED", "failures": 0, "opened_at": 0}
+
+    def record_failure(self, name: str) -> None:
+        s = self._state.setdefault(name, {"state": "CLOSED", "failures": 0, "opened_at": 0})
+        s["failures"] += 1
+        if s["failures"] >= self.threshold:
+            s["state"] = "OPEN"; s["opened_at"] = time.time()
+
+
+def _load_adapter(provider: Provider):
+    if provider.adapter == "tier0_proxy":
+        from .video_adapters.tier0_proxy import FreeMultimodalProxyAdapter
+        return FreeMultimodalProxyAdapter()
+    return None
+
+
+class VideoRouter:
+    def __init__(self, providers: List[Provider], adapters: Dict[str, Any]):
+        self.providers = providers
+        self.adapters = adapters
+        self.breaker = CircuitBreaker()
+
+    @classmethod
+    def from_config(cls, yaml_path: str) -> "VideoRouter":
+        providers = load_providers(yaml_path)
+        adapters = {}
+        for p in providers:
+            try:
+                a = _load_adapter(p)
+                if a: adapters[p.name] = a
+            except Exception as e:
+                log.warning(f"adapter load failed for {p.name}: {e}")
+        return cls(providers, adapters)
+
+    def route(self, req: VideoRequest):
+        tiers = [0, 1] if req.quality_tier == "standard" else [2]
+        for tier in tiers:
+            for p in sorted(
+                [x for x in self.providers if x.tier == tier],
+                key=lambda x: x.reliability, reverse=True,
+            ):
+                if not p.is_enabled():                              continue
+                if self.breaker.is_open(p.name):                    continue
+                if not p.quota_ok():                                continue
+                if req.model_hint and req.model_hint not in p.models: continue
+                adapter = self.adapters.get(p.name)
+                if adapter is None:                                 continue
+                start = time.time()
+                try:
+                    result = adapter.generate(req)
+                    latency = int((time.time() - start) * 1000)
+                    result.latency_ms = latency
+                    result.tier = p.tier
+                    self.breaker.record_success(p.name)
+                    p.record_use()
+                    log_audit(AuditRecord(
+                        ts=time.time(), user_id=req.user_id, tier=p.tier,
+                        provider=p.name, model=result.model, latency_ms=latency,
+                        cost_usd=result.cost_usd, success=True,
+                    ))
+                    return result
+                except Exception as e:
+                    log.warning(f"provider {p.name} failed: {e}")
+                    self.breaker.record_failure(p.name)
+                    log_audit(AuditRecord(
+                        ts=time.time(), user_id=req.user_id, tier=p.tier,
+                        provider=p.name, model=req.model_hint or "?",
+                        latency_ms=int((time.time() - start) * 1000),
+                        cost_usd=0.0, success=False, error=str(e)[:200],
+                    ))
+                    continue
+        return QueuedJob(job_id=f"queued_{int(time.time())}",
+                        reason="all_tiers_exhausted", estimated_wait_seconds=120)

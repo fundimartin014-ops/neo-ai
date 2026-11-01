@@ -1,0 +1,16 @@
+requests
+beautifulsoup4
+numpy
+duckduckgo-search
+faiss-cpu
+sentence-transformers
+playwright
+flask
+flask-cors
+python-dotenv
+sounddevice
+psutil
+tavily-python
+vosk
+aiohttp
+loguru

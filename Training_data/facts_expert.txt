@@ -1,0 +1,10 @@
+The brain uses neurons to process information.
+Computers use transistors instead of neurons.
+Binary code consists of 0s and 1s.
+Electricity powers digital systems.
+Memory stores temporary and permanent data.
+Processors execute instructions.
+Software controls hardware behavior.
+Data can be structured or unstructured.
+Errors occur when logic is incorrect.
+Debugging resolves software issues.

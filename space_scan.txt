@@ -1,0 +1,43 @@
+======================================================================
+SPACE: zerogpu-aoti/wan2-2-fp8da-aoti-faster
+  STATUS: LIVE
+Client.predict() Usage Info
+---------------------------
+Named API endpoints: 1
+
+ - predict(input_image, prompt, steps, negative_prompt, duration_seconds, guidance_scale, guidance_scale_2, seed, randomize_seed, api_name="/generate_video") -> (generated_video, seed)
+    Parameters:
+     - [Image] input_image: dict(path: str | None (Path to a local file), url: str | None (Publicly available url or base64 encoded image), size: int | None (Size of image in bytes), orig_name: str | None (Original filename), mime_type: str | None (mime type of image), is_stream: bool (Can always be set to False), meta: dict(str, Any)) (required)  (For input, either path or url must be provided. For output, path is always provided.) 
+     - [Textbox] prompt: str (not required, defaults to:   make this image come alive, cinematic motion, smooth animation)  
+     - [Slider] steps: float (not required, defaults to:   6)  
+     - [Textbox] negative_prompt: str (not required, defaults to:   色调艳丽, 过曝, 静态, 细节模糊不清, 字幕, 风格, 作品, 画作, 画面, 静止, 整体发灰, 最差质量, 低质量, JPEG压缩残留, 丑陋的, 残缺的, 多余的手指, 画得不好的手部, 画得不好的脸部, 畸形的, 毁容的, 形态畸形的肢体, 手指融合, 静止不动的画面, 杂乱的背景, 三条腿, 背景人很多, 倒着走)  
+     - [Slider] duration_seconds: float (not required, defaults to:   3.5)  
+     - [Slider] guidance_scale: float (not required, defaults to:   1)  
+     - [Slider] guidance_scale_2: float (not required, defaults to:   1)  
+     - [Slider] seed: float (not required, defaults to:   42)  
+     - [Checkbox] randomize_seed: bool (not required, defaults to:   True)  
+    Returns:
+     - [Video] generated_video: filepath 
+     - [Slider] seed: float (numeric value between 0 and 2147483647) 
+
+
+
+======================================================================
+SPACE: vaibhavpandeyvpz/wan2.2-text-image-to-video
+  STATUS: DEAD -> ValueError: The current space is in the invalid state: RUNTIME_ERROR. Please contact the owner to fix this.
+
+======================================================================
+SPACE: rahul7star/Wan-2.2-5B
+  STATUS: DEAD -> ValueError: The current space is in the invalid state: BUILD_ERROR. Please contact the owner to fix this.
+
+======================================================================
+SPACE: zerogpu-aoti/wan2-2-fp8da-aoti
+  STATUS: DEAD -> ValueError: The current space is in the invalid state: RUNTIME_ERROR. Please contact the owner to fix this.
+
+======================================================================
+SPACE: multimodalart/wan-2-2-first-last-frame
+  STATUS: DEAD -> ConnectError: [Errno 11002] getaddrinfo failed
+
+======================================================================
+SPACE: akhaliq/LTX-2.5-workflow
+  STATUS: DEAD -> ValueError: The current space is in the invalid state: RUNTIME_ERROR. Please contact the owner to fix this.

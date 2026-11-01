@@ -1,0 +1,20 @@
+Artificial Intelligence simulates human intelligence using machines.
+AI systems operate using logic, data, and algorithms.
+Offline AI runs entirely without internet connectivity.
+Online AI supplements knowledge using web access.
+Memory systems store short-term and long-term knowledge.
+Training data directly impacts intelligence quality.
+More diverse data improves contextual understanding.
+Plugins modularize AI functionality.
+Voice recognition translates sound waves into text.
+Speech synthesis converts text to human-like audio.
+Natural Language Processing enables language understanding.
+AI does not think independently; it processes patterns.
+Ethical AI prioritizes safety and truth.
+Data integrity ensures reliable responses.
+Security protects stored information.
+AI assistants automate repetitive tasks.
+AI can support education, farming, health, and business.
+Automation reduces errors and increases productivity.
+Rule-based AI follows predefined instructions.
+Learning-based AI adapts using data.

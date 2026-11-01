@@ -1,0 +1,410 @@
+[
+  {
+    "query": "debug",
+    "response": "All classes. \uf0b7 all classes are insta nces of it, either directly or through one of its subclasses. \uf0b7 the class class introduces the attribute cardinality, which is to inherited by all instances of class. cardinality stands for the number. other ways of relating classes to each other \uf0b7 we have dis cussed that a class1 can be a subset of class2. \uf0b7 if class2 is a meta -class then class1"
+  },
+  {
+    "query": "start auto",
+    "response": "I don't know."
+  },
+  {
+    "query": "start auto",
+    "response": "I don't know."
+  },
+  {
+    "query": "who is the current president of america",
+    "response": "Dodoma"
+  },
+  {
+    "query": "how context",
+    "response": "Identify the theme, gather information, organize, refine."
+  },
+  {
+    "query": "understand task",
+    "response": "[None]"
+  },
+  {
+    "query": "search information",
+    "response": "['Browser error: Page.wait_for_selector: Timeout 30000ms exceeded.\\nCall log:\\n  - waiting for locator(\"a[data-testid=\\'result-title-a\\']\") to be visible\\n    - waiting for\" https://duckduckgo.com/?ia=web&origin=funnel_home_website&t=h_&we_feature_name=search-from-homepage&we_started_at=03-08-09_711&q=search+information&chip-select=search\" navigation to finish...\\n    - navigated to \"https://duckduckgo.com/?ia=web&origin=funnel_home_website&t=h_&we_feature_name=search-from-homepage&we_started_at=03-08-09_711&q=search+information&chip-select=search\"\\n']"
+  },
+  {
+    "query": "analyze results",
+    "response": "[None]"
+  },
+  {
+    "query": "produce answer",
+    "response": "[None]"
+  },
+  {
+    "query": "debug",
+    "response": "[none]"
+  },
+  {
+    "query": "who is the current president of america",
+    "response": "Dodoma"
+  },
+  {
+    "query": "who is the current president of america",
+    "response": "Dodoma"
+  },
+  {
+    "query": "who is the current president of america",
+    "response": "The current president of the united states is joseph r. biden jr.."
+  },
+  {
+    "query": "who is the president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "debug",
+    "response": "Debugging is the process of identifying and correcting errors, bugs, or issues in computer programs, software, or systems. it involves examining the code, logs, and other data to pinpoint where problems arise and then making the necessary changes to fix the issues. this process can involve various methods such as line-by-line testing, using debugging tools, and employing systematic approaches to trace and resolve errors. the goal of debugging is to enhance the quality and reliability of the software or system being developed."
+  },
+  {
+    "query": "who is the president of uganda currently search from web",
+    "response": "The current president of uganda is william\u84b2\u9752\u4e91."
+  },
+  {
+    "query": "who is the president of uganda currently",
+    "response": "The president of uganda is yoweri museveni. he has been the head of state since 1986, and he is the ruling party's leader."
+  },
+  {
+    "query": "what can you do",
+    "response": "As qwen, i can assist with various tasks, including: 1. answering written questions and generating written responses. 2. providing information about different products or services. 3. offering suggestions or advice on various topics. 4. generating creative ideas or writing prompts. 5. helping with language translation or interpretation. 6. providing general knowledge and facts on many subjects. 7. chatting with users and engaging in conversation. 8. assisting with research or finding information on topics. please let me know if you have any specific questions or if you'd like to discuss other ways i can help."
+  },
+  {
+    "query": "debug",
+    "response": "Duckduckgo package not installed correctly."
+  },
+  {
+    "query": "https://en.wikipedia.org/wiki/Kenya",
+    "response": ", assoc iation, and speec h. the recen t restoration of these rights and the continuing debate over reinforcing them reflect the necess ary struggle to \"acquire\" them throug h a historical process of compromise between state and society. some activists who claim these citizens hip rights have resor ted to sympathetic international institutions (e.g. in human rights) that diminish the sove rei"
+  },
+  {
+    "query": "who is the current president of Tanzania",
+    "response": "The president of uganda is yoweri museveni. he has been the head of state since 1986, and he is the ruling party's leader."
+  },
+  {
+    "query": "debug",
+    "response": "Duckduckgo package not installed correctly."
+  },
+  {
+    "query": "understand task",
+    "response": "y.B. 2. Amazon\n2. A smartphone that suggests words while you type a \nmessage3. Netflix\n3. A mobile app that suggests movies based on what \nyou watched before4. Facebook\n4. A calculator doing math when you enter numbers\n5. An app that helps you find out plant diseases \nby taking a photo of the plant5. Google Maps\n6. A refrigerator that keeps your food coldColumn B\n13.1.2 What is not AI?YouTube uses"
+  },
+  {
+    "query": "search information",
+    "response": "DuckDuckGo package not installed correctly."
+  },
+  {
+    "query": "analyze results",
+    "response": "Duckduckgo package not installed correctly."
+  },
+  {
+    "query": "produce answer",
+    "response": "spelled version `w` conditionally to the intention of typing the correctly \nspelled word `c`. The spell checker then returns word `c` corresponding to the highest  value of \n`P(w|c)P(c)` among all possible words in the language.  \n \n \n \n \n \n \n \n Module 3   \nLEARNING  \nLearning is the improvement of performance with experience over time.  \nLearning element is the portion of a learning AI system tha"
+  },
+  {
+    "query": "understand task",
+    "response": "y.B. 2. Amazon\n2. A smartphone that suggests words while you type a \nmessage3. Netflix\n3. A mobile app that suggests movies based on what \nyou watched before4. Facebook\n4. A calculator doing math when you enter numbers\n5. An app that helps you find out plant diseases \nby taking a photo of the plant5. Google Maps\n6. A refrigerator that keeps your food coldColumn B\n13.1.2 What is not AI?YouTube uses"
+  },
+  {
+    "query": "search information",
+    "response": "DuckDuckGo package not installed correctly."
+  },
+  {
+    "query": "analyze results",
+    "response": "Duckduckgo package not installed correctly."
+  },
+  {
+    "query": "produce answer",
+    "response": "spelled version `w` conditionally to the intention of typing the correctly \nspelled word `c`. The spell checker then returns word `c` corresponding to the highest  value of \n`P(w|c)P(c)` among all possible words in the language.  \n \n \n \n \n \n \n \n Module 3   \nLEARNING  \nLearning is the improvement of performance with experience over time.  \nLearning element is the portion of a learning AI system tha"
+  },
+  {
+    "query": "debug",
+    "response": "Duckduckgo package not installed correctly."
+  },
+  {
+    "query": "yes but dont save thats an error",
+    "response": "Duckduckgo package not installed correctly."
+  },
+  {
+    "query": "debug",
+    "response": "Who is the current president of america"
+  },
+  {
+    "query": "& \"C:/Program Files/Python311/python.exe\" c:/Users/fundi/OneDrive/Documents/TRAININGBOT2/launcher.py",
+    "response": "Ocial media more interesting. b. it does not affect anyone. c. it can spread wrong information and harm public trust. q2: what should social media companies do to address the ethical concerns of ai? a. stop using ai on social media. b. find ways to detect and reduce the spread of false information. c. by training ai to spread more news. 42 ai module 13personal data is being used to"
+  },
+  {
+    "query": "debug",
+    "response": "Who is the current president of america"
+  },
+  {
+    "query": "who is rigathi gachagua",
+    "response": "Could not extract useful content."
+  },
+  {
+    "query": "who is the president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "william samoei auto is the correct answer",
+    "response": "You were supposed to run automatically"
+  },
+  {
+    "query": "who is the current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "who is the president of kenya currently",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "currentpresidentofkenya",
+    "response": "Stub response: connect to your llm here."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "currentpresidentofkenya",
+    "response": "Stub response: connect to your llm here."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "who is the president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "who is the current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "skip",
+    "response": "You were supposed to run automatically"
+  },
+  {
+    "query": "current president of kenya",
+    "response": "The current president of kenya is uhuru kenyatta. he took office on july 5, 2013, succeeding his father, mwai kibaki. kenyatta was born on january 27, 1959, and has been a prominent figure in kenyan politics since the 1980s. prior to his presidency, he was the prime minister of kenya from 2008 to 2013."
+  },
+  {
+    "query": "skip",
+    "response": "You were supposed to run automatically"
+  },
+  {
+    "query": "current president of kenya",
+    "response": "Source: https://en.wikipedia.org/wiki/william_ruto william ruto - wikipedia william kipchirchir samoei arap ruto cgh (born 21 december 1966) is a kenyan politician who is the fifth and current president of kenya since 13 september ... source: https://www.britannica.com/biography/william-ruto william ruto | wife, family, education, biography, age, & previous ... william ruto (born december 21, 1966, sambut, kenya) is a kenyan businessman and politician who has served as president of kenya since 2022. source: https://www.president.go.ke/ president.go.ke"
+  },
+  {
+    "query": "who are you",
+    "response": "As qwen, i can assist with various tasks, including: 1. answering written questions and generating written responses. 2. providing information about different products or services. 3. offering suggestions or advice on various topics. 4. generating creative ideas or writing prompts. 5. helping with language translation or interpretation. 6. providing general knowledge and facts on many subjects. 7. chatting with users and engaging in conversation. 8. assisting with research or finding information on topics. please let me know if you have any specific questions or if you'd like to discuss other ways i can help."
+  },
+  {
+    "query": "can you run automatically",
+    "response": "- reddit if you just tap the sprint button, without hitting any other buttons including holding forward, your character just sprints/drives straight ... source: https://www.facebook.com/groups/satisfactorygame/posts/4007100262852418/ is there an auto run option? also works with ziplines and the ... source: https://www.seaofthieves.com/community/forums/topic/142211/auto-run-sprint auto run/sprint - sea of thieves auto run so that you just push the left analogue stick forward instead of pressing/pushing in to run, this would be so much better and also save damaging the ... source: https://www.reddit.com/r/7daystodie/comments/1mkrkql/has_anyone_figured_out_how_auto_run_works_ive/ has anyone figured out how auto run works?"
+  },
+  {
+    "query": "who are you?",
+    "response": "As qwen, i can assist with various tasks, including: 1. answering written questions and generating written responses. 2. providing information about different products or services. 3. offering suggestions or advice on various topics. 4. generating creative ideas or writing prompts. 5. helping with language translation or interpretation. 6. providing general knowledge and facts on many subjects. 7. chatting with users and engaging in conversation. 8. assisting with research or finding information on topics. please let me know if you have any specific questions or if you'd like to discuss other ways i can help."
+  },
+  {
+    "query": "skip",
+    "response": "Source: https://www.merriam-webster.com/dictionary/skip skip definition & meaning 1 ... to move or proceed with leaps and bounds or with a skip ... to leave hurriedly or secretly. source: https://www.youtube.com/channel/uco_kst8r-dd9fgs4n4kvbmg skip skip helps millions of entrepreneurs and small business owners start, fund, and grow. try for free at https://tryskip.com source: https://www.youtube.com/shorts/x4cygnopheo learn how to a-skip in 1 minute! come with me because i'm going to teach you how to do an a skip. the first thing that we need with an a skip is understanding the rhythm."
+  },
+  {
+    "query": "hello",
+    "response": "As qwen, i can assist with various tasks, including: 1. answering written questions and generating written responses. 2. providing information about different products or services. 3. offering suggestions or advice on various topics. 4. generating creative ideas or writing prompts. 5. helping with language translation or interpretation. 6. providing general knowledge and facts on many subjects. 7. chatting with users and engaging in conversation. 8. assisting with research or finding information on topics. please let me know if you have any specific questions or if you'd like to discuss other ways i can help."
+  },
+  {
+    "query": "what date is it today",
+    "response": "Today spring with 7 days until the start of summer. source: https://www.inchcalculator.com/what-is-todays-date/ what is today's date? today's date in numbers is: mm-dd-yyyy: 06-13-2026; dd-mm-yyyy: ... source: https://www.timeanddate.com/ time and date welcome to the world's top site for time, time zones, and astronomy. source: https://www.calendardate.com/todays.htm today's date - calendardate.com today's date is sunday june 14, 2026. - inch calculator today, june 13th , is day 164 of 365 total days in 2026. organize your life with free online info and tools you can rely on."
+  },
+  {
+    "query": "B",
+    "response": "I couldn't generate a response. please check your connection."
+  },
+  {
+    "query": "B",
+    "response": "I couldn't generate a response. please check your connection."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "I couldn't generate a response. please check your connection."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "I couldn't generate a response. please check your connection."
+  },
+  {
+    "query": "personality",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "personality",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "current president of kenya",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "hello",
+    "response": "Hello! how can i assist you today?"
+  },
+  {
+    "query": "hello",
+    "response": "Hello! how can i assist you today?"
+  },
+  {
+    "query": "Current president of kenya",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "Current president of kenya",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "skip",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "skip",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "Current president of kenya",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "Current president of kenya",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "who is rigathi gachagua",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "who is rigathi gachagua",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "exit",
+    "response": "The user requested \"exit,\" but the context provided does not contain any information about exiting a situation or process. the text appears to be related to an ai assistant named neo, who is suggesting checking api keys or running a specific command (\"ollama serve\") for certain actions. therefore, i cannot provide an exit-related answer based on this context alone."
+  },
+  {
+    "query": "exit",
+    "response": "The user requested \"exit,\" but the context provided does not contain any information about exiting a situation or process. the text appears to be related to an ai assistant named neo, who is suggesting checking api keys or running a specific command (\"ollama serve\") for certain actions. therefore, i cannot provide an exit-related answer based on this context alone."
+  },
+  {
+    "query": "draw a diagram of a login flow",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "draw a diagram of a login flow",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "test regex",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "test regex",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "visualize json",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "visualize json",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "generate<video of dancing cat>",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "generate<video of dancing cat>",
+    "response": "[neo] all engines offline. check api keys or run 'ollama serve'."
+  },
+  {
+    "query": "https://example.com chunk 0",
+    "response": "\n\nSource: https://www.example.com/\nExample Domain\n\u0414\u0430\u043d\u043d\u044b\u0439 \u0434\u043e\u043c\u0435\u043d \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d \u0434\u043b\u044f \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0432 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u0445 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u0438 \u0431\u0435\u0437 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f. \u042d\u0442\u043e \u043d\u0435 \u0441\u0435\u0440\u0432\u0438\u0441; \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0435\u0433\u043e ...\n\nSource: https://en.wikipedia.org/wiki/Example.com\nexample.com\nThe domain names example.com, example.net, example.org, and example.edu are second-level domain names in the Domain Name System of the Internet.\n\nSource: https://webmasters.stackexchange.com/questions/6107/www-example-com-"
+  },
+  {
+    "query": "https://example.com chunk 0",
+    "response": "\n\nSource: https://www.example.com/\nExample Domain\n\u0414\u0430\u043d\u043d\u044b\u0439 \u0434\u043e\u043c\u0435\u043d \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d \u0434\u043b\u044f \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0432 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u0445 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u0438 \u0431\u0435\u0437 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f. \u042d\u0442\u043e \u043d\u0435 \u0441\u0435\u0440\u0432\u0438\u0441; \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0435\u0433\u043e ...\n\nSource: https://en.wikipedia.org/wiki/Example.com\nexample.com\nThe domain names example.com, example.net, example.org, and example.edu are second-level domain names in the Domain Name System of the Internet.\n\nSource: https://webmasters.stackexchange.com/questions/6107/www-example-com-"
+  },
+  {
+    "query": "https://example.com chunk 0",
+    "response": "\n\nSource: https://www.example.com/\nExample Domain\n\u0414\u0430\u043d\u043d\u044b\u0439 \u0434\u043e\u043c\u0435\u043d \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d \u0434\u043b\u044f \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0432 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u0445 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u0438 \u0431\u0435\u0437 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f. \u042d\u0442\u043e \u043d\u0435 \u0441\u0435\u0440\u0432\u0438\u0441; \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0435\u0433\u043e ...\n\nSource: https://en.wikipedia.org/wiki/Example.com\nexample.com\nThe domain names example.com, example.net, example.org, and example.edu are second-level domain names in the Domain Name System of the Internet.\n\nSource: https://webmasters.stackexchange.com/questions/6107/www-example-com-"
+  },
+  {
+    "query": "https://example.com chunk 0",
+    "response": "\n\nSource: https://www.example.com/\nExample Domain\n\u0414\u0430\u043d\u043d\u044b\u0439 \u0434\u043e\u043c\u0435\u043d \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d \u0434\u043b\u044f \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0432 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u0445 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u0438 \u0431\u0435\u0437 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f. \u042d\u0442\u043e \u043d\u0435 \u0441\u0435\u0440\u0432\u0438\u0441; \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0435\u0433\u043e ...\n\nSource: https://en.wikipedia.org/wiki/Example.com\nexample.com\nThe domain names example.com, example.net, example.org, and example.edu are second-level domain names in the Domain Name System of the Internet.\n\nSource: https://webmasters.stackexchange.com/questions/6107/www-example-com-"
+  },
+  {
+    "query": "summarize today's emails",
+    "response": "Today spring with 7 days until the start of summer. source: https://www.inchcalculator.com/what-is-todays-date/ what is today's date? today's date in numbers is: mm-dd-yyyy: 06-13-2026; dd-mm-yyyy: ... source: https://www.timeanddate.com/ time and date welcome to the world's top site for time, time zones, and astronomy. source: https://www.calendardate.com/todays.htm today's date - calendardate.com today's date is sunday june 14, 2026. - inch calculator today, june 13th , is day 164 of 365 total days in 2026. organize your life with free online info and tools you can rely on."
+  },
+  {
+    "query": "research groq rate limits",
+    "response": "Source: https://console.groq.com/docs/rate-limits\nRate Limits - GroqDocs\nRate limits act as control measures to regulate how frequently users and applications can access our API within specified timeframes.\n\nSource: https://www.reddit.com/r/LangChain/comments/1uil3n0/hitting_rate_limits_with_free_apis_groq_gemini/\nHitting rate limits with free APIs (Groq + Gemini) while ...\nI first tried Groq's free API with llama3-8b-8192 and kept hitting rate limits because of too many requests firing one after the other. Switched ...\n\nSource: https://console.groq.com/docs/spend-limits\nSpend Limits - GroqDocs\nYour API requests will be blocked when you reach $500 in monthly usage."
+  },
+  {
+    "query": "post summary to slack",
+    "response": "Today spring with 7 days until the start of summer. source: https://www.inchcalculator.com/what-is-todays-date/ what is today's date? today's date in numbers is: mm-dd-yyyy: 06-13-2026; dd-mm-yyyy: ... source: https://www.timeanddate.com/ time and date welcome to the world's top site for time, time zones, and astronomy. source: https://www.calendardate.com/todays.htm today's date - calendardate.com today's date is sunday june 14, 2026. - inch calculator today, june 13th , is day 164 of 365 total days in 2026. organize your life with free online info and tools you can rely on."
+  },
+  {
+    "query": "https://example.com chunk 0",
+    "response": "\n\nSource: https://www.example.com/\nExample Domain\n\u0414\u0430\u043d\u043d\u044b\u0439 \u0434\u043e\u043c\u0435\u043d \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d \u0434\u043b\u044f \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0432 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u0445 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u0438 \u0431\u0435\u0437 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f. \u042d\u0442\u043e \u043d\u0435 \u0441\u0435\u0440\u0432\u0438\u0441; \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0435\u0433\u043e ...\n\nSource: https://en.wikipedia.org/wiki/Example.com\nexample.com\nThe domain names example.com, example.net, example.org, and example.edu are second-level domain names in the Domain Name System of the Internet.\n\nSource: https://webmasters.stackexchange.com/questions/6107/www-example-com-"
+  },
+  {
+    "query": "summarize my day",
+    "response": "Source: https://www.reddit.com/r/Journaling/comments/18f8ug7/how_to_actually_summarize_your_day/\nHow to actually summarize your day? I want ...\n\nSource: https://forum.asana.com/t/generative-ai-summary-of-task-activity-for-the-day-week/898922\nGenerative AI Summary of Task Activity for the Day/Week?\nSee a summary of their notifications from within a certain time frame with a focus on actionable and urgent items Refresh this summary to get ...\n\nSource: https://www.youtube.com/shorts/ca-SJsFwLns\nHow to Quickly Summarize Your Day with Microsoft Copilot ...\nEver wish you could instantly catch up on your last 24 hours across Outlook and Teams? : r/Journaling\nSo I've noticed that most of the times , I write whatever that is going inside my mind at that particular moment (they're so dramatic lol)."
+  }
+]

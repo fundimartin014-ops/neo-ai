@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neo AI - NoSignups Tools</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-hover: #1e1e1e;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #ff2d55;
+      --accent-hover: #ff4769;
+      --accent-glow: rgba(255, 45, 85, 0.15);
+      --radius: 14px;
+      --radius-sm: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h1 {
+      font-size: 20px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .stat-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-box strong {
+      display: block;
+      color: var(--accent);
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .stat-box span {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 11px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Main Chat Area */
+    .chat-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: calc(100% - 260px);
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .messages::-webkit-scrollbar { width: 6px; }
+    .messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* Message Bubble */
+    .message {
+      display: flex;
+      gap: 12px;
+      max-width: 85%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message.user { align-self: flex-end; flex-direction: row-reverse; }
+    .message.ai { align-self: flex-start; }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .message.user .avatar { background: var(--accent); border-color: var(--accent); }
+
+    .bubble {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px;
+      line-height: 1.65;
+      word-wrap: break-word;
+    }
+
+    .message.user .bubble {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .bubble strong { color: var(--accent); }
+    .message.user .bubble strong { color: #fff; }
+    .bubble a { color: var(--accent); text-decoration: none; }
+    .bubble a:hover { text-decoration: underline; }
+
+    /* Tool Card */
+    .tool-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-top: 8px;
+    }
+
+    .tool-badge {
+      display: inline-block;
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .tool-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .tool-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      color: var(--text);
+      font-family: inherit;
+      min-width: 130px;
+      transition: all 0.2s ease;
+    }
+
+    .tool-btn:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+      transform: translateY(-1px);
+    }
+
+    .tool-btn.active {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .tool-btn-name {
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .tool-btn-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Iframe Embed */
+    .iframe-wrapper {
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      animation: slideDown 0.25s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; max-height: 0; }
+      to { opacity: 1; max-height: 520px; }
+    }
+
+    .iframe-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--surface-hover);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .iframe-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .iframe-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .iframe-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .iframe-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .iframe-box {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      background: #fff;
+    }
+
+    .iframe-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .iframe-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 13px;
+      background: var(--bg);
+      z-index: 2;
+    }
+
+    .iframe-box iframe[src] ~ .iframe-loading {
+      display: none;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .iframe-fallback {
+      padding: 20px;
+      text-align: center;
+      background: rgba(255, 59, 48, 0.05);
+      border: 1px dashed #ff3b30;
+      border-radius: var(--radius-sm);
+    }
+
+    .iframe-fallback a {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      padding: 12px 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .quick-actions::-webkit-scrollbar { display: none; }
+
+    .quick-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 7px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .quick-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 10px var(--accent-glow);
+    }
+
+    /* Input Area */
+    .input-area {
+      display: flex;
+      gap: 10px;
+      padding: 14px 24px 20px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .input-field {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 12px 20px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .input-field:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .input-field::placeholder { color: var(--text-muted); }
+
+    .send-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .send-btn:hover:not(:disabled) {
+      background: var(--accent-hover);
+      transform: scale(1.05);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Typing Indicator */
+    .typing {
+      display: flex;
+      gap: 4px;
+      padding: 14px 18px;
+    }
+
+    .typing span {
+      width: 8px;
+      height: 8px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: bounce 1.4s ease-in-out infinite;
+    }
+
+    .typing span:nth-child(1) { animation-delay: 0s; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+
+    /* Status Bar */
+    .status-bar {
+      position: fixed;
+      top: 10px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      z-index: 100;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34c759;
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.offline { background: #ff3b30; animation: none; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .chat-wrapper { max-width: 100%; }
+      .message { max-width: 92%; }
+      .iframe-box { height: 360px; }
+      .quick-btn span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Status Indicator -->
+  <div class="status-bar" id="statusBar">
+    <div class="status-dot offline" id="statusDot"></div>
+    <span id="statusText">Connecting...</span>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h1>🤖 Neo AI</h1>
+    <p>Powered by qwen2.5:1.5b · Groq · OpenRouter<br>+ 245 NoSignups tools</p>
+
+    <div class="stat-box">
+      <strong id="toolCount">--</strong>
+      <span>Tools Available</span>
+    </div>
+    <div class="stat-box">
+      <strong id="catCount">10</strong>
+      <span>Categories</span>
+    </div>
+    <div class="stat-box">
+      <strong>0</strong>
+      <span>Signups Needed</span>
+    </div>
+
+    <div class="sidebar-footer">
+      Type a task like "draw a diagram" or "convert pdf" and Neo will suggest the right tool instantly.
+    </div>
+  </aside>
+
+  <!-- Main Chat -->
+  <div class="chat-wrapper">
+    <div class="messages" id="messages"></div>
+
+    <div class="quick-actions" id="quickActions"></div>
+
+    <form class="input-area" id="chatForm">
+      <input 
+        type="text" 
+        class="input-field" 
+        id="chatInput" 
+        placeholder="Ask Neo anything, or type a task like 'draw a diagram'..."
+        autocomplete="off"
+      >
+      <button type="submit" class="send-btn" id="sendBtn">➤</button>
+    </form>
+  </div>
+
+  <script>
+    // ─── Config ───────────────────────────────────────────────────────────
+    const API_URL = "http://localhost:8000";
+    const messagesEl = document.getElementById("messages");
+    const inputEl = document.getElementById("chatInput");
+    const formEl = document.getElementById("chatForm");
+    const sendBtn = document.getElementById("sendBtn");
+    const statusDot = document.getElementById("statusDot");
+    const statusText = document.getElementById("statusText");
+    const toolCountEl = document.getElementById("toolCount");
+
+    let isLoading = false;
+    let expandedTool = null;
+
+    // ─── Quick Actions ────────────────────────────────────────────────────
+    const QUICK_ACTIONS = [
+      { label: "🎨 Draw", trigger: "draw a diagram" },
+      { label: "📊 JSON", trigger: "visualize json" },
+      { label: "🔒 Encode", trigger: "encode decode" },
+      { label: "💻 Code", trigger: "code screenshot" },
+      { label: "📐 Regex", trigger: "test regex" },
+      { label: "🖼️ Image", trigger: "compress image" },
+      { label: "📄 PDF", trigger: "edit pdf" },
+      { label: "🔄 Convert", trigger: "convert file" },
+    ];
+
+    function renderQuickActions() {
+      const container = document.getElementById("quickActions");
+      container.innerHTML = QUICK_ACTIONS.map(a => `
+        <button class="quick-btn" data-trigger="${escapeHtml(a.trigger)}">
+          ${escapeHtml(a.label)}
+        </button>
+      `).join("");
+
+      container.querySelectorAll(".quick-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          inputEl.value = btn.dataset.trigger;
+          formEl.dispatchEvent(new Event("submit"));
+        });
+      });
+    }
+
+    // ─── Health Check ─────────────────────────────────────────────────────
+    async function checkHealth() {
+      try {
+        const res = await fetch(`${API_URL}/api/health`, { method: "GET" });
+        const data = await res.json();
+        statusDot.classList.remove("offline");
+        statusText.textContent = `${data.tools_loaded} tools ready`;
+        toolCountEl.textContent = data.tools_loaded;
+      } catch (err) {
+        statusDot.classList.add("offline");
+        statusText.textContent = "Server offline — start: python -m uvicorn neo_api:app";
+        toolCountEl.textContent = "0";
+      }
+    }
+
+    // ─── Add Message ──────────────────────────────────────────────────────
+    function addMessage(role, content, toolData = null) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${role}`;
+
+      const avatar = role === "user" ? "🧑" : "🤖";
+      let inner = `<div class="avatar">${avatar}</div>`;
+
+      let bubbleContent = "";
+      if (content) {
+        bubbleContent += `<div class="bubble">${mdLite(escapeHtml(content))}</div>`;
+      }
+
+      if (toolData && toolData.has_tool) {
+        bubbleContent += renderToolCard(toolData);
+      }
+
+      inner += `<div class="bubble-content">${bubbleContent}</div>`;
+      msgDiv.innerHTML = inner;
+
+      // Bind tool buttons after insert
+      if (toolData?.has_tool) {
+        setTimeout(() => bindToolButtons(msgDiv, toolData), 0);
+      }
+
+      messagesEl.appendChild(msgDiv);
+      scrollToBottom();
+    }
+
+    function renderToolCard(toolData) {
+      const tools = toolData.tools || [];
+      if (!tools.length) return "";
+
+      const top = tools[0];
+      let html = `
+        <div class="tool-card">
+          <div class="tool-badge">🛠️ Tool Suggestion</div>
+          <div class="tool-desc">${escapeHtml(top.description || "")}</div>
+          <div class="tool-buttons">
+      `;
+
+      tools.slice(0, 3).forEach(tool => {
+        const stars = tool.stars ? `⭐ ${formatStars(tool.stars)}` : "";
+        const meta = tool.github ? " · Open Source" : " · Browser";
+        html += `
+          <button class="tool-btn" data-id="${escapeHtml(tool.id)}" data-url="${escapeHtml(tool.url)}" data-name="${escapeHtml(tool.name)}">
+            <span class="tool-btn-name">${escapeHtml(tool.name)}</span>
+            <span class="tool-btn-meta">${stars}${meta}</span>
+          </button>
+        `;
+      });
+
+      html += `</div><div class="iframe-slot" style="display:none;"></div></div>`;
+      return html;
+    }
+
+    function bindToolButtons(msgEl, toolData) {
+      const buttons = msgEl.querySelectorAll(".tool-btn");
+      const slot = msgEl.querySelector(".iframe-slot");
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          const url = btn.dataset.url;
+          const name = btn.dataset.name;
+
+          // Toggle
+          if (expandedTool === id) {
+            expandedTool = null;
+            slot.style.display = "none";
+            slot.innerHTML = "";
+            buttons.forEach(b => b.classList.remove("active"));
+            return;
+          }
+
+          expandedTool = id;
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          slot.innerHTML = `
+            <div class="iframe-wrapper">
+              <div class="iframe-header">
+                <span class="iframe-title">${escapeHtml(name)}</span>
+                <div class="iframe-controls">
+                  <button class="iframe-btn" title="Open in new tab" onclick="window.open('${url}', '_blank', 'noopener,noreferrer')">↗</button>
+                  <button class="iframe-btn" title="Close" onclick="this.closest('.iframe-wrapper').parentElement.style.display='none'; expandedTool=null;">✕</button>
+                </div>
+              </div>
+              <div class="iframe-box">
+                <iframe src="${url}" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads allow-popups" loading="lazy" allow="clipboard-write; clipboard-read" title="${escapeHtml(name)}"></iframe>
+                <div class="iframe-loading"><div class="spinner"></div><span>Loading tool...</span></div>
+              </div>
+            </div>
+          `;
+          slot.style.display = "block";
+
+          // Hide spinner on load
+          const iframe = slot.querySelector("iframe");
+          iframe.addEventListener("load", () => {
+            const loader = slot.querySelector(".iframe-loading");
+            if (loader) loader.style.display = "none";
+          });
+
+          scrollToBottom();
+        });
+      });
+    }
+
+    // ─── Send Message ───────────────────────────────────────────────────────
+    async function sendMessage(text) {
+      if (!text.trim() || isLoading) return;
+
+      addMessage("user", text);
+      inputEl.value = "";
+      setLoading(true);
+
+      try {
+        const res = await fetch(`${API_URL}/api/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text, history: [] })
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        addMessage("ai", data.content, data.tool_data);
+      } catch (err) {
+        addMessage("ai", `❌ Error: ${err.message}. Make sure the server is running: python -m uvicorn neo_api:app --port 8000`);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function setLoading(loading) {
+      isLoading = loading;
+      sendBtn.disabled = loading;
+      sendBtn.textContent = loading ? "⏳" : "➤";
+      inputEl.disabled = loading;
+
+      if (loading) {
+        const typing = document.createElement("div");
+        typing.className = "message ai typing-msg";
+        typing.innerHTML = `
+          <div class="avatar">🤖</div>
+          <div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>
+        `;
+        messagesEl.appendChild(typing);
+        scrollToBottom();
+      } else {
+        const t = messagesEl.querySelector(".typing-msg");
+        if (t) t.remove();
+      }
+    }
+
+    // ─── Helpers ──────────────────────────────────────────────────────────
+    function scrollToBottom() {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function mdLite(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    }
+
+    function formatStars(n) {
+      return n >= 1000 ? (n / 1000).toFixed(1) + "k" : String(n);
+    }
+
+    // ─── Events ───────────────────────────────────────────────────────────
+    formEl.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sendMessage(inputEl.value);
+    });
+
+    // ─── Init ───────────────────────────────────────────────────────────────
+    renderQuickActions();
+    checkHealth();
+    setInterval(checkHealth, 10000);
+
+    // Welcome message
+    addMessage("ai", "Hey! I'm Neo. I can help you with coding, diagrams, file conversion, and more. Try typing a task or click a quick action below!");
+  </script>
+</body>
+</html>

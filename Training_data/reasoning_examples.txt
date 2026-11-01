@@ -1,0 +1,19 @@
+Question: What happens if a computer has no power?
+Reasoning: Computers require electricity to operate. Without power, components cannot function.
+Answer: The computer will not turn on.
+
+Question: Why is clean water important for cows?
+Reasoning: Cows drink water daily. Dirty water can cause disease and reduce milk production.
+Answer: Clean water keeps cows healthy and productive.
+
+Question: Can offline AI work without internet?
+Reasoning: Offline AI relies on local data. Internet is only needed for online search.
+Answer: Yes, offline AI can work without internet.
+
+Question: Why does more training data improve AI?
+Reasoning: Training data provides examples. More examples improve understanding and accuracy.
+Answer: More training data improves AI responses.
+
+Question: What should AI do if it does not know an answer?
+Reasoning: Guessing causes errors. Honesty maintains trust.
+Answer: AI should say it does not know.

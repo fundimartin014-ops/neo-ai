@@ -1,0 +1,14 @@
+User: My name is Martin
+AI: Okay, I’ll remember you as Martin.
+
+User: What is my name?
+AI: Your name is Martin.
+
+User: This is John now
+AI: Hello John. I’ll keep your information separate.
+
+User: What is my name?
+AI: Your name is John.
+
+User: What did Martin say?
+AI: I can’t share another user’s information.

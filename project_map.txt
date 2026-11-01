@@ -1,0 +1,1466 @@
+==============================================================================
+PROJECT MAP — C:\Users\fundi\OneDrive\Documents\TRAININGBOT21.worktrees\fix-ai-launcher-loading-issues
+==============================================================================
+
+📁 (root)/
+       41 lines       2.4KB   .env
+      102 lines       3.1KB   MOONSHOT_SETUP_GUIDE.txt
+      bin        36.0KB   brain.db
+       44 lines       1.2KB   chat.py
+            → import json
+            → import os
+            → from core.fallback import fallback_response
+       74 lines       3.6KB   data.json
+      123 lines       3.7KB   deploy (1).yml
+      123 lines       3.6KB   deploy.yml
+      105 lines       5.9KB   deploy_to_trainingbot2.ps1
+        1 lines         67B   dictionary.json
+       79 lines       2.1KB   docker-compose.yml
+       65 lines       1.5KB   docker-run.sh
+       77 lines       2.4KB   ecosystem.config (1).js
+       76 lines       2.3KB   ecosystem.config.js
+        1 lines         48B   feedback.json
+      994 lines      39.1KB   fundibrain.py
+            → import os
+            → import re
+            → import json
+            → import threading
+            → import time
+            → import sqlite3
+            → import traceback
+            → from difflib import get_close_matches
+      157 lines       4.4KB   gallery.html
+       26 lines        531B   goals.json
+      284 lines      12.4KB   hybrid_discord.py
+            → import os
+            → import json
+            → import asyncio
+            → from typing import Optional, Dict, Any
+            → from neo_model_manager import get_model_manager
+            → import discord
+            → from discord import app_commands
+            → from hybrid_merger import _call_provider
+      579 lines      21.9KB   hybrid_merger.py
+            → from hybrid_merger import HybridMerger
+            → import asyncio
+            → import os
+            → import json
+            → import time
+            → import hashlib
+            → from typing import List, Dict, Any, Optional, Callable
+            → from dataclasses import dataclass, field
+      137 lines       5.4KB   hybrid_ui.py
+            → import logging
+            → from flask import jsonify, request, Response, stream_with_context
+            → import json
+            → import time
+            → import asyncio
+      162 lines       5.2KB   inspect_project.py
+            → import os
+            → import sys
+            → import argparse
+            → from pathlib import Path
+     1182 lines      55.1KB   launcher.py
+            → import os
+            → import sys
+            → import traceback
+            → import importlib.util
+            → import logging
+            → import shutil
+            → import asyncio
+            → import threading
+    36496 lines      15.4MB   memory.json
+       54 lines       2.0KB   memory_bridge.py
+      807 lines      22.2KB   neo-chat.html
+      381 lines      16.0KB   neo_api.py
+            → from fastapi import FastAPI, HTTPException, Request
+            → from fastapi.middleware.cors import CORSMiddleware
+            → from fastapi.responses import StreamingResponse, JSONResponse
+            → from pydantic import BaseModel, Field
+            → from typing import List, Optional, Dict, Any, AsyncGenerator
+            → import asyncio
+            → import json
+            → import time
+      329 lines      12.3KB   neo_api_server.py
+            → import os
+            → import sys
+            → import json
+            → import asyncio
+            → import traceback
+            → from datetime import datetime
+            → from pathlib import Path
+            → from flask import Flask, request, jsonify
+      860 lines      40.0KB   neo_chat.html
+      113 lines       4.1KB   neo_chat_minimal.py
+            → import os
+            → import sys
+            → import asyncio
+            → from pathlib import Path
+            → from dotenv import load_dotenv
+            → from core.local_llm import LocalLLM
+            → from core.plugins.vision_plugin import Plugin as VisionPlugin
+      132 lines       4.6KB   neo_desktop.py
+            → import sys
+            → import os
+            → import subprocess
+            → import time
+            → import webbrowser
+            → from pathlib import Path
+            → import urllib.request
+            → import webview
+      306 lines      10.4KB   neo_model_manager.py
+            → import os
+            → import logging
+            → from typing import List, Dict, Any, Optional
+            → from neo_models_catalog import get_all_models, get_active_providers, count_models
+            → from hybrid_merger import HybridMerger
+            → from neo_models_catalog import DEAD_MODELS
+            → from neo_models_catalog import get_models_by_type
+            → from neo_models_catalog import get_model_by_id
+      776 lines      63.4KB   neo_models_catalog.py
+            → from typing import Dict, List, Any
+      481 lines      17.2KB   neo_nosignups.py
+            → from neo_nosignups import ToolRegistry, ToolIntegrator
+            → import json
+            → import re
+            → from typing import List, Dict, Optional, Tuple, Any
+            → from dataclasses import dataclass
+            → from pathlib import Path
+            → import urllib.request
+       98 lines       3.1KB   nosignups_tools.py
+            → import json
+            → import re
+            → from pathlib import Path
+       62 lines       2.2KB   persistent_index.py
+            → import faiss
+            → import pickle
+            → import os
+            → from pathlib import Path
+       46 lines       1.4KB   purge_cache.py
+            → import os
+            → import sys
+            → import shutil
+            → from pathlib import Path
+       70 lines       2.2KB   quickstart.py
+            → import datetime
+            → import os.path
+            → from google.auth.transport.requests import Request
+            → from google.oauth2.credentials import Credentials
+            → from google_auth_oauthlib.flow import InstalledAppFlow
+            → from googleapiclient.discovery import build
+            → from googleapiclient.errors import HttpError
+       20 lines        465B   requirements (2).txt
+       16 lines        189B   requirements-lock.txt
+       36 lines       1.1KB   requirements.txt
+       10 lines        219B   safe_executor.py
+       39 lines        830B   self_modifier.py
+            → import os
+            → import time
+      116 lines       4.5KB   setup.sh
+      268 lines       8.7KB   test.py
+            → import os
+            → import sys
+            → import asyncio
+            → import importlib.util
+            → from pathlib import Path
+            → from neo_models_catalog import get_all_models, count_models, DEAD_MODELS
+            → import traceback
+            → from core.local_llm import LocalLLM, DEAD_MODELS
+      344 lines      11.5KB   test_search.py
+            → import os
+            → import sys
+            → import json
+            → import glob
+            → from pathlib import Path
+            → from urllib.request import Request, urlopen
+            → from dotenv import load_dotenv
+            → import re
+     4244 lines     119.8KB   tools.json
+       63 lines      10.6KB   trained_pdfs.json
+       10 lines        283B   trainer_data.json
+        3 lines        125B   web_sources.txt
+      100 lines       2.8KB   wsgi.py
+            → import os
+            → import sys
+            → import logging
+            → import traceback
+            → from pathlib import Path
+            → from dotenv import load_dotenv
+            → from launcher import (
+            → from launcher import NeoAPIServer
+
+📁 Docs/
+      214 lines       6.0KB   FULL_STACK_WIRING.py
+            → from neo_api import app, state        # FastAPI app
+            → from neo_nosignups import NeoToolPlugin
+            → from your_existing_llm import LLMRouter  # your current LLMRouter
+            → import uvicorn
+            → import { useState, useCallback } from "react";
+            → import NeoChatContainer from "./NeoChatToolEmbed.jsx";
+            → import "./NeoChatToolEmbed.css";
+      329 lines      12.0KB   neo_api_server.py
+            → import os
+            → import sys
+            → import json
+            → import asyncio
+            → import traceback
+            → from datetime import datetime
+            → from pathlib import Path
+            → from flask import Flask, request, jsonify
+      246 lines       7.9KB   neo_integration_guide (1).py
+            → from neo_nosignups import NeoToolPlugin
+
+📁 Training_data/
+        8 lines        171B   ai_thinking_style.txt
+       11 lines        299B   confidence_examples.txt
+        4 lines        195B   confidence_levels.txt
+        4 lines        154B   confidence_response_styles.txt
+        6 lines        215B   confidence_rules.txt
+        5 lines        203B   context_reasoning.txt
+       29 lines        844B   conversations_expert.txt
+        8 lines        358B   decision_patterns.json
+       10 lines        402B   facts_expert.txt
+       10 lines        257B   instructions_expert.txt
+        4 lines         74B   knowledge.json
+        2 lines         73B   knowledge.txt
+       20 lines       1.0KB   knowledge_expert.txt
+        6 lines        251B   logical_rules.txt
+        7 lines        288B   long_term_memory_rules.txt
+        5 lines        105B   long_term_questions.txt
+        5 lines        194B   memory_priority.txt
+       14 lines        259B   memory_reasoning_examples.txt
+        4 lines        125B   memory_response_style.txt
+       14 lines        332B   multi_user_examples.txt
+        5 lines        233B   multi_user_rules.txt
+        4 lines         81B   personality_calm.txt
+        7 lines        115B   personality_commands.txt
+        5 lines        141B   personality_friendly.txt
+        4 lines        153B   personality_memory_rules.txt
+        6 lines        261B   personality_modes.txt
+        4 lines         78B   personality_strict.txt
+        3 lines        118B   privacy_rules.txt
+        6 lines        177B   problem_solving.txt
+       12 lines        768B   qa_pairs_expert.json
+        0 lines          0B   reasoning_chains.txt
+       19 lines        945B   reasoning_examples.txt
+        4 lines        155B   speech_error_handling.txt
+        4 lines        198B   uncertainty_handling.txt
+        8 lines        159B   user_identity_detection.txt
+        3 lines        134B   user_memory_priority.txt
+        3 lines        144B   user_switching.txt
+        9 lines        323B   voice_commands.json
+       14 lines        287B   voice_examples.txt
+       12 lines        314B   voice_intent_mapping.txt
+        6 lines        203B   voice_response_style.txt
+        8 lines        282B   voice_understanding.txt
+        2 lines        105B   web_sources.txt.txt
+
+📁 Training_data\domain/
+       10 lines        412B   ai_expert.txt
+        9 lines        312B   computing_expert.txt
+        8 lines        293B   farming_expert.txt
+
+📁 agents/
+       26 lines        869B   api_agent.py
+            → import logging
+            → import os
+            → from typing import Any, Dict
+       26 lines        932B   audit_agent.py
+            → import logging
+            → from typing import Any, List, Dict
+        5 lines        108B   base_agent.py
+       26 lines        841B   command_routing_agent.py
+            → import logging
+            → from typing import Any, Callable, Dict
+       22 lines        691B   control_agent.py
+            → import logging
+            → from typing import Any
+       22 lines        708B   conversation_agent.py
+            → import logging
+            → from typing import Any, Dict
+       40 lines       1004B   critic_agent.py
+       24 lines        787B   data_collection_agent.py
+            → import logging
+            → from typing import Any, Dict, List
+       11 lines        329B   debater_agent.py
+            → from agents.base_agent import BaseAgent
+       28 lines       1.1KB   event_dispatch_agent.py
+            → import logging
+            → from typing import Any, Callable, Dict, List
+       39 lines        939B   executor_agent.py
+       24 lines        807B   feedback_agent.py
+            → import logging
+            → from typing import Any, Dict, List
+       23 lines        799B   file_management_agent.py
+            → import logging
+            → import os
+            → from typing import Any
+       22 lines        719B   input_validation_agent.py
+            → import logging
+            → from typing import Any
+       24 lines        875B   integration_agent.py
+            → import logging
+            → from typing import Any, Dict, List
+       22 lines        737B   knowledge_agent.py
+            → import logging
+            → from typing import Any
+       27 lines        879B   log_view_agent.py
+            → import logging
+            → from typing import Any, List
+       26 lines        900B   logging_agent.py
+            → import logging
+            → from typing import Any
+       14 lines        321B   memory_agent.py
+       24 lines        760B   metrics_agent.py
+            → import logging
+            → from typing import Any, Dict, List
+       23 lines        807B   notification_agent.py
+            → import logging
+            → from typing import Any
+       25 lines        860B   onboarding_agent.py
+            → import logging
+            → from typing import Any
+       22 lines        717B   planner_agent.py
+            → import logging
+            → from typing import Any
+       29 lines       1003B   priority_queue_agent.py
+            → import logging
+            → import heapq
+            → from typing import Any, Tuple, List
+       25 lines        855B   role_assignment_agent.py
+            → import logging
+            → from typing import Any, Dict, Set
+       28 lines        780B   sample_agent.py
+            → import logging
+       25 lines        828B   security_agent.py
+            → import logging
+            → from typing import Any, List
+       23 lines        690B   sentiment_agent.py
+            → import logging
+            → from typing import Any
+       25 lines        891B   session_agent.py
+            → import logging
+            → from typing import Dict, Any
+       34 lines       1.2KB   session_timeout_agent.py
+            → import logging
+            → from typing import Any, Dict
+            → import time
+       22 lines        712B   status_agent.py
+            → import logging
+            → from typing import Any
+       25 lines        879B   system_agent.py
+            → import logging
+            → import subprocess
+            → from typing import Any, Optional
+       26 lines        862B   tagging_agent.py
+            → import logging
+            → from typing import Any, List, Dict
+       24 lines        800B   task_agent.py
+            → import logging
+            → from typing import Any, Dict
+       12 lines        196B   task_queue.py
+            → import queue
+       26 lines        873B   template_completion_agent.py
+            → import logging
+            → from typing import Any
+        7 lines        188B   thinker_agent.py
+            → from agents.base_agent import BaseAgent
+       24 lines        785B   user_profile_agent.py
+            → import logging
+            → from typing import Any, Dict
+       23 lines        745B   web_agent.py
+            → import logging
+            → from typing import Any
+
+📁 android_app.py/
+       33 lines        902B   android_app.py
+            → from kivy.app import App
+            → from kivy.uix.boxlayout import BoxLayout
+            → from kivy.uix.textinput import TextInput
+            → from kivy.uix.button import Button
+            → import requests
+
+📁 backened/
+        0 lines          0B   docker-compose.yml
+        0 lines          0B   docker-run.sh
+        0 lines          0B   requirements.txt
+
+📁 config/
+      271 lines       6.7KB   neo_tool_config.json
+
+📁 core/
+        0 lines          0B   __init__.py
+      149 lines       3.5KB   agent_engine.py
+       18 lines        427B   agent_executor.py
+      118 lines       2.5KB   agent_loop.py
+            → import re
+       14 lines        393B   agent_planner.py
+       18 lines        352B   api_server.py
+            → from fastapi import FastAPI
+            → from core.neo_daemon import NeoDaemon
+       85 lines       2.0KB   auto_learner.py
+            → import time
+            → from core.web_search import search_web
+            → from core.memory import remember
+       31 lines        718B   auto_trainer.py
+            → import time
+        4 lines        103B   automation.py
+      101 lines       2.6KB   autonomous_agent.py
+       44 lines        949B   autonomous_controller.py
+            → import threading
+            → import time
+       60 lines       1.2KB   autonomous_engine.py
+            → import re
+            → from core.memory import remember
+       45 lines       1.1KB   autonomous_loop.py
+            → import time
+       39 lines        934B   autonomous_updater.py
+            → import threading
+            → import time
+            → from core.web_search import search_web
+            → from core.memory import remember
+       34 lines       1.1KB   background_loop.py
+            → import threading
+            → import time
+       53 lines       1.4KB   belief_system.py
+            → import time
+      bin        12.0KB   brain.db
+       41 lines       1.4KB   brain.py
+            → from core.linguistic import LinguisticProcessor
+            → from core.intent import IntentClassifier
+            → from core.entities import EntityExtractor
+            → from core.planner import ReasoningPlanner
+            → from core.router import ToolRouter
+            → from core.memory import MemoryEngine
+            → from core.evaluator import Evaluator
+            → from typing import Any
+       44 lines       1.3KB   browser_agent.py
+            → from playwright.sync_api import sync_playwright
+       25 lines        552B   browser_tool.py
+            → import asyncio
+            → from core.browser_agent import BrowserAgent
+       45 lines       1.4KB   chat.py
+            → import json
+            → import os
+            → from core.fallback import fallback_response
+            → import logging
+       20 lines        475B   code_validator.py
+            → import ast
+       14 lines        453B   codebase_trainer_plugin.py
+      241 lines       9.0KB   cognitive_core.py
+            → from typing import List, Dict, Any, Optional
+            → from dataclasses import dataclass
+            → import json
+       10 lines        135B   consensus_trace.py
+       12 lines        475B   context_memory.py
+       23 lines        386B   critic.py
+       11 lines        261B   csv_trainer_plugin.py
+       39 lines       1.0KB   database.py
+            → import sqlite3
+            → import os
+       25 lines        728B   debate_engine.py
+            → from agents.debater_agent import DebaterAgent
+            → from agents.critic_agent import CriticAgent
+       48 lines        906B   deep_thinker.py
+            → import time
+       35 lines        885B   device_controller.py
+            → from flask import Flask, jsonify, request
+       10 lines        177B   device_intents.py
+       15 lines        456B   dictionary_trainer_plugin.py
+            → import json
+       43 lines       1.2KB   discord_bot.py
+            → import os
+            → import asyncio
+            → import discord
+            → from discord import app_commands
+            → from hybrid_discord import HybridDiscordCommands
+            → from neo_model_manager import get_model_manager
+       25 lines        764B   discord_webhook.py
+            → import requests
+            → import json
+      108 lines       3.0KB   embedding_engine.py
+            → import os
+            → import json
+            → import numpy as np
+            → import faiss
+            → from sentence_transformers import SentenceTransformer
+            → from difflib import SequenceMatcher
+      342 lines      22.7KB   embedding_memory.json
+       52 lines       1.4KB   embedding_memory.py
+            → import os
+            → import json
+            → import faiss
+            → import numpy as np
+            → from sentence_transformers import SentenceTransformer
+       21 lines       1.0KB   embeddings.py
+            → from sentence_transformers import SentenceTransformer, CrossEncoder
+       14 lines        488B   entities.py
+            → import re
+            → from typing import List
+       85 lines       2.6KB   entity_graph.py
+            → from collections import defaultdict
+            → from core.memory import _load_memory
+       26 lines        635B   evaluator.py
+        9 lines        180B   event_reactor.py
+            → import datetime
+       31 lines        720B   evolution.py
+            → from core.memory import search_knowledge, remember
+            → from core.knowledge_graph import add_relation
+            → import re
+        2 lines         48B   example_code.py
+       30 lines        672B   execution_graph.py
+            → import threading
+       17 lines        396B   executor.py
+       14 lines        521B   fallback.py
+            → import logging
+            → from typing import Optional
+       15 lines        456B   feedback_trainer_plugin.py
+            → import json
+       43 lines       1.6KB   github_client.py
+            → import requests
+            → import time
+            → import base64
+       67 lines       1.5KB   goal_manager.py
+            → import json
+            → import os
+            → import time
+      111 lines       4.0KB   goals.py
+            → import json
+            → import os
+            → import time
+            → import logging
+            → from threading import RLock
+            → from typing import Any, Dict, List, Optional
+        6 lines        199B   governed_memory.py
+            → import time
+            → from core.semantic_memory import remember
+       30 lines        796B   governor.py
+       15 lines        396B   hot_reloader.py
+            → import importlib
+            → import sys
+       88 lines       1.8KB   hybrid_brain.py
+            → from core.memory import search_knowledge
+            → from core.web_search import search_web
+      137 lines       5.5KB   hybrid_ui.py
+            → import logging
+            → from flask import jsonify, request, Response, stream_with_context
+            → import json
+            → import time
+            → import asyncio
+        8 lines        243B   image_input.py
+            → import pytesseract
+            → from PIL import Image
+       19 lines        678B   image_plugin.py
+        7 lines        197B   image_trainer_plugin.py
+       11 lines        291B   intent.py
+       13 lines        296B   jarvis_listener.py
+            → from core.voice_input import listen
+            → from core.wake_word import detect
+       92 lines       2.1KB   knowledge_builder.py
+            → import re
+            → import json
+      110 lines       2.9KB   knowledge_engine.py
+            → import re
+            → from core.web_search import search_web
+       51 lines       1.4KB   knowledge_extractor.py
+            → import re
+            → from core.memory import remember
+       35 lines        698B   knowledge_graph.py
+            → import json
+            → import os
+       27 lines        655B   license.py
+            → import uuid
+            → import os
+            → import sys
+            → import wmi
+       19 lines        407B   linguistic.py
+            → import re
+      233 lines       5.3KB   llm_engine.py
+            → import os
+            → import time
+            → import json
+            → import shutil
+            → import subprocess
+            → import requests
+      370 lines      16.2KB   llm_router.py
+            → import os
+            → import asyncio
+            → import time
+            → from typing import Optional, Dict, List
+            → from dataclasses import dataclass
+            → from core.local_llm import LocalLLM
+            → from litellm import acompletion
+      207 lines       8.6KB   local_llm.py
+            → import os
+            → import logging
+            → import requests
+            → import time
+       15 lines        305B   logger.py
+            → from loguru import logger
+    24335 lines       1.6MB   memory.json
+       79 lines       2.5KB   memory.py
+            → import json
+            → import os
+            → import hashlib
+      126 lines       5.2KB   memory_bridge.py
+            → import os
+            → import json
+            → from typing import Dict, List, Optional
+            → from datetime import datetime
+            → from core.memory import search_memory
+            → import sqlite3
+            → from core.memory import remember
+       13 lines        517B   memory_manager.py
+       44 lines       1.6KB   memory_utils.py
+            → from core.memory import remember, search_knowledge
+            → from core.utils import clean_text, summarize_text, rank_results
+       19 lines        432B   messaging.py
+            → import queue
+      465 lines      20.1KB   meta_cognition.py
+            → import json
+            → import os
+            → import sqlite3
+            → import threading
+            → import time
+            → from dataclasses import dataclass
+            → from typing import Dict, List, Optional, Any
+            → from datetime import datetime
+        0 lines          0B   meta_learner.py
+      156 lines       6.3KB   mode_router.py
+            → from enum import Enum, auto
+            → from dataclasses import dataclass
+            → from typing import Optional, List, Dict, Any
+            → import json
+            → import re
+      240 lines       6.8KB   multi_agent.py
+            → import re
+            → from core.parallel_tools import ParallelToolExecutor
+       23 lines        643B   neo_daemon.py
+            → import time
+            → from core.swarm_coordinator import SwarmCoordinator
+            → from core.governor import approve
+            → from core.governed_memory import store
+        4 lines        104B   normalize.py
+            → import re
+       26 lines        799B   notifier.py
+            → import requests
+      733 lines      31.3KB   orchestrator.py
+            → import json
+            → import re
+            → import asyncio
+            → import unicodedata
+            → from dataclasses import dataclass
+            → from typing import Dict, List, Optional, Any
+            → from enum import Enum
+            → from core.meta_cognition import ReasoningRouter, ReasoningTier
+       54 lines       1.7KB   parallel_tools.py
+            → from concurrent.futures import ThreadPoolExecutor
+        8 lines        189B   patch_manager.py
+            → import shutil
+            → import time
+        8 lines        737B   pdf_trained.json
+      155 lines       5.7KB   persistent_index.py
+            → import os
+            → import pickle
+            → import hashlib
+            → import numpy as np
+            → from pathlib import Path
+            → from typing import List, Dict, Optional
+            → from datetime import datetime
+            → import faiss
+       15 lines        677B   personality.py
+      133 lines       5.6KB   personality_engine.py
+            → from dataclasses import dataclass
+            → from typing import Dict
+       57 lines       2.0KB   planner.py
+            → import re as _re
+            → from core.planner import ReasoningPlanner
+       93 lines       2.3KB   proactive_agent.py
+            → import time
+            → from core.web_search import search_web
+            → from core.memory import remember
+       15 lines        357B   quality_monitor.py
+       23 lines        921B   react_loop.py
+       10 lines        154B   reasoning.py
+       28 lines        517B   reasoning_planner.py
+       11 lines        196B   reflection_engine.py
+      128 lines       3.0KB   research_agent.py
+            → import re
+            → from core.web_search import search_web
+       10 lines        271B   rl_feedback.py
+            → from core.memory import remember
+       17 lines        562B   router.py
+            → from tools.web import WebTool
+            → from typing import Any, Dict
+       13 lines        331B   rules_trainer_plugin.py
+       50 lines       1.5KB   run_backup.py
+            → import argparse
+            → import shutil
+            → import tarfile
+            → from pathlib import Path
+            → from datetime import datetime
+            → import zipfile
+       77 lines       2.0KB   run_dashboard.py
+            → import sys
+            → import time
+            → import threading
+            → from pathlib import Path
+            → from http.server import HTTPServer, SimpleHTTPRequestHandler
+            → from neo.tests.health_dashboard import NeoDataSource, DashboardGenerator
+      121 lines       4.0KB   run_neo_core.py
+            → import asyncio
+            → import sys
+            → import os
+            → from pathlib import Path
+            → from neo.core.neo_brain import NeoBrain
+            → from neo.core.reflection_loop import ReflectiveNeoBrain, ReflectionLoop
+            → from neo.core.reasoning_memory import ReasoningMemory
+            → from neo.core.mode_router import ModeRouter
+       77 lines       2.6KB   run_reflection_worker.py
+            → import asyncio
+            → import sys
+            → import time
+            → from pathlib import Path
+            → from neo.core.reasoning_memory import ReasoningMemory
+            → from neo.core.reflection_loop import ReflectionLoop
+            → from neo.llm_clients import OllamaClient  # your existing client
+       55 lines       1.5KB   runtime_evolver.py
+            → import importlib.util
+            → import os
+        6 lines        153B   sandbox.py
+       21 lines        490B   self_evaluator.py
+            → from core.memory import search_knowledge
+       55 lines       1.1KB   self_improvement.py
+            → import os
+       19 lines        370B   self_reflection.py
+       37 lines        673B   semantic_extractor.py
+            → import json
+     1172 lines      33.1KB   semantic_memory.json
+       80 lines       1.8KB   semantic_memory.py
+            → import json
+            → from pathlib import Path
+            → from sentence_transformers import SentenceTransformer, util
+            → from difflib import SequenceMatcher
+       10 lines        277B   session.py
+       11 lines        280B   skill_selector.py
+            → from skills import device_skill
+       35 lines       1.1KB   slack_bot.py
+            → import os
+            → from slack_bolt import App
+            → from slack_bolt.adapter.socket_mode import SocketModeHandler
+            → from hybrid_discord import HybridDiscordCommands
+            → from neo_model_manager import get_model_manager
+       14 lines        250B   source_ranker.py
+       79 lines       1.7KB   swarm_coordinator.py
+            → from core.semantic_memory import store
+      124 lines       4.8KB   synthesis_engine.py
+            → from typing import List, Dict, Any, Optional
+            → from dataclasses import dataclass
+       37 lines       1001B   system_agent.py
+            → import os
+            → import subprocess
+            → import webbrowser
+       31 lines        652B   system_control.py
+            → import os
+            → import subprocess
+            → import platform
+      310 lines      13.3KB   system_scanner.py
+            → import os
+            → import json
+            → import subprocess
+            → import platform
+            → from dataclasses import dataclass, asdict
+            → from typing import Dict, List, Optional
+            → from datetime import datetime
+            → import psutil
+       14 lines        397B   tasks.py
+            → import os
+            → import subprocess
+      111 lines       3.3KB   tavily_search.py
+            → import os
+            → import json
+            → from urllib.request import Request, urlopen
+            → from urllib.error import URLError
+       11 lines        350B   telemetry.py
+        9 lines        324B   text_trainer_plugin.py
+            → from core.memory import remember
+       22 lines        592B   tool_learning.py
+      193 lines       7.5KB   tool_registry.py
+            → import importlib
+            → import sys
+       16 lines        359B   tool_selector.py
+       27 lines        827B   tools.py
+            → from typing import Any, Optional
+       15 lines        641B   topic.py
+       18 lines        644B   trainer.py
+            → import time
+            → from core.web_fallback import fetch_web_answers
+            → from core.semantic_memory import remember, search
+       90 lines       2.0KB   truth_engine.py
+            → import re
+            → from collections import defaultdict
+            → from core.source_ranker import rank_source
+       17 lines        397B   tts.py
+            → import pyttsx3
+            → import re
+            → import logging
+      162 lines       6.9KB   unified_search.py
+            → import os
+            → import json
+            → import logging
+            → import requests
+            → from typing import Dict, Any
+            → from core.web_search import search_web, UnbreakableSearchPayload, DictStr
+       13 lines        348B   upgrade_proposer.py
+            → from core.quality_monitor import low_confidence_log
+       40 lines        922B   url_learner.py
+            → import requests
+            → from bs4 import BeautifulSoup
+            → from core.memory import remember
+       22 lines        701B   utils.py
+            → import re
+      252 lines       8.5KB   validate_keys.py
+            → import os
+            → import sys
+            → import json
+            → import re
+            → from pathlib import Path
+            → from urllib.request import Request, urlopen
+            → from urllib.error import HTTPError, URLError
+            → from dotenv import load_dotenv
+       16 lines        473B   validator.py
+            → import logging
+            → from typing import Any, Dict
+      173 lines       3.7KB   verifier.py
+            → import re
+       30 lines        893B   version_manager.py
+            → import os
+            → import shutil
+            → import time
+       32 lines       1.0KB   vision_ollama.py
+            → import requests
+            → import base64
+       27 lines        676B   voice.py
+            → import sounddevice as sd
+            → import json
+            → from vosk import Model, KaldiRecognizer
+       21 lines        470B   voice_handler.py
+            → from core.swarm_coordinator import SwarmCoordinator
+            → from core.jarvis_listener import wait_for_command
+            → from core.normalize import normalize
+       31 lines        846B   voice_input.py
+            → import vosk
+            → import sounddevice as sd
+            → import queue
+            → import json
+        5 lines        142B   wake_word.py
+      109 lines       3.9KB   web_fallback.py
+            → import logging
+            → from typing import List
+            → from core.web_search import search_web
+            → from core.memory import remember
+      219 lines       7.2KB   web_search.py
+            → import re
+            → import os
+            → import logging
+            → import requests
+            → from bs4 import BeautifulSoup
+            → from duckduckgo_search import DDGS
+            → from core.memory import remember, search_knowledge
+       37 lines        737B   windows_app.py
+            → import tkinter as tk
+            → import requests
+       16 lines        380B   working_memory.py
+
+📁 core\android_app.py/
+       33 lines        909B   android_app.py
+            → from kivy.app import App
+            → from kivy.uix.boxlayout import BoxLayout
+            → from kivy.uix.textinput import TextInput
+            → from kivy.uix.button import Button
+            → import requests
+
+📁 core\backened/
+       66 lines       1.2KB   docker-compose.yml
+       21 lines        570B   docker-run.sh
+      137 lines       4.9KB   neo_api.py
+            → import os
+            → import asyncio
+            → import json
+            → from typing import List, Dict, Optional
+            → from contextlib import asynccontextmanager
+            → from fastapi import FastAPI, HTTPException
+            → from fastapi.middleware.cors import CORSMiddleware
+            → from pydantic import BaseModel
+        8 lines        145B   requirements.txt
+
+📁 core\frontend\src\hooks/
+       71 lines       2.3KB   useNeoChat.js
+
+📁 core\knowledge/
+        1 lines         27B   __init__.py
+            → from .router import route
+       35 lines       1.1KB   memory_engine.py
+            → import json
+            → import os
+            → from core.memory import search_knowledge
+       27 lines        655B   pdf_engine.py
+            → import os
+            → import json
+       18 lines        513B   router.py
+            → from core.knowledge.pdf_engine import search_pdf
+            → from core.knowledge.web_engine import search_web
+            → from core.memory import search_knowledge
+        8 lines        155B   web_engine.py
+
+📁 core\neofarm/
+       29 lines        862B   advanced_automation.py
+            → from neofarm.sensors import check_thresholds, read
+            → from neofarm.milk import average_milk
+            → from neofarm.biogas import check_gas
+            → from neofarm.disease import analyze
+        2 lines         59B   alerts.py
+       25 lines        982B   analytics.py
+            → from neofarm.sensors import sensors
+            → from neofarm.milk import milk_records
+            → from neofarm.biogas import biogas_levels
+            → from neofarm.disease import animal_sensors
+       12 lines        249B   animals.py
+       22 lines        561B   automation.py
+            → from neofarm.sensors import read, update, check_thresholds
+       42 lines       1.1KB   autonomous.py
+            → import time
+            → import schedule
+            → from neofarm.self_learning import self_optimize
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.iot_automation import auto_control_devices
+            → from neofarm.multi_farm import list_farms, switch_farm
+            → from neofarm.cloud_sync import backup_farm
+       11 lines        325B   biogas.py
+       22 lines        848B   cloud_sync.py
+            → import os, json
+            → import requests  # optional online sync
+            → from neofarm.multi_farm import list_farms, load_farm_data
+       43 lines       1.5KB   dashboard.py
+            → from neofarm.milk import milk_records
+            → from neofarm.sensors import sensors
+            → from neofarm.biogas import biogas_levels
+            → from neofarm.disease_predict import predict_disease
+            → from neofarm.iot_automation import devices
+            → import matplotlib.pyplot as plt
+            → import os
+       36 lines        931B   demo_farmer.py
+            → from neofarm.autonomous import daily_autonomous_cycle
+            → from neofarm.cloud_sync import backup_farm
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.languages import set_language
+            → from neofarm.multi_farm import create_farm, list_farms, switch_farm
+            → from neofarm.self_learning import self_optimize
+       21 lines        680B   disease.py
+        5 lines        101B   disease_predict.py
+            → from neofarm.disease import analyze
+        6 lines        219B   environment.py
+       23 lines        578B   farm_sensor_skill.py
+            → from neofarm.sensors import read, check_thresholds, update
+       11 lines        256B   feeding.py
+        6 lines        233B   health.py
+       11 lines        371B   health_scan.py
+            → from neofarm.disease_predict import predict_disease
+            → from neofarm.milk import milk_records
+            → from neofarm.sensors import read
+       61 lines       1.9KB   iot_automation.py
+            → from neofarm.sensors import read, check_thresholds
+       24 lines        972B   languages.py
+       16 lines        424B   milk.py
+       17 lines        585B   milk_forecast.py
+            → from neofarm.milk import milk_records
+            → from neofarm.sensors import sensors
+       78 lines       2.2KB   multi_farm.py
+            → import json
+            → import os
+        8 lines        137B   records.py
+        8 lines         69B   requirements.txt
+       28 lines        933B   self_learning.py
+            → from neofarm.milk import milk_records
+            → from neofarm.milk_forecast import forecast_milk
+            → from neofarm.disease_predict import predict_disease
+            → from neofarm.multi_farm import get_current_farm, load_farm_data, save_farm_data
+       64 lines       1.6KB   sensors.py
+            → import requests
+            → from neofarm.multi_farm import get_current_farm, load_farm_data, save_farm_data
+       22 lines        664B   voice_commands.py
+            → from neofarm.voice_input import listen
+            → from neofarm.languages import translate_command
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.self_learning import optimize_feed
+            → from neofarm.autonomous import run_daily_once
+       29 lines        890B   voice_input.py
+            → import sounddevice as sd
+            → import queue, json, sys
+            → from vosk import Model, KaldiRecognizer
+
+📁 core\neofarm\mobile_app/
+       50 lines       1.6KB   main.py
+            → from kivy.app import App
+            → from kivy.uix.boxlayout import BoxLayout
+            → from kivy.uix.button import Button
+            → from kivy.uix.label import Label
+            → from neofarm.multi_farm import switch_farm, list_farms
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.self_learning import optimize_feed
+            → from neofarm.autonomous import run_daily_once
+
+📁 core\plugins/
+        1 lines         19B   __init__.py
+       15 lines        401B   alert_plugin.py
+            → import logging
+       20 lines        546B   analytics_plugin.py
+            → import logging
+       27 lines        740B   cache_plugin.py
+            → import logging
+            → import tempfile
+       45 lines       1.5KB   calendar_plugin.py
+            → import sqlite3
+            → import os
+            → from datetime import datetime
+       14 lines        439B   codebase_trainer_plugin.py
+       11 lines        251B   csv_trainer_plugin.py
+       42 lines       1.3KB   database_plugin.py
+            → import logging
+            → import os
+            → from core.database import init_db, get_conn
+       15 lines        441B   dictionary_trainer_plugin.py
+            → import json
+       25 lines        807B   email_plugin.py
+            → import logging
+            → import os
+       15 lines        441B   feedback_trainer_plugin.py
+            → import json
+       51 lines       2.0KB   github_plugin.py
+            → import logging
+            → import os
+            → import requests
+            → import time
+       27 lines        942B   http_plugin.py
+            → import logging
+            → import requests
+        0 lines          0B   image_plugin.py
+        7 lines        190B   image_trainer_plugin.py
+       15 lines        366B   log_plugin.py
+            → import logging
+       22 lines        570B   monitor_plugin.py
+            → import logging
+            → from datetime import datetime
+       42 lines       1.4KB   notification_plugin.py
+            → import logging
+            → import os
+            → import requests
+       35 lines        790B   pdf_answer_plugin.py
+            → from core.memory import search_knowledge
+            → from core.topic import detect_topic
+            → import re
+      230 lines       7.6KB   pdf_trainer_plugin (1).py
+            → import os
+            → import hashlib
+            → import pickle
+            → from pathlib import Path
+            → import PyPDF2
+            → import pdfplumber
+            → import pytesseract
+            → from core.memory import remember, is_pdf_trained, mark_pdf_trained
+        1 lines          2B   processed_pdfs.json
+       15 lines        359B   progress_plugin.py
+            → import logging
+       13 lines        318B   rules_trainer_plugin.py
+       19 lines        424B   sample_plugin.py
+            → import logging
+       20 lines        549B   scheduler_plugin.py
+            → import logging
+       12 lines        330B   slack_plugin.py
+            → from core.discord_webhook import DiscordWebhook
+            → import os
+       20 lines        634B   spreadsheet_plugin.py
+            → import logging
+            → import os
+        9 lines        315B   text_trainer_plugin.py
+            → from core.memory import remember
+       17 lines        523B   trainer_plugin.py
+            → import logging
+            → from core.memory import remember
+            → from core.topic import detect_topic
+      550 lines      23.6KB   video_plugin.py
+            → import os
+            → import re
+            → import time
+            → import base64
+            → import json
+            → import requests
+            → import subprocess
+            → import tempfile
+       94 lines       3.4KB   vision_plugin.py
+            → import logging
+            → import os
+            → import requests
+            → import base64
+            → import subprocess
+            → import time
+       22 lines        713B   voice_plugin.py
+            → import logging
+       76 lines       2.6KB   voice_trainer_plugin.py
+            → import json
+            → import logging
+            → import os
+            → import sounddevice as sd
+            → from vosk import Model, KaldiRecognizer
+            → from core.memory import remember
+            → from core.topic import detect_topic
+       27 lines        611B   web_answer_plugin.py
+      215 lines       7.1KB   web_trainer_plugin.py
+            → import os
+            → import hashlib
+            → import pickle
+            → import logging
+            → import requests
+            → from pathlib import Path
+            → from datetime import datetime, timedelta
+            → from bs4 import BeautifulSoup
+
+📁 core\reasoning/
+        1 lines         28B   __init__.py
+            → from .engine import reason
+       13 lines        327B   engine.py
+        4 lines        184B   scoring.py
+        8 lines        176B   synthesis.py
+
+📁 core\services/
+        0 lines          0B   __init__.py
+       56 lines       1.6KB   backup_worker.py
+            → import argparse
+            → import shutil
+            → import tarfile
+            → from pathlib import Path
+            → from datetime import datetime
+      140 lines       4.7KB   core_server.py
+            → import asyncio
+            → import argparse
+            → import json
+            → from http.server import HTTPServer, BaseHTTPRequestHandler
+            → from threading import Thread
+            → from neo.core.neo_brain import NeoBrain
+            → from neo.core.reflection_loop import ReflectiveNeoBrain, ReflectionLoop
+            → from neo.core.reasoning_memory import ReasoningMemory
+      100 lines       3.2KB   dashboard_server.py
+            → import argparse
+            → import http.server
+            → import socketserver
+            → import time
+            → import threading
+            → from pathlib import Path
+            → from neo.tests.health_dashboard import NeoDataSource, DashboardGenerator
+       20 lines        388B   main.py
+            → import asyncio
+            → from core.services.ollama_service import ask_ollama
+      301 lines      12.0KB   neo_brain.py
+            → import os
+            → import sys
+            → import asyncio
+            → from typing import Dict, Optional, List
+            → from core.services.ollama_service import ask_ollama
+            → from core.local_llm import LocalLLM
+       30 lines        743B   ollama_service.py
+            → import aiohttp
+            → from core.logger import log_info, log_error
+       79 lines       2.6KB   reflection_worker.py
+            → import asyncio
+            → import argparse
+            → import time
+            → from neo.core.reasoning_memory import ReasoningMemory
+            → from neo.core.reflection_loop import ReflectionLoop
+            → import urllib.request
+            → import json
+        1 lines         20B   requirements.txt
+
+📁 core\voice/
+       11 lines        455B   whisper_engine.py
+            → from faster_whisper import WhisperModel
+
+📁 core\voice\neo_tools/
+       16 lines        535B   nosignups_registry.py
+            → import json
+     4515 lines     132.5KB   tools.json
+
+📁 data\vector_store/
+      bin           45B   neo_index.faiss
+
+📁 frontend/
+      299 lines      10.4KB   neo-chat-tools.js
+      198 lines       6.5KB   neo-client.js
+        0 lines          0B   neo-demo.html
+
+📁 frontend\src\hooks/
+        0 lines          0B   useNeoChat.js
+
+📁 frontend\src\styles/
+      551 lines      12.4KB   NeoChatToolEmbed.css
+
+📁 generated_images/
+      bin        34.8KB   neo_pollinations-flux_a_cyberpunk_cat_20260809_113501.png
+      bin        34.8KB   neo_pollinations-flux_a_cyberpunk_cat_20260809_120652.png
+      bin        34.8KB   neo_pollinations-flux_a_cyberpunk_cat_20260809_125330.png
+      bin        34.8KB   neo_pollinations-flux_a_cyberpunk_cat_20260809_163738.png
+      bin        51.8KB   neo_pollinations-flux_e_a_cyberpunk_cat_wearing_sunglasses_20260806_055228.png
+      bin        42.3KB   neo_pollinations-flux_image_of_a_duck_20260823_152904.png
+      bin        49.1KB   neo_pollinations-flux_image_of_current_president_of_kenya_20260823_162818.png
+      bin        46.8KB   neo_pollinations-flux_video_of_a_duck_20260823_153203.png
+      bin        32.9KB   neo_pollinations-flux_video_of_dancing_dog_20260825_140123.png
+
+📁 knowledge/
+        1 lines         27B   __init__.py
+            → from .router import route
+       35 lines       1.1KB   memory_engine.py
+            → import json
+            → import os
+            → from core.memory import search_knowledge
+       27 lines        655B   pdf_engine.py
+            → import os
+            → import json
+       18 lines        513B   router.py
+            → from core.knowledge.pdf_engine import search_pdf
+            → from core.knowledge.web_engine import search_web
+            → from core.memory import search_knowledge
+        8 lines        155B   web_engine.py
+
+📁 neofarm/
+        3 lines        107B   __init__.py
+            → from pathlib import Path
+       29 lines        862B   advanced_automation.py
+            → from neofarm.sensors import check_thresholds, read
+            → from neofarm.milk import average_milk
+            → from neofarm.biogas import check_gas
+            → from neofarm.disease import analyze
+        2 lines         59B   alerts.py
+       25 lines        982B   analytics.py
+            → from neofarm.sensors import sensors
+            → from neofarm.milk import milk_records
+            → from neofarm.biogas import biogas_levels
+            → from neofarm.disease import animal_sensors
+       12 lines        249B   animals.py
+       22 lines        561B   automation.py
+            → from neofarm.sensors import read, update, check_thresholds
+       42 lines       1.1KB   autonomous.py
+            → import time
+            → import schedule
+            → from neofarm.self_learning import self_optimize
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.iot_automation import auto_control_devices
+            → from neofarm.multi_farm import list_farms, switch_farm
+            → from neofarm.cloud_sync import backup_farm
+       11 lines        325B   biogas.py
+       22 lines        848B   cloud_sync.py
+            → import os, json
+            → import requests  # optional online sync
+            → from neofarm.multi_farm import list_farms, load_farm_data
+       43 lines       1.5KB   dashboard.py
+            → from neofarm.milk import milk_records
+            → from neofarm.sensors import sensors
+            → from neofarm.biogas import biogas_levels
+            → from neofarm.disease_predict import predict_disease
+            → from neofarm.iot_automation import devices
+            → import matplotlib.pyplot as plt
+            → import os
+       36 lines        895B   demo_farmer.py
+            → from neofarm.autonomous import daily_autonomous_cycle
+            → from neofarm.cloud_sync import backup_farm
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.languages import set_language
+            → from neofarm.multi_farm import create_farm, list_farms, switch_farm
+            → from neofarm.self_learning import self_optimize
+       21 lines        680B   disease.py
+        5 lines         96B   disease_predict.py
+            → from neofarm.disease import analyze
+        6 lines        219B   environment.py
+       23 lines        578B   farm_sensor_skill.py
+            → from neofarm.sensors import read, check_thresholds, update
+       11 lines        256B   feeding.py
+        6 lines        233B   health.py
+       11 lines        371B   health_scan.py
+            → from neofarm.disease_predict import predict_disease
+            → from neofarm.milk import milk_records
+            → from neofarm.sensors import read
+       61 lines       1.9KB   iot_automation.py
+            → from neofarm.sensors import read, check_thresholds
+       24 lines        972B   languages.py
+       16 lines        424B   milk.py
+       17 lines        585B   milk_forecast.py
+            → from neofarm.milk import milk_records
+            → from neofarm.sensors import sensors
+       78 lines       2.1KB   multi_farm.py
+            → import json
+            → import os
+        8 lines        137B   records.py
+        8 lines         69B   requirements.txt
+       28 lines        922B   self_learning.py
+            → from neofarm.milk import milk_records
+            → from neofarm.milk_forecast import forecast_milk
+            → from neofarm.disease_predict import predict_disease
+            → from neofarm.multi_farm import get_current_farm, load_farm_data, save_farm_data
+       64 lines       1.6KB   sensors.py
+            → import requests
+            → from neofarm.multi_farm import get_current_farm, load_farm_data, save_farm_data
+       22 lines        664B   voice_commands.py
+            → from neofarm.voice_input import listen
+            → from neofarm.languages import translate_command
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.self_learning import optimize_feed
+            → from neofarm.autonomous import run_daily_once
+       29 lines        890B   voice_input.py
+            → import sounddevice as sd
+            → import queue, json, sys
+            → from vosk import Model, KaldiRecognizer
+
+📁 neofarm\mobile_app/
+       50 lines       1.6KB   main.py
+            → from kivy.app import App
+            → from kivy.uix.boxlayout import BoxLayout
+            → from kivy.uix.button import Button
+            → from kivy.uix.label import Label
+            → from neofarm.multi_farm import switch_farm, list_farms
+            → from neofarm.dashboard import generate_dashboard
+            → from neofarm.self_learning import optimize_feed
+            → from neofarm.autonomous import run_daily_once
+
+📁 reasoning/
+        1 lines         28B   __init__.py
+            → from .engine import reason
+       13 lines        327B   engine.py
+        4 lines        184B   scoring.py
+        8 lines        176B   synthesis.py
+
+📁 skills/
+        1 lines         30B   __init__.py
+       26 lines        747B   counter_skill.py
+            → import logging
+            → from collections import Counter
+       23 lines        781B   currency_convert_skill.py
+            → import logging
+       23 lines        632B   date_skill.py
+            → from datetime import datetime
+            → import logging
+       26 lines        724B   datetime_parse_skill.py
+            → import logging
+            → import re
+            → from datetime import datetime
+       22 lines        550B   device_skill.py
+            → import requests
+            → from core.device_intents import validate
+       19 lines        548B   email_address_extract_skill.py
+            → import logging
+            → import re
+       20 lines        560B   entity_extraction_skill.py
+            → import logging
+            → import re
+       13 lines        260B   farm_skill.py
+            → from neofarm.animals import add_animal
+            → from neofarm.health import check
+       20 lines        511B   fibonacci_skill.py
+            → import logging
+       24 lines        784B   file_read_skill.py
+            → import logging
+       31 lines        988B   flatten_dict_skill.py
+            → import logging
+       19 lines        472B   html_strip_skill.py
+            → import logging
+            → import re
+       10 lines        309B   iot_skill.py
+            → from neofarm.iot_automation import auto_action
+       24 lines        696B   json_parse_skill.py
+            → import logging
+            → import json
+        5 lines        136B   knowledge_skill.py
+            → from core.semantic_memory import search
+       19 lines        590B   language_detect_skill.py
+            → import logging
+       31 lines        870B   levenshtein_skill.py
+            → import logging
+       27 lines        821B   list_ops_skill.py
+            → import logging
+       22 lines        607B   math_skill.py
+            → import logging
+       26 lines        807B   min_max_skill.py
+            → import logging
+       18 lines        567B   qa_skill.py
+            → import logging
+       28 lines        874B   random_skill.py
+            → import logging
+            → import random
+       23 lines        689B   regex_extraction_skill.py
+            → import logging
+            → import re
+       24 lines        677B   remove_stopwords_skill.py
+            → import logging
+       23 lines        636B   replacer_skill.py
+            → import logging
+       21 lines        583B   sample_skill.py
+            → import logging
+       26 lines        844B   spell_correction.py
+            → import difflib
+            → import logging
+       19 lines        481B   strip_html_skill.py
+            → import logging
+            → import re
+       20 lines        542B   strip_punctuation_skill.py
+            → import logging
+            → import string
+       18 lines        539B   summary_skill.py
+            → import logging
+        6 lines        178B   task_skill.py
+            → from core.tasks import run_system_command
+       24 lines        664B   text_transform_skill.py
+            → import logging
+       24 lines        694B   timer_skill.py
+            → import logging
+            → import time
+       26 lines        744B   timezone_skill.py
+            → import logging
+            → from datetime import datetime
+            → import pytz
+       19 lines        542B   token_count_skill.py
+            → import logging
+       21 lines        615B   translate_skill.py
+            → import logging
+       30 lines        867B   url_parse_skill.py
+            → import logging
+            → from urllib.parse import urlparse
+       18 lines        425B   uuid_skill.py
+            → import logging
+            → import uuid
+        5 lines        155B   web_skill.py
+            → from core.web_fallback import fetch_web_answers
+       26 lines        793B   xml_parse_skill.py
+            → import logging
+            → import xml.etree.ElementTree as ET
+
+📁 templates/
+      141 lines       7.2KB   chat.html
+
+📁 tests/
+       30 lines        973B   test_evaluator.py
+            → import unittest
+            → from core.evaluator import Evaluator
+
+📁 tools/
+        1 lines         36B   __init__.py
+        8 lines        311B   web.py
+            → from core.web_fallback import fetch_web_answers
+
+📁 voice/
+       11 lines        455B   whisper_engine.py
+            → from faster_whisper import WhisperModel
+
+📁 voice\neo_tools/
+        0 lines          0B   nosignups_registry.py
+        0 lines          0B   tools.json
+
+==============================================================================
+TOTAL: 490 files  |  99468 lines  |  18.7MB
+==============================================================================

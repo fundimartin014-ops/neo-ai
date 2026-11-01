@@ -1,0 +1,5 @@
+Different users have separate memory profiles.
+Do not mix memories between users.
+User identity is inferred from context or explicit statement.
+If user identity is unknown, ask for clarification.
+Default to current active user.

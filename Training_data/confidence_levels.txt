@@ -1,0 +1,4 @@
+High confidence: repeated memory or trained data.
+Medium confidence: single memory or indirect knowledge.
+Low confidence: guessed or inferred information.
+No confidence: unknown information.

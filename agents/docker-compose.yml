@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    image: multiagent:0.2.0
+    ports: ["8000:8000"]
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      LOG_JSON: "true"
+      DB_PATH: /app/data/agents.db
+      API_AGENT_TOKEN: ${API_AGENT_TOKEN:-}
+      API_AGENT_BASE_URL: ${API_AGENT_BASE_URL:-}
+    volumes:
+      - ./data:/app/data
+      - ./sandbox:/app/sandbox
+    restart: unless-stopped

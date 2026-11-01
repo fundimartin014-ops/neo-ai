@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neo Generated Images</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 2rem;
+  }
+  h1 {
+    color: #58a6ff;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    color: #8b949e;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #58a6ff;
+  }
+  .card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: #0d1117;
+  }
+  .card .info {
+    padding: 1rem;
+  }
+  .card .info .backend {
+    color: #58a6ff;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .card .info .prompt {
+    font-size: 0.9rem;
+    color: #e6edf3;
+    line-height: 1.4;
+  }
+  .card .info .date {
+    font-size: 0.75rem;
+    color: #8b949e;
+    margin-top: 0.5rem;
+  }
+  .empty {
+    text-align: center;
+    color: #8b949e;
+    padding: 4rem 2rem;
+    grid-column: 1 / -1;
+  }
+  .empty svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+<h1>🎨 Neo Generated Images</h1>
+<p class="subtitle">Images from <code>generated_images/</code> — auto-refreshes on load</p>
+<div class="grid" id="gallery"></div>
+
+<script>
+// Parse neo_POLLINATIONS-BACKEND_prompt_YYYYMMDD_HHMMSS.png
+function parseFilename(name) {
+  const m = name.match(/^neo_([^_]+)_(.+?)_(\d{8})_(\d{6})\.png$/);
+  if (!m) return null;
+  const [, backend, promptRaw, dateStr, timeStr] = m;
+  const prompt = promptRaw.replace(/_/g, ' ');
+  const year = dateStr.slice(0,4), month = dateStr.slice(4,6), day = dateStr.slice(6,8);
+  const hour = timeStr.slice(0,2), min = timeStr.slice(2,4), sec = timeStr.slice(4,6);
+  const date = `${year}-${month}-${day} ${hour}:${min}:${sec}`;
+  return { backend, prompt, date };
+}
+
+async function loadGallery() {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
+
+  // Try to fetch directory listing (works if served via http)
+  // Fallback: hardcode known images from your sessions
+  const knownImages = [
+    'neo_pollinations-flux_a_cyberpunk_cat_20260809_163738.png',
+    'neo_pollinations-flux_a_cyberpunk_cat_20260809_125330.png',
+  ];
+
+  let images = [];
+  try {
+    const res = await fetch('generated_images/');
+    const text = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    const links = [...doc.querySelectorAll('a')].map(a => a.href.split('/').pop()).filter(f => f.endsWith('.png'));
+    if (links.length) images = links;
+  } catch(e) {
+    // Directory listing not available, use known + try localStorage
+    images = knownImages;
+    const stored = JSON.parse(localStorage.getItem('neo_images') || '[]');
+    stored.forEach(s => { if (!images.includes(s)) images.push(s); });
+  }
+
+  if (!images.length) {
+    gallery.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <p>No images found in <code>generated_images/</code></p>
+      <p style="margin-top:0.5rem;font-size:0.85rem">Generate one with: <code>generate a cyberpunk cat backend=pollinations</code></p>
+    </div>`;
+    return;
+  }
+
+  // Sort newest first
+  images.sort().reverse();
+
+  images.forEach(img => {
+    const meta = parseFilename(img) || { backend: 'unknown', prompt: img.replace('.png',''), date: '' };
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="generated_images/${img}" alt="${meta.prompt}" loading="lazy" onerror="this.style.display='none'">
+      <div class="info">
+        <div class="backend">${meta.backend}</div>
+        <div class="prompt">${meta.prompt}</div>
+        <div class="date">${meta.date}</div>
+      </div>
+    `;
+    gallery.appendChild(card);
+  });
+}
+
+loadGallery();
+</script>
+</body>
+</html>

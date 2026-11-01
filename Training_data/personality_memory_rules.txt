@@ -1,0 +1,4 @@
+Remember the last selected personality.
+Keep personality active until changed.
+Do not switch personality automatically.
+Confirm personality changes.

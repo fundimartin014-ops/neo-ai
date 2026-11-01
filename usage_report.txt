@@ -1,0 +1,515 @@
+==============================================================================
+NEO RUNTIME USAGE REPORT
+==============================================================================
+Generated:    2026-10-15 13:16:09
+Project root: C:\Users\fundi\OneDrive\Documents\TRAININGBOT21.worktrees\fix-ai-launcher-loading-issues
+
+Total .py on disk:      454
+Total .py imported:     41
+Total .py idle:         413
+Coverage:               9.0%
+
+------------------------------------------------------------------------------
+IMPORT ORDER (chronological, project files only)
+------------------------------------------------------------------------------
+  [ 24.685s] neo_model_manager                             → neo_model_manager.py
+  [ 27.116s] hybrid_ui                                     → hybrid_ui.py
+  [ 27.118s] launcher                                      → launcher.py
+  [ 27.222s] core.database                                 → core\database.py
+  [ 27.984s] core.memory                                   → core\memory.py
+  [ 27.988s] core.topic                                    → core\topic.py
+  [ 28.016s] core.discord_webhook                          → core\discord_webhook.py
+  [ 28.029s] core.memory                                   → core\memory.py
+  [ 28.034s] core.memory                                   → core\memory.py
+  [ 28.036s] core.topic                                    → core\topic.py
+  [ 39.525s] core.memory                                   → core\memory.py
+  [ 39.527s] core.topic                                    → core\topic.py
+  [ 41.836s] core.memory                                   → core\memory.py
+  [ 41.838s] core.topic                                    → core\topic.py
+  [ 41.865s] core.local_llm                                → core\local_llm.py
+  [ 43.968s] core.local_llm                                → core\local_llm.py
+  [ 44.009s] __main__                                      → trace_usage.py
+  [ 53.984s] core                                          → core\__init__.py
+  [ 53.990s] core                                          → core\__init__.py
+  [ 74.977s] __main__                                      → trace_usage.py
+  [ 78.965s] core.llm_router                               → core\llm_router.py
+  [ 79.014s] core.tavily_search                            → core\tavily_search.py
+  [ 79.019s] core.meta_cognition                           → core\meta_cognition.py
+  [ 79.039s] neo_nosignups                                 → neo_nosignups.py
+  [ 79.058s] core.system_scanner                           → core\system_scanner.py
+  [ 79.062s] core.tavily_search                            → core\tavily_search.py
+  [ 79.068s] core.orchestrator                             → core\orchestrator.py
+  [ 80.987s] core.persistent_index                         → core\persistent_index.py
+  [ 80.997s] core.memory_bridge                            → core\memory_bridge.py
+  [ 83.131s] core.tool_loader                              → core\tool_loader.py
+  [ 83.863s] core.memory                                   → core\memory.py
+  [ 84.995s] core.memory                                   → core\memory.py
+  [ 84.996s] core.web_search                               → core\web_search.py
+  [113.125s] agents.base_agent                             → agents\base_agent.py
+  [113.294s] agents.schemas                                → agents\schemas.py
+  [113.305s] agents.tracing                                → agents\tracing.py
+  [113.313s] agents.message_bus                            → agents\message_bus.py
+  [113.320s] agents.base_agent                             → agents\base_agent.py
+  [113.323s] agents.registry                               → agents\registry.py
+  [113.332s] agents.locations                              → agents\locations.py
+  [120.159s] core                                          → core\__init__.py
+  [120.167s] core                                          → core\__init__.py
+  [120.172s] core                                          → core\__init__.py
+  [120.181s] core                                          → core\__init__.py
+  [120.184s] core                                          → core\__init__.py
+  [120.192s] core                                          → core\__init__.py
+  [127.882s] core                                          → core\__init__.py
+  [127.885s] core                                          → core\__init__.py
+  [143.459s] core                                          → core\__init__.py
+  [143.479s] core                                          → core\__init__.py
+  [143.815s] core                                          → core\__init__.py
+  [147.102s] core                                          → core\__init__.py
+  [147.106s] core                                          → core\__init__.py
+  [147.118s] core                                          → core\__init__.py
+  [147.120s] core                                          → core\__init__.py
+  [147.123s] core                                          → core\__init__.py
+  [154.937s] core                                          → core\__init__.py
+  [154.945s] core                                          → core\__init__.py
+  [177.855s] core.embedding_engine                         → core\embedding_engine.py
+  [177.862s] core.goal_manager                             → core\goal_manager.py
+  [177.867s] core.planner                                  → core\planner.py
+  [178.597s] core.browser_agent                            → core\browser_agent.py
+  [178.691s] core.tool_registry                            → core\tool_registry.py
+  [178.708s] core.execution_graph                          → core\execution_graph.py
+  [178.720s] core.tool_selector                            → core\tool_selector.py
+  [178.727s] core.verifier                                 → core\verifier.py
+  [178.729s] core.meta_cognition                           → core\meta_cognition.py
+  [178.730s] core.orchestrator                             → core\orchestrator.py
+  [178.731s] core.system_scanner                           → core\system_scanner.py
+  [178.732s] core.tavily_search                            → core\tavily_search.py
+  [178.734s] fundibrain                                    → fundibrain.py
+  [186.718s] core.logger                                   → core\logger.py
+  [186.719s] core.services.ollama_service                  → core\services\ollama_service.py
+  [186.721s] core.local_llm                                → core\local_llm.py
+  [186.728s] core.services.neo_brain                       → core\services\neo_brain.py
+  [186.765s] neo_models_catalog                            → neo_models_catalog.py
+  [186.798s] neo_model_health                              → neo_model_health.py
+  [186.805s] hybrid_merger                                 → hybrid_merger.py
+  [186.807s] neo_models_catalog                            → neo_models_catalog.py
+  [186.810s] neo_models_catalog                            → neo_models_catalog.py
+  [187.180s] core                                          → core\__init__.py
+  [187.220s] core                                          → core\__init__.py
+
+------------------------------------------------------------------------------
+IDLE FILES (413) — present on disk, never imported
+------------------------------------------------------------------------------
+  agents\__init__.py
+  agents\__main__.py
+  agents\api_agent.py
+  agents\api_server.py
+  agents\audit_agent.py
+  agents\browser.py
+  agents\bus_factory.py
+  agents\command_routing_agent.py
+  agents\config.py
+  agents\control_agent.py
+  agents\conversation_agent.py
+  agents\critic_agent.py
+  agents\data_collection_agent.py
+  agents\debater_agent.py
+  agents\device_control_agent.py
+  agents\disease_alert_agent.py
+  agents\embedder.py
+  agents\env_loader.py
+  agents\event_dispatch_agent.py
+  agents\executor_agent.py
+  agents\farmer_digest_agent.py
+  agents\feedback_agent.py
+  agents\file_management_agent.py
+  agents\image_analysis_agent.py
+  agents\input_validation_agent.py
+  agents\instrumented_agent.py
+  agents\integration_agent.py
+  agents\knowledge_agent.py
+  agents\llm\__init__.py
+  agents\llm\client.py
+  agents\llm\prompts.py
+  agents\location_agent.py
+  agents\log_view_agent.py
+  agents\logging_agent.py
+  agents\logging_setup.py
+  agents\main.py
+  agents\market_agent.py
+  agents\memory_agent.py
+  agents\message_bus_redis.py
+  agents\metrics_agent.py
+  agents\notification_agent.py
+  agents\notifiers.py
+  agents\onboarding_agent.py
+  agents\persistence\__init__.py
+  agents\persistence\db.py
+  agents\persistence\migrations.py
+  agents\persistence\repositories.py
+  agents\planner_agent.py
+  agents\priority_queue_agent.py
+  agents\profiles.py
+  agents\rate_limit.py
+  agents\role_assignment_agent.py
+  agents\sample_agent.py
+  agents\scheduler_agent.py
+  agents\scheduler_worker.py
+  agents\search_agent.py
+  agents\security_agent.py
+  agents\sentiment_agent.py
+  agents\session_agent.py
+  agents\session_timeout_agent.py
+  agents\speech_agent.py
+  agents\status_agent.py
+  agents\summarizer_agent.py
+  agents\system_agent.py
+  agents\tagging_agent.py
+  agents\task_agent.py
+  agents\task_queue.py
+  agents\telemetry.py
+  agents\template_completion_agent.py
+  agents\tests\conftest.py
+  agents\tests\test_api.py
+  agents\tests\test_bus.py
+  agents\tests\test_persistence.py
+  agents\tests\test_pipeline.py
+  agents\thinker_agent.py
+  agents\transcription_agent.py
+  agents\user_profile_agent.py
+  agents\web_agent.py
+  core\agent_engine.py
+  core\agent_executor.py
+  core\agent_loop.py
+  core\agent_planner.py
+  core\auto_learner.py
+  core\auto_trainer.py
+  core\automation.py
+  core\autonomous_agent.py
+  core\autonomous_controller.py
+  core\autonomous_engine.py
+  core\autonomous_loop.py
+  core\autonomous_updater.py
+  core\background_loop.py
+  core\belief_system.py
+  core\browser_tool.py
+  core\code_validator.py
+  core\codebase_trainer_plugin.py
+  core\consensus_trace.py
+  core\context_memory.py
+  core\critic.py
+  core\csv_trainer_plugin.py
+  core\debate_engine.py
+  core\deep_thinker.py
+  core\device_controller.py
+  core\device_intents.py
+  core\dictionary_trainer_plugin.py
+  core\discord_bot.py
+  core\embedding_memory.py
+  core\embeddings.py
+  core\entities.py
+  core\entity_graph.py
+  core\evaluator.py
+  core\event_reactor.py
+  core\evolution.py
+  core\executor.py
+  core\fallback.py
+  core\feedback_trainer_plugin.py
+  core\github_client.py
+  core\goals.py
+  core\governed_memory.py
+  core\governor.py
+  core\hot_reloader.py
+  core\hybrid_brain.py
+  core\image_input.py
+  core\image_plugin.py
+  core\image_trainer_plugin.py
+  core\intent.py
+  core\jarvis_listener.py
+  core\knowledge_builder.py
+  core\knowledge_engine.py
+  core\knowledge_extractor.py
+  core\knowledge_graph.py
+  core\license.py
+  core\linguistic.py
+  core\llm_engine.py
+  core\memory_manager.py
+  core\memory_utils.py
+  core\messaging.py
+  core\neo_daemon.py
+  core\normalize.py
+  core\notifier.py
+  core\parallel_tools.py
+  core\patch_manager.py
+  core\personality.py
+  core\plugins\__init__.py
+  core\plugins\alert_plugin.py
+  core\plugins\analytics_plugin.py
+  core\plugins\cache_plugin.py
+  core\plugins\calendar_plugin.py
+  core\plugins\codebase_trainer_plugin.py
+  core\plugins\csv_trainer_plugin.py
+  core\plugins\database_plugin.py
+  core\plugins\dictionary_trainer_plugin.py
+  core\plugins\email_plugin.py
+  core\plugins\farm_scheduler_plugin.py
+  core\plugins\feedback_trainer_plugin.py
+  core\plugins\github_plugin.py
+  core\plugins\http_plugin.py
+  core\plugins\image_trainer_plugin.py
+  core\plugins\irrigation_alert_plugin.py
+  core\plugins\log_plugin.py
+  core\plugins\monitor_plugin.py
+  core\plugins\notification_plugin.py
+  core\plugins\pdf_answer_plugin.py
+  core\plugins\progress_plugin.py
+  core\plugins\rules_trainer_plugin.py
+  core\plugins\sample_plugin.py
+  core\plugins\scheduler_plugin.py
+  core\plugins\slack_plugin.py
+  core\plugins\spreadsheet_plugin.py
+  core\plugins\text_trainer_plugin.py
+  core\plugins\trainer_plugin.py
+  core\plugins\video_plugin.py
+  core\plugins\vision_plugin.py
+  core\plugins\voice_plugin.py
+  core\plugins\voice_trainer_plugin.py
+  core\plugins\web_answer_plugin.py
+  core\plugins\web_trainer_plugin.py
+  core\proactive_agent.py
+  core\probe_openrouter.py
+  core\quality_monitor.py
+  core\react_loop.py
+  core\reasoning.py
+  core\reasoning_planner.py
+  core\reflection_engine.py
+  core\research_agent.py
+  core\rl_feedback.py
+  core\router.py
+  core\rules_trainer_plugin.py
+  core\run_backup.py
+  core\run_dashboard.py
+  core\run_neo_core.py
+  core\run_reflection_worker.py
+  core\runtime_evolver.py
+  core\self_evaluator.py
+  core\self_improvement.py
+  core\self_reflection.py
+  core\semantic_extractor.py
+  core\semantic_memory.py
+  core\services\__init__.py
+  core\services\backup_worker.py
+  core\services\core_server.py
+  core\services\dashboard_server.py
+  core\services\main.py
+  core\services\reflection_worker.py
+  core\session.py
+  core\skill_selector.py
+  core\slack_bot.py
+  core\source_ranker.py
+  core\swarm_coordinator.py
+  core\system_agent.py
+  core\system_control.py
+  core\tasks.py
+  core\telemetry.py
+  core\text_trainer_plugin.py
+  core\tool_learning.py
+  core\tools.py
+  core\trainer.py
+  core\truth_engine.py
+  core\tts.py
+  core\unified_search.py
+  core\upgrade_proposer.py
+  core\url_learner.py
+  core\utils.py
+  core\validate_keys.py
+  core\validator.py
+  core\version_manager.py
+  core\vision_ollama.py
+  core\voice.py
+  core\voice_handler.py
+  core\voice_input.py
+  core\wake_word.py
+  core\web_fallback.py
+  core\windows_app.py
+  core\working_memory.py
+  fix_image_agent.py
+  fix_image_fallback.py
+  fix_missing_re.py
+  fix_plugin_whitelist.py
+  fix_speak_js.py
+  fix_speech_powershell.py
+  free-llm-gateway\auto_update.py
+  free-llm-gateway\benchmark.py
+  free-llm-gateway\cache.py
+  free-llm-gateway\config.py
+  free-llm-gateway\custom_combos.py
+  free-llm-gateway\format_translator.py
+  free-llm-gateway\gateway_auth.py
+  free-llm-gateway\health.py
+  free-llm-gateway\key_encryptor.py
+  free-llm-gateway\key_manager.py
+  free-llm-gateway\main.py
+  free-llm-gateway\oauth_manager.py
+  free-llm-gateway\provider_guides.py
+  free-llm-gateway\providers.py
+  free-llm-gateway\quota_tracker.py
+  free-llm-gateway\rate_limiter.py
+  free-llm-gateway\rate_tracker.py
+  free-llm-gateway\request_db.py
+  free-llm-gateway\request_queue.py
+  free-llm-gateway\router.py
+  free-llm-gateway\smart_default.py
+  free-llm-gateway\smart_router.py
+  free-llm-gateway\sticky_sessions.py
+  free-llm-gateway\sync_providers.py
+  free-llm-gateway\tests\__init__.py
+  free-llm-gateway\tests\test_gateway_auth.py
+  free-llm-gateway\tests\test_health.py
+  free-llm-gateway\tests\test_key_encryptor.py
+  free-llm-gateway\tests\test_new_features.py
+  free-llm-gateway\tests\test_rate_tracker.py
+  free-llm-gateway\tests\test_round2.py
+  free-llm-gateway\tests\test_sticky_sessions.py
+  free-llm-gateway\tests\test_tool_call_translator.py
+  free-llm-gateway\token_compressor.py
+  free-llm-gateway\token_estimator.py
+  free-llm-gateway\tool_call_translator.py
+  free-llm-gateway\tracking.py
+  hybrid_fix.py
+  inspect_project.py
+  knowledge\__init__.py
+  knowledge\memory_engine.py
+  knowledge\pdf_engine.py
+  knowledge\router.py
+  knowledge\web_engine.py
+  make_device_agent.py
+  make_image_agent.py
+  make_irrigation_plugin.py
+  make_location_agent.py
+  make_locations.py
+  make_speech_agent.py
+  make_transcription.py
+  neo_patch_v3.py
+  neo_patch_v4.py
+  neo_patch_v5.py
+  neo_patch_v6.py
+  neo_patch_v7.py
+  neo_patch_v8.py
+  neo_patch_v9_1.py
+  neofarm\__init__.py
+  neofarm\advanced_automation.py
+  neofarm\alerts.py
+  neofarm\analytics.py
+  neofarm\animals.py
+  neofarm\automation.py
+  neofarm\autonomous.py
+  neofarm\biogas.py
+  neofarm\cloud_sync.py
+  neofarm\dashboard.py
+  neofarm\demo_farmer.py
+  neofarm\disease.py
+  neofarm\disease_predict.py
+  neofarm\environment.py
+  neofarm\farm_sensor_skill.py
+  neofarm\feeding.py
+  neofarm\health.py
+  neofarm\health_scan.py
+  neofarm\iot_automation.py
+  neofarm\languages.py
+  neofarm\milk.py
+  neofarm\milk_forecast.py
+  neofarm\mobile_app\main.py
+  neofarm\multi_farm.py
+  neofarm\records.py
+  neofarm\self_learning.py
+  neofarm\sensors.py
+  neofarm\voice_commands.py
+  neofarm\voice_input.py
+  patch_chat_inject.py
+  patch_device_reg.py
+  patch_disease_image.py
+  patch_farm_route.py
+  patch_farmer_locations.py
+  patch_gesture_inject.py
+  patch_image_debug.py
+  patch_image_debug2.py
+  patch_image_reg.py
+  patch_launcher_aliases_v2.py
+  patch_launcher_quotes.py
+  patch_launcher_start.py
+  patch_location_reg.py
+  patch_path_resolution.py
+  patch_profile_image.py
+  patch_speak_inject.py
+  patch_speech_reg.py
+  patch_transcribe_path.py
+  patch_transcription_reg.py
+  polish_image_agent.py
+  reasoning\__init__.py
+  reasoning\engine.py
+  reasoning\scoring.py
+  reasoning\synthesis.py
+  scan_ai.py
+  scan_syntax.py
+  silence_ml.py
+  skills\__init__.py
+  skills\agents_farm.py
+  skills\agents_market.py
+  skills\agents_run.py
+  skills\agents_scheduler.py
+  skills\agents_search.py
+  skills\agents_skill.py
+  skills\agents_summarize.py
+  skills\agents_web.py
+  skills\counter_skill.py
+  skills\currency_convert_skill.py
+  skills\date_skill.py
+  skills\datetime_parse_skill.py
+  skills\device_skill.py
+  skills\email_address_extract_skill.py
+  skills\entity_extraction_skill.py
+  skills\farm_skill.py
+  skills\fibonacci_skill.py
+  skills\file_read_skill.py
+  skills\flatten_dict_skill.py
+  skills\html_strip_skill.py
+  skills\iot_skill.py
+  skills\json_parse_skill.py
+  skills\knowledge_skill.py
+  skills\language_detect_skill.py
+  skills\levenshtein_skill.py
+  skills\list_ops_skill.py
+  skills\math_skill.py
+  skills\min_max_skill.py
+  skills\qa_skill.py
+  skills\random_skill.py
+  skills\regex_extraction_skill.py
+  skills\remove_stopwords_skill.py
+  skills\replacer_skill.py
+  skills\sample_skill.py
+  skills\spell_correction.py
+  skills\strip_html_skill.py
+  skills\strip_punctuation_skill.py
+  skills\summary_skill.py
+  skills\task_skill.py
+  skills\text_transform_skill.py
+  skills\timer_skill.py
+  skills\timezone_skill.py
+  skills\token_count_skill.py
+  skills\translate_skill.py
+  skills\url_parse_skill.py
+  skills\uuid_skill.py
+  skills\web_skill.py
+  skills\xml_parse_skill.py
+  tests\__init__.py
+  tests\conftest.py
+  tests\test_agents_basic.py
+  tests\test_bus.py
+  tests\test_evaluator.py
+  tests\test_persistence.py
+  tests\test_pipeline.py
+  tools\__init__.py
+  tools\web.py
+  voice\whisper_engine.py
+  wsgi.py
+
+==============================================================================

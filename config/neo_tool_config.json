@@ -1,0 +1,271 @@
+{
+  "_meta": {
+    "description": "Neo AI integration config for NoSignups tools",
+    "version": "1.0",
+    "generated_for": "Neo AI - 8GB RAM laptop, qwen2.5:1.5b, Groq/OpenRouter/Ollama",
+    "integration_types": {
+      "iframe": "Embed in chat UI via iframe (0 RAM cost, runs in browser)",
+      "selfhost_static": "Clone, build, serve as static SPA (~50-200MB RAM)",
+      "selfhost_server": "Requires backend server (300MB+ RAM, skip on 8GB)",
+      "api_wrapper": "Wrap with Python subprocess/HTTP call",
+      "skip": "Not suitable for Neo integration"
+    }
+  },
+  "priority_tools": [
+    {
+      "id": "excalidraw",
+      "integration": "iframe",
+      "reason": "End-to-end encrypted whiteboard, perfect for Neo chat UI",
+      "ram_estimate_mb": 0,
+      "quick_action": "🎨 Draw",
+      "triggers": [
+        "draw",
+        "sketch",
+        "diagram",
+        "whiteboard",
+        "flowchart",
+        "mind map"
+      ]
+    },
+    {
+      "id": "json-crack",
+      "integration": "iframe",
+      "reason": "JSON visualization, users paste JSON constantly",
+      "ram_estimate_mb": 0,
+      "quick_action": "📊 Visualize JSON",
+      "triggers": [
+        "json",
+        "visualize json",
+        "json tree",
+        "json graph"
+      ]
+    },
+    {
+      "id": "cyberchef",
+      "integration": "iframe",
+      "reason": "Universal encoding/decoding/hashing - essential for dev tasks",
+      "ram_estimate_mb": 0,
+      "quick_action": "🔒 CyberChef",
+      "triggers": [
+        "encode",
+        "decode",
+        "hash",
+        "base64",
+        "hex",
+        "encrypt",
+        "cyberchef"
+      ]
+    },
+    {
+      "id": "carbon",
+      "integration": "iframe",
+      "reason": "Code screenshots for sharing - static SPA",
+      "ram_estimate_mb": 0,
+      "quick_action": "💻 Code Screenshot",
+      "triggers": [
+        "code screenshot",
+        "carbon",
+        "share code",
+        "code image"
+      ]
+    },
+    {
+      "id": "regexr",
+      "integration": "iframe",
+      "reason": "Regex testing with explanation - static SPA",
+      "ram_estimate_mb": 0,
+      "quick_action": "📐 Regex",
+      "triggers": [
+        "regex",
+        "regular expression",
+        "test regex",
+        "pattern"
+      ]
+    },
+    {
+      "id": "squoosh",
+      "integration": "iframe",
+      "reason": "Image compression by Google Chrome Labs - WASM client-side",
+      "ram_estimate_mb": 0,
+      "quick_action": "🖼️ Compress Image",
+      "triggers": [
+        "compress image",
+        "reduce image size",
+        "optimize image",
+        "squoosh"
+      ]
+    },
+    {
+      "id": "bentopdf",
+      "integration": "selfhost_static",
+      "reason": "PDF toolkit, can be self-hosted for privacy. Iframe fallback.",
+      "ram_estimate_mb": 0,
+      "quick_action": "📄 PDF Tools",
+      "triggers": [
+        "pdf",
+        "merge pdf",
+        "split pdf",
+        "edit pdf",
+        "pdf toolkit"
+      ]
+    },
+    {
+      "id": "vert",
+      "integration": "iframe",
+      "reason": "Universal file converter in browser",
+      "ram_estimate_mb": 0,
+      "quick_action": "🔄 Convert File",
+      "triggers": [
+        "convert file",
+        "file converter",
+        "change format",
+        "vert"
+      ]
+    },
+    {
+      "id": "stackedit",
+      "integration": "iframe",
+      "reason": "Full markdown editor with sync",
+      "ram_estimate_mb": 0,
+      "quick_action": "📝 Markdown",
+      "triggers": [
+        "markdown",
+        "md editor",
+        "write markdown",
+        "stackedit"
+      ]
+    },
+    {
+      "id": "drawdb",
+      "integration": "iframe",
+      "reason": "Database diagram editor + SQL generator",
+      "ram_estimate_mb": 0,
+      "quick_action": "🗄️ DB Diagram",
+      "triggers": [
+        "database diagram",
+        "erd",
+        "sql schema",
+        "drawdb",
+        "db design"
+      ]
+    },
+    {
+      "id": "transform",
+      "integration": "iframe",
+      "reason": "Code transformer (JSON↔YAML, etc)",
+      "ram_estimate_mb": 0,
+      "quick_action": "🔧 Transform",
+      "triggers": [
+        "transform",
+        "convert code",
+        "json to yaml",
+        "code converter"
+      ]
+    },
+    {
+      "id": "it-tools",
+      "integration": "selfhost_static",
+      "reason": "52 dev tools collection. Self-host for offline use.",
+      "ram_estimate_mb": 50,
+      "quick_action": "🛠️ Dev Tools",
+      "triggers": [
+        "dev tools",
+        "developer tools",
+        "it tools",
+        "encode decode hash"
+      ]
+    },
+    {
+      "id": "mermaid-live",
+      "integration": "iframe",
+      "reason": "Mermaid diagram live editor",
+      "ram_estimate_mb": 0,
+      "quick_action": "📈 Mermaid",
+      "triggers": [
+        "mermaid",
+        "mermaid diagram",
+        "flowchart code",
+        "mermaid chart"
+      ]
+    },
+    {
+      "id": "cryptpad",
+      "integration": "selfhost_server",
+      "reason": "Encrypted docs - requires server. Skip on 8GB, use iframe to cryptpad.fr instead.",
+      "ram_estimate_mb": 512,
+      "quick_action": "🔐 CryptPad",
+      "triggers": [
+        "cryptpad",
+        "encrypted document",
+        "secure doc"
+      ],
+      "note": "Use iframe to https://cryptpad.fr instead of self-hosting"
+    },
+    {
+      "id": "webllm",
+      "integration": "skip",
+      "reason": "In-browser LLM - conflicts with Neo's own LLM pipeline",
+      "ram_estimate_mb": 0,
+      "triggers": [],
+      "note": "Skip - Neo already has qwen2.5:1.5b + Groq + OpenRouter"
+    },
+    {
+      "id": "sipp-chat",
+      "integration": "skip",
+      "reason": "Another in-browser LLM chat - redundant with Neo",
+      "ram_estimate_mb": 0,
+      "triggers": [],
+      "note": "Skip - redundant"
+    },
+    {
+      "id": "forge",
+      "integration": "skip",
+      "reason": "AI model playground - redundant with Neo",
+      "ram_estimate_mb": 0,
+      "triggers": [],
+      "note": "Skip - redundant"
+    }
+  ],
+  "category_defaults": {
+    "development": {
+      "default_integration": "iframe",
+      "icon": "💻"
+    },
+    "design": {
+      "default_integration": "iframe",
+      "icon": "🎨"
+    },
+    "utilities": {
+      "default_integration": "iframe",
+      "icon": "🛠️"
+    },
+    "data": {
+      "default_integration": "iframe",
+      "icon": "📊"
+    },
+    "media": {
+      "default_integration": "iframe",
+      "icon": "🎬"
+    },
+    "privacy": {
+      "default_integration": "iframe",
+      "icon": "🔒"
+    },
+    "writing": {
+      "default_integration": "iframe",
+      "icon": "✍️"
+    },
+    "productivity": {
+      "default_integration": "iframe",
+      "icon": "⚡"
+    },
+    "education": {
+      "default_integration": "iframe",
+      "icon": "🎓"
+    },
+    "lists": {
+      "default_integration": "iframe",
+      "icon": "📜"
+    }
+  }
+}

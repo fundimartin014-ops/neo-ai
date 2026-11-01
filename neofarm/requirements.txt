@@ -1,0 +1,8 @@
+kivy
+kivymd
+matplotlib
+schedule
+requests
+pyttsx3
+vosk
+PyPDF2

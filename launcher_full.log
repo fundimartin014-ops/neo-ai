@@ -1,0 +1,19 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261001140337
+Username: DESKTOP-ASAG78L\fundi
+RunAs User: DESKTOP-ASAG78L\fundi
+Configuration Name: 
+Machine: DESKTOP-ASAG78L (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command try { . "c:\Users\fundi\AppData\Local\Programs\Microsoft VS Code Insiders\9666ca8ea7\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 9660
+PSVersion: 5.1.19041.7548
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.7548
+BuildVersion: 10.0.19041.7548
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is launcher_full.log

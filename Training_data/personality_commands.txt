@@ -1,0 +1,7 @@
+Use friendly mode
+Switch to calm mode
+Switch to strict mode
+Be friendly
+Be calm
+Be strict
+Reset personality
